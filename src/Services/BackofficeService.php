@@ -45,7 +45,8 @@ final class BackofficeService extends ServiceAbstract
 
     public function getCardInfo(int $cardId)
     {
-        $response = $this->callAction(ApiActions::BO_GET_INFO_CARD, [ 'card' => $cardId ]);
+        $response = $this->callAction(ApiActions::BO_GET_INFO_CARD, ['card' => $cardId]);
+
         return new CardInfoResponseData($response->data['customer']);
     }
 }
