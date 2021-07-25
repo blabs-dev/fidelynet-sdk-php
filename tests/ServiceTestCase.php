@@ -174,6 +174,7 @@ class ServiceTestCase extends TestCase
     protected function getFakeErrorResponse($error_code = null): string
     {
         $error_code = $error_code ?: array_rand(ApiMessages::CODES);
+
         return '{ "returncode": '.$error_code.', "data": { "answerCode": 0, "sessionID": "a0aa0a00-0000-0aaa-a000-aa0a0ca00000" } }';
     }
 
