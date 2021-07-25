@@ -1,108 +1,78 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Responses\DataModels;
-
 
 use Spatie\DataTransferObject\DataTransferObject;
 
 final class CampaignData extends DataTransferObject
 {
     /**
-     * 
-     *
-     * @var int $id 
+     * @var int
      */
     public $id;
 
     /**
-     * 
-     *
-     * @var int $code 
+     * @var int
      */
     public $code;
 
     /**
-     * 
-     *
-     * @var string $name 
+     * @var string
      */
     public $name;
 
     /**
-     * 
-     *
-     * @var string $description 
+     * @var string
      */
     public $description;
 
     /**
-     * 
-     *
-     * @var string $dirLogo 
+     * @var string
      */
     public $dirLogo;
 
     /**
-     * 
-     *
-     * @var string $pointsTag 
+     * @var string
      */
     public $pointsTag;
 
     /**
-     * 
-     *
-     * @var string $creditsTag 
+     * @var string
      */
     public $creditsTag;
 
     /**
-     * 
-     *
-     * @var int $amountLastMovement 
+     * @var int
      */
     public $amountLastMovement;
 
     /**
-     * 
-     *
-     * @var int $amountDaysExpiration 
+     * @var int
      */
     public $amountDaysExpiration;
 
     /**
-     * 
-     *
-     * @var int $amountPrizes 
+     * @var int
      */
     public $amountPrizes;
 
     /**
-     * 
-     *
-     * @var mixed $completeCustomerFields 
+     * @var mixed
      */
     public $completeCustomerFields;
 
     /**
-     * 
-     *
-     * @var mixed $ticket 
+     * @var mixed
      */
     public $ticket;
 
     /**
-     * 
-     *
-     * @var mixed $shop 
+     * @var mixed
      */
     public $shop;
 
     /**
-     * 
-     *
-     * @var mixed $minimumCustomersFields 
+     * @var mixed
      */
     public $minimumCustomersFields;
 }

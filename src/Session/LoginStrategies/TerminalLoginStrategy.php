@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Session\LoginStrategies;
-
 
 use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\FactoryOptions;
@@ -16,9 +14,10 @@ final class TerminalLoginStrategy extends LoginStrategyAbstract
     /**
      * @inheritDoc
      */
-    function startSession(array $credentials): string
+    public function startSession(array $credentials): string
     {
         $response = $this->client->actionRequest(self::LOGIN_ACTION, $this->prepareCredentials($credentials));
+
         return $this->extractSessionId($response);
     }
 
@@ -28,6 +27,7 @@ final class TerminalLoginStrategy extends LoginStrategyAbstract
     protected function extractSessionId(ApiResponse $response): string
     {
         $response_data = new LoginResponseData($response->data);
+
         return $response_data->sessionID;
     }
 
@@ -38,8 +38,8 @@ final class TerminalLoginStrategy extends LoginStrategyAbstract
     {
         return [
             'terminalserial' => $credentials[FactoryOptions::TERMINAL],
-            'username' => $credentials[FactoryOptions::USERNAME],
-            'password' => $credentials[FactoryOptions::PASSWORD],
+            'username'       => $credentials[FactoryOptions::USERNAME],
+            'password'       => $credentials[FactoryOptions::PASSWORD],
         ];
     }
 }

@@ -11,194 +11,193 @@
 
 namespace Blabs\FidelyNet\Responses\DataModels;
 
-
 use Spatie\DataTransferObject\DataTransferObject;
 
 class CustomerData extends DataTransferObject
 {
-    /** @var int $id */
+    /** @var int */
     public $id;
 
-    /** @var int $campaign */
+    /** @var int */
     public $campaign;
 
-    /** @var int $card */
+    /** @var int */
     public $card;
 
-    /** @var int $fidelyCode */
+    /** @var int */
     public $fidelyCode;
 
-    /** @var int $category */
+    /** @var int */
     public $category;
 
-    /** @var int $status */
+    /** @var int */
     public $status;
 
-    /** @var string $name */
+    /** @var string */
     public $name;
 
-    /** @var string $surname */
+    /** @var string */
     public $surname;
 
-    /** @var string $gender */
+    /** @var string */
     public $gender;
 
-    /** @var string $userName */
+    /** @var string */
     public $userName;
 
-    /** @var string $pincode */
+    /** @var string */
     public $pincode;
 
-    /** @var string $expiration */
+    /** @var string */
     public $expiration;
 
-    /** @var mixed $flags */
+    /** @var mixed */
     public $flags;
 
-    /** @var mixed $privacy */
+    /** @var mixed */
     public $privacy;
 
-    /** @var int $cardType */
+    /** @var int */
     public $cardType;
 
-    /** @var int $languageId */
+    /** @var int */
     public $languageId;
 
-    /** @var int $pointsCharged */
+    /** @var int */
     public $pointsCharged;
 
-    /** @var int $pointsChargedCount */
+    /** @var int */
     public $pointsChargedCount;
 
-    /** @var int $pointsUsed */
+    /** @var int */
     public $pointsUsed;
 
-    /** @var int $pointsUsedCount */
+    /** @var int */
     public $pointsUsedCount;
 
-    /** @var int $pointsStatusCharged */
+    /** @var int */
     public $pointsStatusCharged;
 
-    /** @var int $pointsStatusUsed */
+    /** @var int */
     public $pointsStatusUsed;
 
-    /** @var int $pointsMLMCharged */
+    /** @var int */
     public $pointsMLMCharged;
 
-    /** @var int $pointsMLMUsed */
+    /** @var int */
     public $pointsMLMUsed;
 
-    /** @var int $creditsCharged */
+    /** @var int */
     public $creditsCharged;
 
-    /** @var int $creditsUsed */
+    /** @var int */
     public $creditsUsed;
 
-    /** @var int $creditsGiftCharged */
+    /** @var int */
     public $creditsGiftCharged;
 
-    /** @var int $creditsGiftUsed */
+    /** @var int */
     public $creditsGiftUsed;
 
-    /** @var int $rechargesCard */
+    /** @var int */
     public $rechargesCard;
 
-    /** @var int $usesCard */
+    /** @var int */
     public $usesCard;
 
-    /** @var string $mailContactData */
+    /** @var string */
     public $mailContactData;
 
-    /** @var string $mobileContactData */
+    /** @var string */
     public $mobileContactData;
 
-    /** @var string $address */
+    /** @var string */
     public $address;
 
-    /** @var string $zip */
+    /** @var string */
     public $zip;
 
-    /** @var int $parentCustomerId */
+    /** @var int */
     public $parentCustomerId;
 
-    /** @var int $percentajePointsParentCustomer */
+    /** @var int */
     public $percentajePointsParentCustomer;
 
-    /** @var int $percentajeCreditsParentCustomer */
+    /** @var int */
     public $percentajeCreditsParentCustomer;
 
-    /** @var mixed $mlmCustomerId */
+    /** @var mixed */
     public $mlmCustomerId;
 
-    /** @var int $geo_lat */
+    /** @var int */
     public $geo_lat;
 
-    /** @var int $geo_long */
+    /** @var int */
     public $geo_long;
 
-    /** @var int $country */
+    /** @var int */
     public $country;
 
-    /** @var int $geoLevel1 */
+    /** @var int */
     public $geoLevel1;
 
-    /** @var int $geoLevel2 */
+    /** @var int */
     public $geoLevel2;
 
-    /** @var int $geoLevel3 */
+    /** @var int */
     public $geoLevel3;
 
-    /** @var int $geoLevel4 */
+    /** @var int */
     public $geoLevel4;
 
-    /** @var int $geoLevel5 */
+    /** @var int */
     public $geoLevel5;
 
-    /** @var int $balance_points */
+    /** @var int */
     public $balance_points;
 
-    /** @var int $balance_credits */
+    /** @var int */
     public $balance_credits;
 
-    /** @var int $balance_gift_credits */
+    /** @var int */
     public $balance_gift_credits;
 
-    /** @var int $balance_status_points */
+    /** @var int */
     public $balance_status_points;
 
-    /** @var int $pointsToExpire */
+    /** @var int */
     public $pointsToExpire;
 
-    /** @var int $expiredPoints */
+    /** @var int */
     public $expiredPoints;
 
-    /** @var int $zoneId */
+    /** @var int */
     public $zoneId;
 
-    /** @var int $customer_area_status */
+    /** @var int */
     public $customer_area_status;
 
-    /** @var int $totalExchangedPrizes */
+    /** @var int */
     public $totalExchangedPrizes;
 
-    /** @var int $totalMoneyInSale */
+    /** @var int */
     public $totalMoneyInSale;
 
-    /** @var int $paidMoneyInSale */
+    /** @var int */
     public $paidMoneyInSale;
 
-    /** @var int $totalMlmChildren */
+    /** @var int */
     public $totalMlmChildren;
 
-    /** @var int $totalManualDischargedPoints */
+    /** @var int */
     public $totalManualDischargedPoints;
 
-    /** @var int $totalDischargedPointsInSale */
+    /** @var int */
     public $totalDischargedPointsInSale;
 
-    /** @var int $totalDischargedPointsInExchanged */
+    /** @var int */
     public $totalDischargedPointsInExchanged;
 
-    /** @var int $totalDischargedPointsInTransfer */
+    /** @var int */
     public $totalDischargedPointsInTransfer;
 }

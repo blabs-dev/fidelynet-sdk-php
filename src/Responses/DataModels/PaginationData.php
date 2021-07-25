@@ -6,21 +6,21 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class PaginationData extends DataTransferObject
 {
-    /** @var int $InitLimit */
+    /** @var int */
     public $InitLimit;
 
-    /** @var int $rowCount */
+    /** @var int */
     public $rowCount;
 
-    /** @var mixed $orders */
+    /** @var mixed */
     public $orders;
 
-    /** @var int $recordsTotal */
+    /** @var int */
     public $recordsTotal;
 
-    /** @var int $actualPage */
+    /** @var int */
     public $actualPage;
 
-    /** @var int $totalPages */
+    /** @var int */
     public $totalPages;
 }

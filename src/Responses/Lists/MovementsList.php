@@ -11,7 +11,6 @@
 
 namespace Blabs\FidelyNet\Responses\Lists;
 
-
 use Spatie\DataTransferObject\DataTransferObject;
 
 class MovementsList extends DataTransferObject

@@ -7,219 +7,157 @@ use Spatie\DataTransferObject\DataTransferObject;
 final class ShopData extends DataTransferObject
 {
     /**
-     * 
-     *
-     * @var int $campaignId 
+     * @var int
      */
     public $campaignId;
 
     /**
-     * 
-     *
-     * @var int $shopId 
+     * @var int
      */
     public $shopId;
 
     /**
-     * 
-     *
-     * @var int $chargedPoints 
+     * @var int
      */
     public $chargedPoints;
 
     /**
-     * 
-     *
-     * @var int $dischargedPoints 
+     * @var int
      */
     public $dischargedPoints;
 
     /**
-     * 
-     *
-     * @var int $chargedCredits 
+     * @var int
      */
     public $chargedCredits;
 
     /**
-     * 
-     *
-     * @var int $dischargedCredits 
+     * @var int
      */
     public $dischargedCredits;
 
     /**
-     * 
-     *
-     * @var int $chargedCreditsGift 
+     * @var int
      */
     public $chargedCreditsGift;
 
     /**
-     * 
-     *
-     * @var int $dischargedCreditsGift 
+     * @var int
      */
     public $dischargedCreditsGift;
 
     /**
-     * 
-     *
-     * @var int $chargedPointsStatus 
+     * @var int
      */
     public $chargedPointsStatus;
 
     /**
-     * 
-     *
-     * @var int $dischargedPointsStatus 
+     * @var int
      */
     public $dischargedPointsStatus;
 
     /**
-     * 
-     *
-     * @var int $cardsCharged 
+     * @var int
      */
     public $cardsCharged;
 
     /**
-     * 
-     *
-     * @var int $cardsEmitted 
+     * @var int
      */
     public $cardsEmitted;
 
     /**
-     * 
-     *
-     * @var int $limitChargeCredits 
+     * @var int
      */
     public $limitChargeCredits;
 
     /**
-     * 
-     *
-     * @var int $limitChargeCreditsGift 
+     * @var int
      */
     public $limitChargeCreditsGift;
 
     /**
-     * 
-     *
-     * @var int $limitChargePoints 
+     * @var int
      */
     public $limitChargePoints;
 
     /**
-     * 
-     *
-     * @var int $limitDischargeCredits 
+     * @var int
      */
     public $limitDischargeCredits;
 
     /**
-     * 
-     *
-     * @var int $limitDischargeCreditsGift 
+     * @var int
      */
     public $limitDischargeCreditsGift;
 
     /**
-     * 
-     *
-     * @var int $limitDischargePoints 
+     * @var int
      */
     public $limitDischargePoints;
 
     /**
-     * 
-     *
-     * @var mixed $rights_shop 
+     * @var mixed
      */
     public $rights_shop;
 
     /**
-     * 
-     *
-     * @var mixed $behavior_flags 
+     * @var mixed
      */
     public $behavior_flags;
 
     /**
-     * 
-     *
-     * @var mixed $behavior_flags2 
+     * @var mixed
      */
     public $behavior_flags2;
 
     /**
-     * 
-     *
-     * @var mixed $operative_flags 
+     * @var mixed
      */
     public $operative_flags;
 
     /**
-     * 
-     *
-     * @var mixed $operative_flags2 
+     * @var mixed
      */
     public $operative_flags2;
 
     /**
-     * 
-     *
-     * @var int $balancePoints 
+     * @var int
      */
     public $balancePoints;
 
     /**
-     * 
-     *
-     * @var int $balanceCredits 
+     * @var int
      */
     public $balanceCredits;
 
     /**
-     * 
-     *
-     * @var int $balancePointsStatus 
+     * @var int
      */
     public $balancePointsStatus;
 
     /**
-     * 
-     *
-     * @var int $balanceCreditsGift 
+     * @var int
      */
     public $balanceCreditsGift;
 
     /**
-     * 
-     *
-     * @var int $balanceCards 
+     * @var int
      */
     public $balanceCards;
 
     /**
-     * 
-     *
-     * @var int $balanceCardsGift 
+     * @var int
      */
     public $balanceCardsGift;
 
     /**
-     * 
-     *
-     * @var int $cardsGiftCharged 
+     * @var int
      */
     public $cardsGiftCharged;
 
     /**
-     * 
-     *
-     * @var int $cardsGiftEmitted 
+     * @var int
      */
     public $cardsGiftEmitted;
 }

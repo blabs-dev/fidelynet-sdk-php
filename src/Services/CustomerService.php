@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Services;
-
 
 use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiServices;
@@ -15,7 +13,6 @@ use Blabs\FidelyNet\Responses\Lists\MovementsList;
 
 final class CustomerService extends ServiceAbstract
 {
-
     /**
      * @inheritdoc
      */
@@ -24,19 +21,22 @@ final class CustomerService extends ServiceAbstract
     /**
      * Sends a verification code to certify customer's email address.
      *
-     * @param  string $emailAddress
-     * @param  string $campaignId
-     * @return ApiResponse
+     * @param string $emailAddress
+     * @param string $campaignId
+     *
      * @throws \Blabs\FidelyNet\Exceptions\FidelyNetServiceException
      * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return ApiResponse
      */
-    public function sendEmailVerificationCode(string $emailAddress, string $campaignId) :ApiResponse
+    public function sendEmailVerificationCode(string $emailAddress, string $campaignId): ApiResponse
     {
         return $this->callAction(
-            ApiActions::VERIFY_EMAIL, [
-            'email' => $emailAddress,
-            'campaignid' => $campaignId
+            ApiActions::VERIFY_EMAIL,
+            [
+                'email'      => $emailAddress,
+                'campaignid' => $campaignId,
             ]
         );
     }
@@ -46,64 +46,69 @@ final class CustomerService extends ServiceAbstract
      *
      * @codeCoverageIgnore
      *
-     * @param  string $phoneNumber
-     * @param  string $campaignId
-     * @return ApiResponse
+     * @param string $phoneNumber
+     * @param string $campaignId
+     *
      * @throws \Blabs\FidelyNet\Exceptions\FidelyNetServiceException
      * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return ApiResponse
      */
     public function sendMobileVerificationCode(string $phoneNumber, string $campaignId)
     {
         return $this->callAction(
-            ApiActions::VERIFY_EMAIL, [
-            'mobile' => $phoneNumber,
-            'campaignid' => $campaignId
+            ApiActions::VERIFY_EMAIL,
+            [
+                'mobile'     => $phoneNumber,
+                'campaignid' => $campaignId,
             ]
         );
     }
 
     /**
-     * Register a customer and creates a new card (verification code is required)
+     * Register a customer and creates a new card (verification code is required).
      *
      * @param array $customer_data
      * @param $verificationCode
      * @param $campaignId
      * @param $categoryId
-     * @param null  $shopId
-     *
-     * @return CustomerData
+     * @param null $shopId
      *
      * @throws \Blabs\FidelyNet\Exceptions\FidelyNetServiceException
      * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
+     *
+     * @return CustomerData
      */
-    public function registerCustomerWithVerificationCode(array $customer_data, $verificationCode, $campaignId, $categoryId, $shopId = null) :CustomerData
+    public function registerCustomerWithVerificationCode(array $customer_data, $verificationCode, $campaignId, $categoryId, $shopId = null): CustomerData
     {
         $request_data = array_merge(
             [
-            'verificationcode' => $verificationCode,
-            'campaignid' => $campaignId,
-            'categoryid' => $categoryId,
-            'registrationshopid' => $shopId,
-            ], $customer_data
+                'verificationcode'   => $verificationCode,
+                'campaignid'         => $campaignId,
+                'categoryid'         => $categoryId,
+                'registrationshopid' => $shopId,
+            ],
+            $customer_data
         );
 
         $response = $this->callAction(ApiActions::REGISTER_WITH_VC, $request_data);
+
         return new CustomerData($response->data['customer']);
     }
 
     /**
-     * Get movements list for the customer that opened the session
+     * Get movements list for the customer that opened the session.
      *
      * @param int $pageNumber
      * @param int $movementsPerPage
      *
-     * @return MovementsList
-     *
      * @throws \Blabs\FidelyNet\Exceptions\FidelyNetServiceException
      * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
+     *
+     * @return MovementsList
      */
-    public function getMovements(int $pageNumber, int $movementsPerPage) :MovementsList
+    public function getMovements(int $pageNumber, int $movementsPerPage): MovementsList
     {
         if ($this->getSessionType() !== ApiSessionTypes::PRIVATE) {
             throw new FidelyNetServiceException(Messages::UNSUPPORTED_ACTION_WITH_PUBLIC_SESSION);
@@ -113,11 +118,12 @@ final class CustomerService extends ServiceAbstract
 
         $request_data = [
             'initlimit' => $startOffset,
-            'rowcount'  => $movementsPerPage
+            'rowcount'  => $movementsPerPage,
         ];
 
         $response = $this->callAction(ApiActions::GET_MOVEMENTS, $request_data);
         $movements = array_key_exists('movements', $response->data) ? $response->data['movements'] : [];
+
         return new MovementsList(['movements' => $movements, 'pagination' => $response->data['pagination']]);
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Constants;
-
 
 use Blabs\FidelyNet\Providers\SessionId\InMemorySessionIdProvider;
 use Blabs\FidelyNet\Services\BackofficeService;
@@ -37,9 +35,9 @@ final class FactoryOptions
     ];
 
     const SERVICE_CLASSES = [
-        ApiServices::TERMINAL => TerminalService::class,
+        ApiServices::TERMINAL   => TerminalService::class,
         ApiServices::BACKOFFICE => BackofficeService::class,
-        ApiServices::CUSTOMER => CustomerService::class,
+        ApiServices::CUSTOMER   => CustomerService::class,
     ];
 
     const SERVICES_REQUIRED_OPTIONS = [
@@ -63,15 +61,15 @@ final class FactoryOptions
             ApiServices::CUSTOMER => [
                 self::CAMPAIGN_ID,
             ],
-        ]
+        ],
     ];
 
     const DEFAULT_VALUES = [
-        self::DEMO_MODE => false,
-        self::SESSION_PERSISTS => true,
+        self::DEMO_MODE           => false,
+        self::SESSION_PERSISTS    => true,
         self::SESSION_ID_PROVIDER => InMemorySessionIdProvider::class,
-        self::SESSION_TYPE => ApiSessionTypes::PRIVATE,
-        self::HTTP_CLIENT => null,
-        self::START_SESSION => true,
+        self::SESSION_TYPE        => ApiSessionTypes::PRIVATE,
+        self::HTTP_CLIENT         => null,
+        self::START_SESSION       => true,
     ];
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Contracts;
 
 /**
@@ -10,7 +9,6 @@ namespace Blabs\FidelyNet\Contracts;
  * it's possible to implement it using any storage engine (filesystem, cache, database, etc)
  *
  * Interface SessionIdProviderContract
- * @package Blabs\FidelyNet\Contracts
  */
 interface SessionIdProviderContract
 {
@@ -19,19 +17,19 @@ interface SessionIdProviderContract
      *
      * @param string $sessionId
      */
-    function setSessionId(string $sessionId) :void;
+    public function setSessionId(string $sessionId): void;
 
     /**
      * Get the current session id.
      *
      * @return string|null
      */
-    function getSessionId() :?string;
+    public function getSessionId(): ?string;
 
     /**
-     * Returns the persistence capability of the implementation
+     * Returns the persistence capability of the implementation.
      *
      * @return bool
      */
-    function isSessionPersistent() :bool;
+    public function isSessionPersistent(): bool;
 }

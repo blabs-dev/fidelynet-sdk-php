@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Blabs\FidelyNet;
 
 use Blabs\FidelyNet\Constants\ApiMessages;
@@ -23,56 +22,56 @@ use GuzzleHttp\Exception\ConnectException;
 final class Client
 {
     /**
-     * Service type of current instance
+     * Service type of current instance.
      *
      * @var string
      */
     private $service_type;
 
     /**
-     * Requests are made in FNET demo environment
+     * Requests are made in FNET demo environment.
      *
-     * @var boolean
+     * @var bool
      */
     private $demoMode;
 
     /**
-     * SessionManager instance for the current Client
+     * SessionManager instance for the current Client.
      *
      * @var SessionManager
      */
     private $sessionManager;
 
     /**
-     * Guzzle client used to perform requests
+     * Guzzle client used to perform requests.
      *
      * @var ClientInterface
      */
     private $http_client;
 
     /**
-     * Service entrypoint
+     * Service entrypoint.
      *
      * @var string
      */
     private $baseURI;
 
     /**
-     * Number of requests made by this instance
+     * Number of requests made by this instance.
      *
      * @var int
      */
     private $requestCount = 0;
 
     /**
-     * Session type opened by this instance (can be 'public' or 'private')
+     * Session type opened by this instance (can be 'public' or 'private').
      *
      * @var string
      */
     private $sessionType;
 
     /**
-     * If true a session is started automatically when an instance of the Client is created
+     * If true a session is started automatically when an instance of the Client is created.
      *
      * @var bool
      */
@@ -81,13 +80,13 @@ final class Client
     /**
      * Client constructor.
      *
-     * @param string $service_type
-     * @param array $credentials
-     * @param false $demoMode
-     * @param string $session_type
+     * @param string                         $service_type
+     * @param array                          $credentials
+     * @param false                          $demoMode
+     * @param string                         $session_type
      * @param SessionIdProviderContract|null $sessionIdProvider
-     * @param ClientInterface|null $http_client
-     * @param bool $startSession
+     * @param ClientInterface|null           $http_client
+     * @param bool                           $startSession
      */
     public function __construct(
         string $service_type,
@@ -107,8 +106,8 @@ final class Client
         $this->http_client = $http_client ? $http_client
             : new GuzzleClient(
                 [
-                'handler' => GuzzleFactory::handler(),
-                'base_uri' => $this->baseURI,
+                    'handler'  => GuzzleFactory::handler(),
+                    'base_uri' => $this->baseURI,
                 ]
             );
         // @codeCoverageIgnoreEnd
@@ -119,7 +118,7 @@ final class Client
     }
 
     /**
-     * Init the Session Manager using the id provider specified in this instance
+     * Init the Session Manager using the id provider specified in this instance.
      *
      * @param array                          $credentials
      * @param SessionIdProviderContract|null $sessionIdProvider
@@ -127,12 +126,13 @@ final class Client
     private function setupSessionManager(array $credentials, SessionIdProviderContract $sessionIdProvider): void
     {
         $this->sessionManager = new SessionManager($credentials, $this->sessionType, $sessionIdProvider, $this);
-        if ($this->startSession)
+        if ($this->startSession) {
             $this->initSession();
+        }
     }
 
     /**
-     * Starts a session on current instance FNET3 service
+     * Starts a session on current instance FNET3 service.
      */
     public function initSession()
     {
@@ -142,7 +142,7 @@ final class Client
     }
 
     /**
-     * Returns service type of current instance
+     * Returns service type of current instance.
      *
      * @return string
      */
@@ -152,7 +152,7 @@ final class Client
     }
 
     /**
-     * Returns session type of current instance
+     * Returns session type of current instance.
      *
      * @return string
      */
@@ -162,7 +162,7 @@ final class Client
     }
 
     /**
-     * Returns session id current instance
+     * Returns session id current instance.
      *
      * @return string|null
      */
@@ -172,7 +172,7 @@ final class Client
     }
 
     /**
-     * Get number of sessions opened by this instance
+     * Get number of sessions opened by this instance.
      *
      * @return int
      */
@@ -182,7 +182,7 @@ final class Client
     }
 
     /**
-     * Returns if the "driver" for the current session managers persists the id across requests
+     * Returns if the "driver" for the current session managers persists the id across requests.
      *
      * @return bool
      */
@@ -192,7 +192,7 @@ final class Client
     }
 
     /**
-     * Returns number of requests made by this instance
+     * Returns number of requests made by this instance.
      *
      * @return int
      */
@@ -202,12 +202,13 @@ final class Client
     }
 
     /**
-     * Returns the set of default parameters used for service requests on this instance
+     * Returns the set of default parameters used for service requests on this instance.
      *
-     * @param  string|null $action
+     * @param string|null $action
+     *
      * @return array
      */
-    public function getDefaultParameters(string $action = null) :array
+    public function getDefaultParameters(string $action = null): array
     {
         switch ($this->service_type) {
         case ApiServices::CUSTOMER:
@@ -218,14 +219,15 @@ final class Client
         }
 
         $default_parameters = [
-            'az' => $action,
-            $session_id_key => $this->getSessionId()
+            'az'            => $action,
+            $session_id_key => $this->getSessionId(),
         ];
+
         return array_merge($default_parameters, $this->demoMode ? ['ambiente' => 'DEMO'] : []);
     }
 
     /**
-     * Returns true if requests are made in FNET demo environment
+     * Returns true if requests are made in FNET demo environment.
      *
      * @return bool
      */
@@ -235,13 +237,14 @@ final class Client
     }
 
     /**
-     * Prepare the data for the service request using default parameters and setting up headers accordingly
+     * Prepare the data for the service request using default parameters and setting up headers accordingly.
      *
-     * @param  string $action
-     * @param  array  $parameters
+     * @param string $action
+     * @param array  $parameters
+     *
      * @return array
      */
-    private function prepareRequest(string $action, array $parameters) :array
+    private function prepareRequest(string $action, array $parameters): array
     {
         return array_merge(
             $this->getDefaultParameters($action),
@@ -250,23 +253,24 @@ final class Client
     }
 
     /**
-     * Returns the set of default headers to use for service requests
+     * Returns the set of default headers to use for service requests.
      *
      * @return array
      */
-    private function getHeaders() :array
+    private function getHeaders(): array
     {
         return [
             'User-Agent' => Release::USER_AGENT,
-            'Accept' => 'application/json'
+            'Accept'     => 'application/json',
         ];
     }
 
     /**
      * Perform a conversion against data array to convert it in multipart/form-data
-     * as required by the service
+     * as required by the service.
      *
-     * @param  array $parameters
+     * @param array $parameters
+     *
      * @return array
      */
     private function convertToMultipart(array $parameters): array
@@ -275,7 +279,7 @@ final class Client
 
         foreach ($parameters as $key => $value) {
             $multipart[] = [
-                'name' => $key,
+                'name'     => $key,
                 'contents' => $value,
             ];
         }
@@ -284,17 +288,17 @@ final class Client
     }
 
     /**
-     * Performs the action request to the service
+     * Performs the action request to the service.
      *
      * @param string $action
      * @param array  $parameters
      *
-     * @return ApiResponse
-     *
      * @throws Exceptions\FidelyNetSessionException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return ApiResponse
      */
-    public function actionRequest(string $action, array $parameters) :ApiResponse
+    public function actionRequest(string $action, array $parameters): ApiResponse
     {
         $this->requestCount++;
 
@@ -302,7 +306,7 @@ final class Client
 
         try {
             $options = [
-                'headers' => $this->getHeaders(),
+                'headers'   => $this->getHeaders(),
                 'multipart' => $this->convertToMultipart($parameters),
             ];
             $response = $this->http_client->post('', $options);
@@ -315,6 +319,7 @@ final class Client
         // If service returns an expired session error, session is renewed and request is performed again
         if ($response_data->returncode == 998) {
             $this->sessionManager->renewSession();
+
             return $this->actionRequest($action, $parameters);
         }
 
@@ -326,37 +331,42 @@ final class Client
     }
 
     /**
-     * Parses the service response to a common DTO format
+     * Parses the service response to a common DTO format.
      *
-     * @param  string $response_content
+     * @param string $response_content
+     *
      * @return ApiResponse
      */
-    protected function parseResponse(string $response_content) :ApiResponse
+    protected function parseResponse(string $response_content): ApiResponse
     {
         $parsed_response = json_decode($response_content, true);
+
         return new ApiResponse($parsed_response);
     }
 
     /**
-     * Determines the error returned by the service
+     * Determines the error returned by the service.
      *
-     * @param  string|int $return_code Error code provided by service
+     * @param string|int $return_code Error code provided by service
+     *
      * @return Exception
      */
-    protected function determineApiError($return_code) :Exception
+    protected function determineApiError($return_code): Exception
     {
         if ($return_code === '9999') {
             return new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST);
         }
 
         $message = ApiMessages::CODES[$return_code];
-        return new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE . "{$return_code}: {$message}");
+
+        return new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."{$return_code}: {$message}");
     }
 
     /**
-     * Determines the exception throwed by Guzzle client
+     * Determines the exception throwed by Guzzle client.
      *
      * @param  $exception
+     *
      * @return Exception
      */
     protected function determineClientException($exception): Exception

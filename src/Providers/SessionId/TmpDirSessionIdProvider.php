@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Providers\SessionId;
-
 
 use Blabs\FidelyNet\Contracts\SessionIdProviderContract;
 
@@ -11,7 +9,7 @@ final class TmpDirSessionIdProvider implements SessionIdProviderContract
     const TMP_FILENAME = 'FNET_session_id';
 
     /**
-     * The file path where provider stores session id
+     * The file path where provider stores session id.
      *
      * @var string
      */
@@ -24,15 +22,16 @@ final class TmpDirSessionIdProvider implements SessionIdProviderContract
      */
     public function __construct(string $service_type = '')
     {
-        $this->tmpFilePath = sys_get_temp_dir() . "/" .  self::TMP_FILENAME . '__' . $service_type;
-        if (!file_exists($this->tmpFilePath)) { file_put_contents($this->tmpFilePath, "");
+        $this->tmpFilePath = sys_get_temp_dir().'/'.self::TMP_FILENAME.'__'.$service_type;
+        if (!file_exists($this->tmpFilePath)) {
+            file_put_contents($this->tmpFilePath, '');
         }
     }
 
     /**
      * @inheritDoc
      */
-    function setSessionId(string $sessionId): void
+    public function setSessionId(string $sessionId): void
     {
         file_put_contents($this->tmpFilePath, $sessionId);
     }
@@ -40,7 +39,7 @@ final class TmpDirSessionIdProvider implements SessionIdProviderContract
     /**
      * @inheritDoc
      */
-    function getSessionId(): ?string
+    public function getSessionId(): ?string
     {
         return file_get_contents($this->tmpFilePath);
     }
@@ -48,13 +47,13 @@ final class TmpDirSessionIdProvider implements SessionIdProviderContract
     /**
      * @inheritDoc
      */
-    function isSessionPersistent(): bool
+    public function isSessionPersistent(): bool
     {
         return true;
     }
 
     /**
-     * Returns the file path where provider stores session id
+     * Returns the file path where provider stores session id.
      *
      * @return string
      */

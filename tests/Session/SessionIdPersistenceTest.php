@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Test\Session;
-
 
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Constants\FactoryOptions;
@@ -13,7 +11,6 @@ use Blabs\FidelyNet\Test\ServiceTestCase;
 
 class SessionIdPersistenceTest extends ServiceTestCase
 {
-
     public function test_tmp_file_can_be_wrote()
     {
         $provider = new TmpDirSessionIdProvider();
@@ -28,9 +25,10 @@ class SessionIdPersistenceTest extends ServiceTestCase
 
     /**
      * @dataProvider validFactoryOptionsDataProvider
-     * @param        string $serviceType
-     * @param        string $serviceClass
-     * @param        array  $inputFactoryOptions
+     *
+     * @param string $serviceType
+     * @param string $serviceClass
+     * @param array  $inputFactoryOptions
      */
     public function test_session_id_persists_across_two_different_service_instances_of_same_type(string $serviceType, string $serviceClass, array $inputFactoryOptions)
     {
@@ -41,17 +39,17 @@ class SessionIdPersistenceTest extends ServiceTestCase
 
         $factory_options = array_merge(
             $inputFactoryOptions,
-            [ FactoryOptions::SESSION_PERSISTS => true ]
+            [FactoryOptions::SESSION_PERSISTS => true]
         );
 
-        $factory_options =  $this->addClientMockToFactoryOptions($factory_options, $responses_queue);
+        $factory_options = $this->addClientMockToFactoryOptions($factory_options, $responses_queue);
 
         $service_instance = ServiceFactory::create($serviceType, $factory_options);
-        $session_id =  $service_instance->getSessionId();
+        $session_id = $service_instance->getSessionId();
         $new_service_instance = ServiceFactory::create($serviceType, $factory_options);
 
-        $this->assertInstanceOf($serviceClass,$service_instance);
-        $this->assertInstanceOf($serviceClass,$new_service_instance);
+        $this->assertInstanceOf($serviceClass, $service_instance);
+        $this->assertInstanceOf($serviceClass, $new_service_instance);
         $this->assertTrue($new_service_instance->isSessionPersistent());
         $this->assertTrue($service_instance->isSessionPersistent());
 
@@ -61,22 +59,25 @@ class SessionIdPersistenceTest extends ServiceTestCase
     public function test_session_ids_from_different_service_types_are_different()
     {
         $backoffice_service = ServiceFactory::create(
-            ApiServices::BACKOFFICE, $this->addLoginClientMockToFactoryOptions(
-            $this->getBackofficeServiceDemoFactoryOptions(),
-            ApiServices::BACKOFFICE
-        )
+            ApiServices::BACKOFFICE,
+            $this->addLoginClientMockToFactoryOptions(
+                $this->getBackofficeServiceDemoFactoryOptions(),
+                ApiServices::BACKOFFICE
+            )
         );
         $terminal_service = ServiceFactory::create(
-            ApiServices::TERMINAL, $this->addLoginClientMockToFactoryOptions(
-            $this->getTerminalServiceDemoFactoryOptions(),
-            ApiServices::TERMINAL
-        )
+            ApiServices::TERMINAL,
+            $this->addLoginClientMockToFactoryOptions(
+                $this->getTerminalServiceDemoFactoryOptions(),
+                ApiServices::TERMINAL
+            )
         );
         $customer_service = ServiceFactory::create(
-            ApiServices::CUSTOMER, $this->addLoginClientMockToFactoryOptions(
-            $this->getCustomerServiceDemoFactoryOptions(),
-            ApiServices::CUSTOMER
-        )
+            ApiServices::CUSTOMER,
+            $this->addLoginClientMockToFactoryOptions(
+                $this->getCustomerServiceDemoFactoryOptions(),
+                ApiServices::CUSTOMER
+            )
         );
 
         $this->assertNotEquals($backoffice_service->getSessionId(), $terminal_service->getSessionId());
@@ -96,5 +97,4 @@ class SessionIdPersistenceTest extends ServiceTestCase
         $backoffice_service = ServiceFactory::create(ApiServices::BACKOFFICE, $factory_options);
         $this->assertFalse($backoffice_service->isSessionPersistent());
     }
-
 }

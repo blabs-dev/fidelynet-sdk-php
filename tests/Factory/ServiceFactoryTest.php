@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Test\Factory;
-
 
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Constants\FactoryOptions;
@@ -13,11 +11,12 @@ class ServiceFactoryTest extends ServiceTestCase
 {
     /**
      * @dataProvider validFactoryOptionsDataProvider
-     * @param        string $serviceType
-     * @param        string $expectedClass
-     * @param        array  $inputOptions
+     *
+     * @param string $serviceType
+     * @param string $expectedClass
+     * @param array  $inputOptions
      */
-    public function test_service_is_created_with_valid_demo_options(string $serviceType, string $expectedClass,array $inputOptions)
+    public function test_service_is_created_with_valid_demo_options(string $serviceType, string $expectedClass, array $inputOptions)
     {
         // Adds a mock http client to factory options
         $factory_options = $this->addLoginClientMockToFactoryOptions($inputOptions, $serviceType);
@@ -34,24 +33,24 @@ class ServiceFactoryTest extends ServiceTestCase
     {
         // Adds a mock http client to factory options
         $factory_options = $this->addLoginClientMockToFactoryOptions($this->getCustomerServiceDemoFactoryOptions(), ApiServices::CUSTOMER);
-        $factory_options = array_merge($factory_options,[ FactoryOptions::START_SESSION => false ]);
+        $factory_options = array_merge($factory_options, [FactoryOptions::START_SESSION => false]);
 
         // Creates the service and performs assertions
         $service = ServiceFactory::create(ApiServices::CUSTOMER, $factory_options);
         $this->assertEmpty($service->getSessionId());
-        $this->assertEquals(0,$service->getRequestCount());
+        $this->assertEquals(0, $service->getRequestCount());
 
         // Starts session
         $service->initSession();
         $this->assertNotEmpty($service->getSessionId());
-        $this->assertEquals(1,$service->getRequestCount());
+        $this->assertEquals(1, $service->getRequestCount());
     }
-
 
     /**
      * @dataProvider invalidServiceFactoryOptionsDataProvider
-     * @param        string $expectedMessage
-     * @param        array  $inputOptions
+     *
+     * @param string $expectedMessage
+     * @param array  $inputOptions
      */
     public function test_exception_is_thrown_when_required_service_options_is_missing(string $expectedMessage, string $serviceType, array $inputOptions)
     {
@@ -61,9 +60,10 @@ class ServiceFactoryTest extends ServiceTestCase
 
     /**
      * @dataProvider sessionIdKeyDataProvider
-     * @param        string $serviceType
-     * @param        string $expectedKey
-     * @param        array  $inputOptions
+     *
+     * @param string $serviceType
+     * @param string $expectedKey
+     * @param array  $inputOptions
      */
     public function test_session_id_key_is_set_accordingly(string $serviceType, string $expectedKey, array $inputOptions)
     {
@@ -91,5 +91,4 @@ class ServiceFactoryTest extends ServiceTestCase
         $this->assertFalse($service->isDemoMode());
         //        $this->mock_client_enabled = $mock_client_enabled_current_state;
     }
-
 }
