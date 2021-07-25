@@ -173,11 +173,7 @@ class ServiceTestCase extends TestCase
      */
     protected function getFakeErrorResponse($error_code = null): string
     {
-        if (!$error_code) {
-            array_rand(ApiMessages::CODES);
-        }
-
-        return '{ "returncode": '.$error_code.', "data": { "answerCode": 0, "sessionID": "a0aa0a00-0000-0aaa-a000-aa0a0ca00000" } }';
+        return '{ "returncode": '. $error_code ? $error_code : array_rand(ApiMessages::CODES) .', "data": { "answerCode": 0, "sessionID": "a0aa0a00-0000-0aaa-a000-aa0a0ca00000" } }';
     }
 
     /**
@@ -244,7 +240,7 @@ class ServiceTestCase extends TestCase
 
             return json_encode($response_data);
         case ApiServices::BACKOFFICE:
-            $response_content = $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::LOGINBO);
+            $response_content = $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN);
             $response_data = json_decode($response_content, true);
             $response_data['sessionid'] = uniqid();
 

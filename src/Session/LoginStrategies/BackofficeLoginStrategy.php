@@ -7,7 +7,7 @@ use Blabs\FidelyNet\Responses\ApiResponse;
 
 final class BackofficeLoginStrategy extends LoginStrategyAbstract
 {
-    const LOGIN_ACTION = ApiActions::LOGINBO;
+    const LOGIN_ACTION = ApiActions::BO_LOGIN;
 
     /**
      * @inheritDoc
