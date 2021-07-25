@@ -106,10 +106,11 @@ final class CustomerService extends ServiceAbstract
      * @param $categoryId
      * @param null $shopId
      *
-     * @return CustomerData
      * @throws FidelyNetServiceException
      * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return CustomerData
      */
     public function registerCustomer(CustomerRequestData $customer_data, $campaignId, $categoryId, $shopId = null): CustomerData
     {

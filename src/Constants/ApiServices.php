@@ -19,7 +19,7 @@ final class ApiServices
             ApiActions::GET_CAMPAIGN,
         ],
         self::BACKOFFICE => [
-            ApiActions::BO_MODIFY_CUSTOMER
+            ApiActions::BO_MODIFY_CUSTOMER,
         ],
         self::CUSTOMER   => [
             ApiActions::VERIFY_EMAIL,

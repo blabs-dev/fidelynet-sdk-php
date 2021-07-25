@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Test\Services;
-
 
 use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiDemoData;
