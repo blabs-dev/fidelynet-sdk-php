@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Configuration;
 
 use Blabs\FidelyNet\Constants\ApiDemoData;
@@ -14,8 +13,8 @@ class DemoConfigurationProvider implements ConfigurationProviderContract
 {
     private $options = [
         ApiServices::CUSTOMER => [
-            FactoryOptions::USERNAME => ApiDemoData::CUSTOMER_USERNAME,
-            FactoryOptions::PASSWORD => ApiDemoData::CUSTOMER_PASSWORD,
+            FactoryOptions::USERNAME    => ApiDemoData::CUSTOMER_USERNAME,
+            FactoryOptions::PASSWORD    => ApiDemoData::CUSTOMER_PASSWORD,
             FactoryOptions::CAMPAIGN_ID => ApiDemoData::CAMPAIGN_ID,
         ],
         ApiServices::TERMINAL => [
@@ -27,19 +26,19 @@ class DemoConfigurationProvider implements ConfigurationProviderContract
             FactoryOptions::USERNAME => ApiDemoData::BACKOFFICE_USER,
             FactoryOptions::PASSWORD => ApiDemoData::BACKOFFICE_PASSWORD,
         ],
-        FactoryOptions::DEMO_MODE => true,
+        FactoryOptions::DEMO_MODE           => true,
         FactoryOptions::SESSION_ID_PROVIDER => InMemorySessionIdProvider::class,
-        FactoryOptions::SESSION_TYPE => ApiSessionTypes::PRIVATE,
-        FactoryOptions::HTTP_CLIENT => null,
-        FactoryOptions::START_SESSION => true,
+        FactoryOptions::SESSION_TYPE        => ApiSessionTypes::PRIVATE,
+        FactoryOptions::HTTP_CLIENT         => null,
+        FactoryOptions::START_SESSION       => true,
     ];
-
 
     public function getOption($key, $parent_key = null)
     {
-        if (!$parent_key)
+        if (!$parent_key) {
             return $this->options[$key];
-        else
+        } else {
             return $this->options[$parent_key][$key];
+        }
     }
 }
