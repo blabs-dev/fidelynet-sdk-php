@@ -16,6 +16,7 @@ use Blabs\FidelyNet\Constants\ApiDemoData;
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Constants\Messages;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
+use Blabs\FidelyNet\Requests\CustomerRequestData;
 use Blabs\FidelyNet\Responses\Lists\MovementsList;
 use Blabs\FidelyNet\ServiceFactory;
 use Blabs\FidelyNet\Services\CustomerService;
@@ -50,7 +51,7 @@ class CustomerServiceTest extends ServiceTestCase
 
         $responses = [
             $this->getFakeResponse(ApiServices::CUSTOMER, ApiActions::SYNCHRO),
-            $this->getFakeResponse(ApiServices::CUSTOMER, ApiActions::VERIFY_EMAIL),
+            $this->getFakeResponse(ApiServices::CUSTOMER, ApiActions::VERIFY_PHONE),
         ];
         /** @var CustomerService $customer_service */
         $customer_service = ServiceFactory::create(
@@ -75,7 +76,7 @@ class CustomerServiceTest extends ServiceTestCase
 
         $responses = [
             $this->getFakeResponse(ApiServices::CUSTOMER, ApiActions::SYNCHRO),
-            $this->getFakeResponse(ApiServices::CUSTOMER, ApiActions::REGISTER_WITH_VC),
+            $this->getFakeResponse(ApiServices::CUSTOMER, ApiActions::REGISTER_WITH_CODE),
         ];
         /** @var CustomerService $customer_service */
         $customer_service = ServiceFactory::create(
@@ -127,6 +128,67 @@ class CustomerServiceTest extends ServiceTestCase
         ];
 
         $response = $customer_service->registerCustomerWithVerificationCode($customer_data, '000', '0001', '1000');
+        $this->assertGreaterThan(0, $response->card);
+    }
+
+    public function test_customer_registration_without_verification_code()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $responses = [
+            $this->getFakeResponse(ApiServices::CUSTOMER, ApiActions::SYNCHRO),
+            $this->getFakeResponse(ApiServices::CUSTOMER, ApiActions::REGISTER_WITHOUT_CODE),
+        ];
+        /** @var CustomerService $customer_service */
+        $customer_service = ServiceFactory::create(
+            ApiServices::CUSTOMER,
+            $this->addClientMockToFactoryOptions(
+                $this->getCustomerServicePublicSessionFactoryOptions(),
+                $responses
+            )
+        );
+
+        $customer_data = new CustomerRequestData([
+            'email'                   => 'customer@domain.com',
+            'dni'                     => '',
+            'name'                    => 'John',
+            'surname'                 => 'Doe',
+            'gender'                  => 'M',
+            'birthdate'               => '01/01/1970',
+            'notes'                   => '',
+            'username'                => 'johndoe',
+            'flags'                   => '',
+            'usedforpromotions'       => true,
+            'usedforstatistics'       => true,
+            'usedbyothers'            => true,
+            'cangetcurrentlocation'   => '',
+            'cancomunicaverification' => '',
+            'mobile'                  => '',
+            'telephone'               => '',
+            'fax'                     => '',
+            'address'                 => '',
+            'addressnumber'           => '',
+            'addressprefix'           => '',
+            'zipcode'                 => '',
+            'geo_lat'                 => '',
+            'geo_long'                => '',
+            'country'                 => '',
+            'geo_level_1'             => '',
+            'geo_level_2'             => '',
+            'geo_level_3'             => '',
+            'geo_level_4'             => '',
+            'geo_level_5'             => '',
+            'facebookid'              => '',
+            'twitterid'               => '',
+            'youtubeid'               => '',
+            'instagramid'             => '',
+            'interestareas'           => '',
+            'invitecustomerid'        => '',
+        ]);
+
+        $response = $customer_service->registerCustomer($customer_data, ApiDemoData::CAMPAIGN_ID, ApiDemoData::CATEGORY_ID);
         $this->assertGreaterThan(0, $response->card);
     }
 

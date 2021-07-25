@@ -7,6 +7,7 @@ use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Constants\ApiSessionTypes;
 use Blabs\FidelyNet\Constants\Messages;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
+use Blabs\FidelyNet\Requests\CustomerRequestData;
 use Blabs\FidelyNet\Responses\ApiResponse;
 use Blabs\FidelyNet\Responses\DataModels\CustomerData;
 use Blabs\FidelyNet\Responses\Lists\MovementsList;
@@ -92,7 +93,37 @@ final class CustomerService extends ServiceAbstract
             $customer_data
         );
 
-        $response = $this->callAction(ApiActions::REGISTER_WITH_VC, $request_data);
+        $response = $this->callAction(ApiActions::REGISTER_WITH_CODE, $request_data);
+
+        return new CustomerData($response->data['customer']);
+    }
+
+    /**
+     * Register a customer and creates a new card (verification code is required).
+     *
+     * @param array $customer_data
+     * @param $verificationCode
+     * @param $campaignId
+     * @param $categoryId
+     * @param null $shopId
+     *
+     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetServiceException
+     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
+     *
+     * @return CustomerData
+     */
+    public function registerCustomer(CustomerRequestData $customer_data, $campaignId, $categoryId, $shopId = null): CustomerData
+    {
+        $request_data = array_merge(
+            $customer_data->toArray(),
+            [
+                'campaignid'         => $campaignId,
+                'categoryid'         => $categoryId,
+                'registrationshopid' => $shopId,
+            ]
+        );
+
+        $response = $this->callAction(ApiActions::REGISTER_WITHOUT_CODE, $request_data);
 
         return new CustomerData($response->data['customer']);
     }
