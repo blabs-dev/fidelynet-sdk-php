@@ -34,6 +34,28 @@ final class FactoryOptions
         self::START_SESSION,
     ];
 
+    const SCHEMA = [
+        ApiServices::CUSTOMER => [
+            FactoryOptions::USERNAME,
+            FactoryOptions::PASSWORD,
+            FactoryOptions::CAMPAIGN_ID,
+        ],
+        ApiServices::TERMINAL => [
+            FactoryOptions::USERNAME,
+            FactoryOptions::PASSWORD,
+            FactoryOptions::TERMINAL,
+        ],
+        ApiServices::BACKOFFICE => [
+            FactoryOptions::USERNAME,
+            FactoryOptions::PASSWORD,
+        ],
+        FactoryOptions::DEMO_MODE,
+        FactoryOptions::SESSION_ID_PROVIDER,
+        FactoryOptions::SESSION_TYPE,
+        FactoryOptions::HTTP_CLIENT,
+        FactoryOptions::START_SESSION,
+    ];
+
     const SERVICE_CLASSES = [
         ApiServices::TERMINAL   => TerminalService::class,
         ApiServices::BACKOFFICE => BackofficeService::class,
