@@ -18,7 +18,9 @@ final class ApiServices
         self::TERMINAL => [
             ApiActions::GET_CAMPAIGN,
         ],
-        self::BACKOFFICE => [],
+        self::BACKOFFICE => [
+            ApiActions::BO_MODIFY_CUSTOMER
+        ],
         self::CUSTOMER   => [
             ApiActions::VERIFY_EMAIL,
             ApiActions::REGISTER_WITH_CODE,
