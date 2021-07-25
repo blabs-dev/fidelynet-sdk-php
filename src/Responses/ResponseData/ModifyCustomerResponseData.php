@@ -1,47 +1,45 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Responses\ResponseData;
-
 
 use Spatie\DataTransferObject\DataTransferObject;
 
 // Unused so far.
 class ModifyCustomerResponseData extends DataTransferObject
 {
-    /** @var int $id */
+    /** @var int */
     public $id;
 
-    /** @var int $campaignId */
+    /** @var int */
     public $campaignId;
 
-    /** @var int $card */
+    /** @var int */
     public $card;
 
-    /** @var int $status */
+    /** @var int */
     public $status;
 
-    /** @var int $fidelyCode */
+    /** @var int */
     public $fidelyCode;
 
-    /** @var int $parentCustomerId */
+    /** @var int */
     public $parentCustomerId;
 
-    /** @var int $mlmCustomerId */
+    /** @var int */
     public $mlmCustomerId;
 
-    /** @var int $zoneId */
+    /** @var int */
     public $zoneId;
 
-    /** @var int $zoneForeignId */
+    /** @var int */
     public $zoneForeignId;
 
-    /** @var int $customer_area_status */
+    /** @var int */
     public $customer_area_status;
 
-    /** @var int $totalExchangedPrizes */
+    /** @var int */
     public $totalExchangedPrizes;
 
-    /** @var mixed $personalInfo */
+    /** @var mixed */
     public $personalInfo;
 }

@@ -252,5 +252,4 @@ class CustomerData extends DataTransferObject
      * @var string|null
      */
     public $youtubeId;
-
 }
