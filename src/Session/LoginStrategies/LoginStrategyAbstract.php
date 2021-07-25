@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Session\LoginStrategies;
-
 
 use Blabs\FidelyNet\Client;
 use Blabs\FidelyNet\Responses\ApiResponse;
@@ -10,7 +8,7 @@ use Blabs\FidelyNet\Responses\ApiResponse;
 abstract class LoginStrategyAbstract
 {
     /**
-     * Current service instance's Client
+     * Current service instance's Client.
      *
      * @var Client
      */
@@ -27,18 +25,20 @@ abstract class LoginStrategyAbstract
     }
 
     /**
-     * Start the session on the service
+     * Start the session on the service.
      *
      * @param array $credentials
+     *
      * @return string
      */
-    abstract function startSession(array $credentials) :string;
+    abstract public function startSession(array $credentials): string;
 
     /**
-     * Parse the service response to extract session id
+     * Parse the service response to extract session id.
      *
      * @param ApiResponse $response
+     *
      * @return string
      */
-    protected abstract function extractSessionId(ApiResponse $response) :string;
+    abstract protected function extractSessionId(ApiResponse $response): string;
 }

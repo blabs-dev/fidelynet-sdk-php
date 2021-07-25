@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Constants;
-
 
 final class ApiActions
 {

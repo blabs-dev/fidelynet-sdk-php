@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Services;
-
 
 use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiServices;
@@ -17,17 +15,20 @@ final class TerminalService extends ServiceAbstract
     public $service_type = ApiServices::TERMINAL;
 
     /**
-     * Returns information about a specific campaign
+     * Returns information about a specific campaign.
      *
-     * @param  string $campaignId
-     * @return GetCampaignResponseData
+     * @param string $campaignId
+     *
      * @throws FidelyNetServiceException
+     *
+     * @return GetCampaignResponseData
      */
-    public function getCampaign(string $campaignId) :GetCampaignResponseData
+    public function getCampaign(string $campaignId): GetCampaignResponseData
     {
         $api_response = $this->callAction(
-            ApiActions::GET_CAMPAIGN, [
-            'campaignid' => $campaignId
+            ApiActions::GET_CAMPAIGN,
+            [
+                'campaignid' => $campaignId,
             ]
         );
 

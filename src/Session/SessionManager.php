@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Session;
-
 
 use Blabs\FidelyNet\Client;
 use Blabs\FidelyNet\Constants\ApiActions;
@@ -30,14 +28,14 @@ final class SessionManager
     /**
      * Session ID provider class (sets and gets the session id for every request).
      *
-     * @var SessionIdProviderContract 
+     * @var SessionIdProviderContract
      */
     protected $sessionIdProvider;
 
     /**
      * Managed session's Client.
      *
-     * @var Client 
+     * @var Client
      */
     protected $client;
 
@@ -84,7 +82,7 @@ final class SessionManager
     /**
      * Initialize a session on FNET service and store the session id.
      */
-    public function initSession() :void
+    public function initSession(): void
     {
         $this->session_type === ApiSessionTypes::PRIVATE ?
             $this->setSessionId($this->openPrivateSession())
@@ -96,7 +94,7 @@ final class SessionManager
      *
      * @throws FidelyNetSessionException
      */
-    public function renewSession() : void
+    public function renewSession(): void
     {
         $this->sessionRenews++;
         if ($this->sessionRenews == self::MAX_SESSION_RENEW_TRIES) {
@@ -116,12 +114,14 @@ final class SessionManager
     /**
      * Set the current session id.
      *
-     * @param  string $sessionId
+     * @param string $sessionId
+     *
      * @return self
      */
     public function setSessionId(string $sessionId): self
     {
         $this->sessionIdProvider->setSessionId($sessionId);
+
         return $this;
     }
 
@@ -130,7 +130,7 @@ final class SessionManager
      *
      * @return string
      */
-    private function openPrivateSession() :string
+    private function openPrivateSession(): string
     {
         switch ($this->client->getServiceType()) {
         case ApiServices::BACKOFFICE:
@@ -150,13 +150,15 @@ final class SessionManager
     /**
      * Obtain a public session id to access public FNET service methods.
      *
-     * @return string
      * @throws FidelyNetSessionException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return string
      */
-    private function openPublicSession() :string
+    private function openPublicSession(): string
     {
-        $response = $this->client->actionRequest(ApiActions::SYNCHRO, [ 'kind' => 3, 'campaignid' => $this->credentials[FactoryOptions::CAMPAIGN_ID] ]);
+        $response = $this->client->actionRequest(ApiActions::SYNCHRO, ['kind' => 3, 'campaignid' => $this->credentials[FactoryOptions::CAMPAIGN_ID]]);
+
         return $response->data['session'];
     }
 

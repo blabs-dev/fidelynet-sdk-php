@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet;
-
 
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Constants\ApiSessionTypes;
@@ -18,14 +16,16 @@ use InvalidArgumentException;
 final class ServiceFactory
 {
     /**
-     * Creates and instance of a FNET service
+     * Creates and instance of a FNET service.
      *
      * @param string $serviceType
-     * @param array $options
-     * @return ServiceAbstract
+     * @param array  $options
+     *
      * @throws FidelyNetServiceException
+     *
+     * @return ServiceAbstract
      */
-    public static function create(string $serviceType, array $options) :ServiceAbstract
+    public static function create(string $serviceType, array $options): ServiceAbstract
     {
         if (!array_key_exists($serviceType, FactoryOptions::SERVICE_CLASSES)) {
             throw new InvalidArgumentException(Messages::UNSUPPORTED_SERVICE_TYPE);
@@ -47,18 +47,21 @@ final class ServiceFactory
 
         // Instance service's class
         $service_class = FactoryOptions::SERVICE_CLASSES[$serviceType];
+
         return new $service_class($client);
     }
 
     /**
-     * Parses all factory options
+     * Parses all factory options.
      *
      * @param string $serviceType
-     * @param array $options
-     * @return array
+     * @param array  $options
+     *
      * @throws FidelyNetServiceException
+     *
+     * @return array
      */
-    private static function parseOptions(string $serviceType, array $options) :array
+    private static function parseOptions(string $serviceType, array $options): array
     {
         $options = self::setDefaultOptions($serviceType, $options);
         $session_type = $options[FactoryOptions::SESSION_TYPE];
@@ -73,28 +76,29 @@ final class ServiceFactory
     }
 
     /**
-     * Checks if all required service specific options are provided
+     * Checks if all required service specific options are provided.
      *
      * @param string $service
      * @param string $session_type
-     * @param array $options
+     * @param array  $options
      */
-    private static function checkServiceRequiredOptions(string $service, string $session_type, array $options) :void
+    private static function checkServiceRequiredOptions(string $service, string $session_type, array $options): void
     {
         $missing_service_required_options = Arr::getMissingRequiredOptions(FactoryOptions::SERVICES_REQUIRED_OPTIONS[$session_type][$service], $options);
         if (count($missing_service_required_options) > 0) {
-            throw new InvalidArgumentException(Messages::MISSING_REQUIRED_SERVICE_OPTIONS. implode(', ', $missing_service_required_options));
+            throw new InvalidArgumentException(Messages::MISSING_REQUIRED_SERVICE_OPTIONS.implode(', ', $missing_service_required_options));
         }
     }
 
     /**
-     * Fills options array with a set of default values
+     * Fills options array with a set of default values.
      *
      * @param string $serviceType
      * @param $options
+     *
      * @return array
      */
-    private static function setDefaultOptions(string $serviceType, $options) :array
+    private static function setDefaultOptions(string $serviceType, $options): array
     {
         $default_options = $options;
 
@@ -112,7 +116,7 @@ final class ServiceFactory
             : (
                 ($default_options[FactoryOptions::SESSION_PERSISTS]) ?
                     new TmpDirSessionIdProvider(
-                        $serviceType ."__". $default_options[FactoryOptions::SESSION_TYPE]
+                        $serviceType.'__'.$default_options[FactoryOptions::SESSION_TYPE]
                     )
                     : new InMemorySessionIdProvider()
             );
@@ -127,13 +131,14 @@ final class ServiceFactory
     }
 
     /**
-     * Creates an array with service credentials
+     * Creates an array with service credentials.
      *
      * @param string $serviceType
-     * @param array $options
+     * @param array  $options
+     *
      * @return array
      */
-    private static function createCredentialsArray(string $serviceType, array $options) :array
+    private static function createCredentialsArray(string $serviceType, array $options): array
     {
         $default_credentials = $options[FactoryOptions::SESSION_TYPE] === ApiSessionTypes::PUBLIC ? []
             : [
@@ -144,12 +149,12 @@ final class ServiceFactory
         switch ($serviceType) {
         case ApiServices::TERMINAL:
             $additional_parameters = [
-                FactoryOptions::TERMINAL => $options[FactoryOptions::TERMINAL]
+                FactoryOptions::TERMINAL => $options[FactoryOptions::TERMINAL],
             ];
             break;
         case ApiServices::CUSTOMER:
             $additional_parameters = [
-                FactoryOptions::CAMPAIGN_ID => $options[FactoryOptions::CAMPAIGN_ID]
+                FactoryOptions::CAMPAIGN_ID => $options[FactoryOptions::CAMPAIGN_ID],
             ];
             break;
         case ApiServices::BACKOFFICE:

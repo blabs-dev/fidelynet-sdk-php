@@ -7,205 +7,147 @@ use Spatie\DataTransferObject\DataTransferObject;
 final class OperatorProfileData extends DataTransferObject
 {
     /**
-     * 
-     *
-     * @var int $rights 
+     * @var int
      */
     public $rights;
 
     /**
-     * 
-     *
-     * @var bool $canDoNewCard 
+     * @var bool
      */
     public $canDoNewCard;
 
     /**
-     * 
-     *
-     * @var bool $canChargeCredits 
+     * @var bool
      */
     public $canChargeCredits;
 
     /**
-     * 
-     *
-     * @var bool $canDischargeCredits 
+     * @var bool
      */
     public $canDischargeCredits;
 
     /**
-     * 
-     *
-     * @var bool $canChargePoints 
+     * @var bool
      */
     public $canChargePoints;
 
     /**
-     * 
-     *
-     * @var bool $canDischargePoints 
+     * @var bool
      */
     public $canDischargePoints;
 
     /**
-     * 
-     *
-     * @var bool $canDoSale 
+     * @var bool
      */
     public $canDoSale;
 
     /**
-     * 
-     *
-     * @var bool $canApplyDiscount 
+     * @var bool
      */
     public $canApplyDiscount;
 
     /**
-     * 
-     *
-     * @var bool $canAcceptVouchers 
+     * @var bool
      */
     public $canAcceptVouchers;
 
     /**
-     * 
-     *
-     * @var bool $canDeliverPromotions 
+     * @var bool
      */
     public $canDeliverPromotions;
 
     /**
-     * 
-     *
-     * @var bool $canLockCard 
+     * @var bool
      */
     public $canLockCard;
 
     /**
-     * 
-     *
-     * @var bool $canUnlockCard 
+     * @var bool
      */
     public $canUnlockCard;
 
     /**
-     * 
-     *
-     * @var bool $canReplaceCard 
+     * @var bool
      */
     public $canReplaceCard;
 
     /**
-     * 
-     *
-     * @var bool $canSearchCustomer 
+     * @var bool
      */
     public $canSearchCustomer;
 
     /**
-     * 
-     *
-     * @var bool $canExchangePrizes 
+     * @var bool
      */
     public $canExchangePrizes;
 
     /**
-     * 
-     *
-     * @var bool $canDeliverPrizes 
+     * @var bool
      */
     public $canDeliverPrizes;
 
     /**
-     * 
-     *
-     * @var bool $canExtendExpirationDate 
+     * @var bool
      */
     public $canExtendExpirationDate;
 
     /**
-     * 
-     *
-     * @var bool $canModifyCategory 
+     * @var bool
      */
     public $canModifyCategory;
 
     /**
-     * 
-     *
-     * @var bool $canDeliverStatusPoints 
+     * @var bool
      */
     public $canDeliverStatusPoints;
 
     /**
-     * 
-     *
-     * @var bool $canRequestPoints 
+     * @var bool
      */
     public $canRequestPoints;
 
     /**
-     * 
-     *
-     * @var bool $canCancelTransaction 
+     * @var bool
      */
     public $canCancelTransaction;
 
     /**
-     * 
-     *
-     * @var bool $canTransferPoints 
+     * @var bool
      */
     public $canTransferPoints;
 
     /**
-     * 
-     *
-     * @var bool $canCancelOtherTerminalTransactions 
+     * @var bool
      */
     public $canCancelOtherTerminalTransactions;
 
     /**
-     * 
-     *
-     * @var bool $canCancelTransactionById 
+     * @var bool
      */
     public $canCancelTransactionById;
 
     /**
-     * 
-     *
-     * @var bool $canLockCustomers 
+     * @var bool
      */
     public $canLockCustomers;
 
     /**
-     * 
-     *
-     * @var bool $canUnlockCustomers 
+     * @var bool
      */
     public $canUnlockCustomers;
 
     /**
-     * 
-     *
-     * @var bool $canModifyCustomer 
+     * @var bool
      */
     public $canModifyCustomer;
 
     /**
-     * 
-     *
-     * @var bool $canDoCheckIn 
+     * @var bool
      */
     public $canDoCheckIn;
 
     /**
-     * 
-     *
-     * @var bool $canDoCheckOut 
+     * @var bool
      */
     public $canDoCheckOut;
 }

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Services;
-
 
 use Blabs\FidelyNet\Client;
 use Blabs\FidelyNet\Constants\ApiServices;
@@ -13,16 +11,16 @@ use Blabs\FidelyNet\Responses\ApiResponse;
 abstract class ServiceAbstract
 {
     /**
-     * Service's Client instance
+     * Service's Client instance.
      *
-     * @var Client 
+     * @var Client
      */
     protected $client;
 
     /**
-     * Service type (backoffice, customer or terminal)
+     * Service type (backoffice, customer or terminal).
      *
-     * @var string 
+     * @var string
      */
     public $service_type;
 
@@ -35,16 +33,18 @@ abstract class ServiceAbstract
     }
 
     /**
-     * Calls an action on the service using the instanced Client
+     * Calls an action on the service using the instanced Client.
      *
      * @param string $action
-     * @param array $parameters
-     * @return \Blabs\FidelyNet\Responses\ApiResponse
+     * @param array  $parameters
+     *
      * @throws FidelyNetServiceException
      * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return \Blabs\FidelyNet\Responses\ApiResponse
      */
-    public function callAction(string $action, array $parameters) :ApiResponse
+    public function callAction(string $action, array $parameters): ApiResponse
     {
         if (!in_array($action, ApiServices::SUPPORTED_ACTIONS[$this->service_type])) {
             throw new FidelyNetServiceException(Messages::UNSUPPORTED_ACTION);
@@ -54,10 +54,9 @@ abstract class ServiceAbstract
     }
 
     /**
-     * Open a session in the current service
-     *
+     * Open a session in the current service.
      */
-    public function initSession() :void
+    public function initSession(): void
     {
         $this->client->initSession();
     }
@@ -73,7 +72,7 @@ abstract class ServiceAbstract
     }
 
     /**
-     * Get number of sessions opened by this instance
+     * Get number of sessions opened by this instance.
      *
      * @return int
      */
@@ -83,7 +82,7 @@ abstract class ServiceAbstract
     }
 
     /**
-     * Returns true if requests are made in FNET demo environment
+     * Returns true if requests are made in FNET demo environment.
      *
      * @return bool
      */
@@ -93,27 +92,27 @@ abstract class ServiceAbstract
     }
 
     /**
-     * Returns if the "driver" for the current session managers persists the id across requests
+     * Returns if the "driver" for the current session managers persists the id across requests.
      *
      * @return bool
      */
-    public function isSessionPersistent() :bool
+    public function isSessionPersistent(): bool
     {
         return $this->client->isSessionPersistent();
     }
 
     /**
-     * Returns the set of default parameters used for service requests on this instance
+     * Returns the set of default parameters used for service requests on this instance.
      *
      * @return array
      */
-    public function getDefaultParameters() :array
+    public function getDefaultParameters(): array
     {
         return $this->client->getDefaultParameters();
     }
 
     /**
-     * Returns number of requests made by this instance
+     * Returns number of requests made by this instance.
      *
      * @return int
      */
@@ -123,7 +122,7 @@ abstract class ServiceAbstract
     }
 
     /**
-     * Returns session type of current instance
+     * Returns session type of current instance.
      *
      * @return string
      */

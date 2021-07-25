@@ -7,44 +7,32 @@ use Spatie\DataTransferObject\DataTransferObject;
 final class OperatorData extends DataTransferObject
 {
     /**
-     * 
-     *
-     * @var int $id 
+     * @var int
      */
     public $id;
 
     /**
-     * 
-     *
-     * @var string $username 
+     * @var string
      */
     public $username;
 
     /**
-     * 
-     *
-     * @var string $name 
+     * @var string
      */
     public $name;
 
     /**
-     * 
-     *
-     * @var string $surname 
+     * @var string
      */
     public $surname;
 
     /**
-     * 
-     *
-     * @var int $language 
+     * @var int
      */
     public $language;
 
     /**
-     * 
-     *
-     * @var \Blabs\FidelyNet\Responses\DataModels\OperatorFlagsData $flags 
+     * @var \Blabs\FidelyNet\Responses\DataModels\OperatorFlagsData
      */
     public $flags;
 

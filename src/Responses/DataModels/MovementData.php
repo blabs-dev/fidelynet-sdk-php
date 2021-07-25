@@ -6,96 +6,96 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class MovementData extends DataTransferObject
 {
-    /** @var int $id */
+    /** @var int */
     public $id;
 
-    /** @var int $campaign */
+    /** @var int */
     public $campaign;
 
-    /** @var int $terminal */
+    /** @var int */
     public $terminal;
 
-    /** @var int $card */
+    /** @var int */
     public $card;
 
-    /** @var int $cardOld */
+    /** @var int */
     public $cardOld;
 
-    /** @var int $kind */
+    /** @var int */
     public $kind;
 
-    /** @var int $customer */
+    /** @var int */
     public $customer;
 
-    /** @var int $operator */
+    /** @var int */
     public $operator;
 
-    /** @var string $dateTime */
+    /** @var string */
     public $dateTime;
 
-    /** @var string $localTime */
+    /** @var string */
     public $localTime;
 
-    /** @var int $chargedCredits */
+    /** @var int */
     public $chargedCredits;
 
-    /** @var int $dischargedCredits */
+    /** @var int */
     public $dischargedCredits;
 
-    /** @var int $chargedGiftCredits */
+    /** @var int */
     public $chargedGiftCredits;
 
-    /** @var int $dischargedGiftCredits */
+    /** @var int */
     public $dischargedGiftCredits;
 
-    /** @var double|int $chargedPoints */
+    /** @var float|int */
     public $chargedPoints;
 
-    /** @var int $dischargedPoints */
+    /** @var int */
     public $dischargedPoints;
 
-    /** @var int $chargedPointsStatus */
+    /** @var int */
     public $chargedPointsStatus;
 
-    /** @var int $dischargedPointsStatus */
+    /** @var int */
     public $dischargedPointsStatus;
 
-    /** @var int $currencyConversion */
+    /** @var int */
     public $currencyConversion;
 
-    /** @var int $profitMoneyLocal */
+    /** @var int */
     public $profitMoneyLocal;
 
-    /** @var int $totalMoney */
+    /** @var int */
     public $totalMoney;
 
-    /** @var int $totalBenefits */
+    /** @var int */
     public $totalBenefits;
 
-    /** @var int $discount */
+    /** @var int */
     public $discount;
 
-    /** @var mixed $shop */
+    /** @var mixed */
     public $shop;
 
-    /** @var int $shopId */
+    /** @var int */
     public $shopId;
 
-    /** @var mixed $category */
+    /** @var mixed */
     public $category;
 
-    /** @var int $kindCharge */
+    /** @var int */
     public $kindCharge;
 
-    /** @var mixed $periodId */
+    /** @var mixed */
     public $periodId;
 
-    /** @var mixed $flags */
+    /** @var mixed */
     public $flags;
 
-    /** @var int $promotionErrorCode */
+    /** @var int */
     public $promotionErrorCode;
 
-    /** @var int $sellerId */
+    /** @var int */
     public $sellerId;
 }

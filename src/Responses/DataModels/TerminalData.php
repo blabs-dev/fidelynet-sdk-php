@@ -7,23 +7,17 @@ use Spatie\DataTransferObject\DataTransferObject;
 final class TerminalData extends DataTransferObject
 {
     /**
-     * 
-     *
-     * @var int $terminalId 
+     * @var int
      */
     public $terminalId;
 
     /**
-     * 
-     *
-     * @var mixed $behaviorFlags 
+     * @var mixed
      */
     public $behaviorFlags;
 
     /**
-     * 
-     *
-     * @var mixed $informativeFlags 
+     * @var mixed
      */
     public $informativeFlags;
 }

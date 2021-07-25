@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Test\Services;
-
 
 use Blabs\FidelyNet\Constants\ApiDemoData;
 use Blabs\FidelyNet\Constants\ApiMessages;
@@ -27,18 +25,18 @@ class ServiceErrorsTest extends ServiceTestCase
     {
         $mock = new MockHandler(
             [
-            new Response(200, [], $this->getFakeLoginResponse(ApiServices::TERMINAL)),
-            new Response(422, [], ''),
+                new Response(200, [], $this->getFakeLoginResponse(ApiServices::TERMINAL)),
+                new Response(422, [], ''),
             ]
         );
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
 
         $factory_options = array_merge(
-            [ FactoryOptions::HTTP_CLIENT => $client ],
+            [FactoryOptions::HTTP_CLIENT => $client],
             $this->getTerminalServiceDemoFactoryOptions()
         );
-        /** @var TerminalService $terminal_service  */
+        /** @var TerminalService $terminal_service */
         $terminal_service = ServiceFactory::create(ApiServices::TERMINAL, $factory_options);
         $this->expectException(BadRequestException::class);
         $this->expectExceptionMessage(Messages::SERVICE_BAD_REQUEST);
@@ -49,14 +47,14 @@ class ServiceErrorsTest extends ServiceTestCase
     {
         $mock = new MockHandler(
             [
-            new ConnectException('Network unreachable', new Request('POST', ApiServices::ENTRYPOINTS[ApiServices::TERMINAL])),
+                new ConnectException('Network unreachable', new Request('POST', ApiServices::ENTRYPOINTS[ApiServices::TERMINAL])),
             ]
         );
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
 
         $factory_options = array_merge(
-            [ FactoryOptions::HTTP_CLIENT => $client ],
+            [FactoryOptions::HTTP_CLIENT => $client],
             $this->getTerminalServiceDemoFactoryOptions()
         );
         $this->expectException(FidelyNetServiceException::class);
@@ -68,15 +66,15 @@ class ServiceErrorsTest extends ServiceTestCase
     {
         $mock = new MockHandler(
             [
-            new Response(200, [], $this->getFakeLoginResponse(ApiServices::TERMINAL)),
-            new Response(200, [], $this->getFakeBadRequestResponse()),
+                new Response(200, [], $this->getFakeLoginResponse(ApiServices::TERMINAL)),
+                new Response(200, [], $this->getFakeBadRequestResponse()),
             ]
         );
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
 
         $factory_options = array_merge(
-            [ FactoryOptions::HTTP_CLIENT => $client ],
+            [FactoryOptions::HTTP_CLIENT => $client],
             $this->getTerminalServiceDemoFactoryOptions()
         );
         /** @var TerminalService $terminal_service */
@@ -91,15 +89,15 @@ class ServiceErrorsTest extends ServiceTestCase
         $random_error = array_rand(ApiMessages::CODES);
         $mock = new MockHandler(
             [
-            new Response(200, [], $this->getFakeLoginResponse(ApiServices::TERMINAL)),
-            new Response(200, [], $this->getFakeErrorResponse($random_error)),
+                new Response(200, [], $this->getFakeLoginResponse(ApiServices::TERMINAL)),
+                new Response(200, [], $this->getFakeErrorResponse($random_error)),
             ]
         );
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
 
         $factory_options = array_merge(
-            [ FactoryOptions::HTTP_CLIENT => $client ],
+            [FactoryOptions::HTTP_CLIENT => $client],
             $this->getTerminalServiceDemoFactoryOptions()
         );
         /** @var TerminalService $terminal_service */

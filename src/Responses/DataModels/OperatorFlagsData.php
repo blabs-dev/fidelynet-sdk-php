@@ -7,16 +7,12 @@ use Spatie\DataTransferObject\DataTransferObject;
 final class OperatorFlagsData extends DataTransferObject
 {
     /**
-     * 
-     *
-     * @var int $flags 
+     * @var int
      */
     public $flags;
 
     /**
-     * 
-     *
-     * @var bool $isEnabled 
+     * @var bool
      */
     public $isEnabled;
 }
