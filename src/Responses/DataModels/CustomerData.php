@@ -15,22 +15,22 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class CustomerData extends DataTransferObject
 {
-    /** @var int */
+    /** @var int|null */
     public $id;
 
-    /** @var int */
+    /** @var int|null */
     public $campaign;
 
-    /** @var int */
+    /** @var int|null */
     public $card;
 
-    /** @var int */
+    /** @var int|null */
     public $fidelyCode;
 
-    /** @var int */
+    /** @var int|null */
     public $category;
 
-    /** @var int */
+    /** @var int|null */
     public $status;
 
     /** @var string */
@@ -45,10 +45,10 @@ class CustomerData extends DataTransferObject
     /** @var string */
     public $userName;
 
-    /** @var string */
+    /** @var string|null */
     public $pincode;
 
-    /** @var string */
+    /** @var string|null */
     public $expiration;
 
     /** @var mixed */
@@ -57,52 +57,52 @@ class CustomerData extends DataTransferObject
     /** @var mixed */
     public $privacy;
 
-    /** @var int */
+    /** @var int|null */
     public $cardType;
 
-    /** @var int */
+    /** @var int|null */
     public $languageId;
 
-    /** @var int */
+    /** @var int|null */
     public $pointsCharged;
 
-    /** @var int */
+    /** @var int|null */
     public $pointsChargedCount;
 
-    /** @var int */
+    /** @var int|null */
     public $pointsUsed;
 
-    /** @var int */
+    /** @var int|null */
     public $pointsUsedCount;
 
-    /** @var int */
+    /** @var int|null */
     public $pointsStatusCharged;
 
-    /** @var int */
+    /** @var int|null */
     public $pointsStatusUsed;
 
-    /** @var int */
+    /** @var int|null */
     public $pointsMLMCharged;
 
-    /** @var int */
+    /** @var int|null */
     public $pointsMLMUsed;
 
-    /** @var int */
+    /** @var int|null */
     public $creditsCharged;
 
-    /** @var int */
+    /** @var int|null */
     public $creditsUsed;
 
-    /** @var int */
+    /** @var int|null */
     public $creditsGiftCharged;
 
-    /** @var int */
+    /** @var int|null */
     public $creditsGiftUsed;
 
-    /** @var int */
+    /** @var int|null */
     public $rechargesCard;
 
-    /** @var int */
+    /** @var int|null */
     public $usesCard;
 
     /** @var string */
@@ -117,22 +117,22 @@ class CustomerData extends DataTransferObject
     /** @var string|null */
     public $zip;
 
-    /** @var int */
+    /** @var int|null */
     public $parentCustomerId;
 
-    /** @var int */
+    /** @var int|null */
     public $percentajePointsParentCustomer;
 
-    /** @var int */
+    /** @var int|null */
     public $percentajeCreditsParentCustomer;
 
     /** @var mixed */
     public $mlmCustomerId;
 
-    /** @var int */
+    /** @var int|null */
     public $geo_lat;
 
-    /** @var int */
+    /** @var int|null */
     public $geo_long;
 
     /** @var int */
@@ -153,54 +153,104 @@ class CustomerData extends DataTransferObject
     /** @var int */
     public $geoLevel5;
 
-    /** @var int */
+    /** @var int|null */
     public $balance_points;
 
-    /** @var int */
+    /** @var int|null */
     public $balance_credits;
 
-    /** @var int */
+    /** @var int|null */
     public $balance_gift_credits;
 
-    /** @var int */
+    /** @var int|null */
     public $balance_status_points;
 
-    /** @var int */
+    /** @var int|null */
     public $pointsToExpire;
 
-    /** @var int */
+    /** @var int|null */
     public $expiredPoints;
 
-    /** @var int */
+    /** @var int|null */
     public $zoneId;
 
-    /** @var int */
+    /** @var int|null */
     public $customer_area_status;
 
-    /** @var int */
+    /** @var int|null */
     public $totalExchangedPrizes;
 
-    /** @var int */
+    /** @var int|null */
     public $totalMoneyInSale;
 
-    /** @var int */
+    /** @var int|null */
     public $paidMoneyInSale;
 
-    /** @var int */
+    /** @var int|null */
     public $totalMlmChildren;
 
-    /** @var int */
+    /** @var int|null */
     public $totalManualDischargedPoints;
 
-    /** @var int */
+    /** @var int|null */
     public $totalDischargedPointsInSale;
 
-    /** @var int */
+    /** @var int|null */
     public $totalDischargedPointsInExchanged;
 
-    /** @var int */
+    /** @var int|null */
     public $totalDischargedPointsInTransfer;
 
     /** @var string|null */
     public $lastMovement;
+
+    /**
+     * @var int|null
+     */
+    public $foreignId;
+    /**
+     * @var string|null
+     */
+    public $identityCard;
+    /**
+     * @var string|null
+     */
+    public $birthdate;
+    /**
+     * @var string|null
+     */
+    public $notes;
+    /**
+     * @var string|null
+     */
+    public $telephoneContactData;
+    /**
+     * @var string|null
+     */
+    public $faxContactData;
+    /**
+     * @var string|null
+     */
+    public $addressNumber;
+    /**
+     * @var string|null
+     */
+    public $addressPrefix;
+    /**
+     * @var string|null
+     */
+    public $facebookId;
+    /**
+     * @var string|null
+     */
+    public $twitterId;
+    /**
+     * @var string|null
+     */
+    public $instagramId;
+    /**
+     * @var string|null
+     */
+    public $youtubeId;
+
 }
