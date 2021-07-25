@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Requests;
-
 
 use Blabs\FidelyNet\Schemas\CustomerDynamicFieldSchema;
 use Spatie\DataTransferObject\DataTransferObject;
