@@ -39,7 +39,7 @@ class CustomerData extends DataTransferObject
     /** @var string */
     public $surname;
 
-    /** @var string */
+    /** @var string|null */
     public $gender;
 
     /** @var string */
@@ -108,13 +108,13 @@ class CustomerData extends DataTransferObject
     /** @var string */
     public $mailContactData;
 
-    /** @var string */
+    /** @var string|null */
     public $mobileContactData;
 
-    /** @var string */
+    /** @var string|null */
     public $address;
 
-    /** @var string */
+    /** @var string|null */
     public $zip;
 
     /** @var int */
@@ -200,4 +200,7 @@ class CustomerData extends DataTransferObject
 
     /** @var int */
     public $totalDischargedPointsInTransfer;
+
+    /** @var string|null */
+    public $lastMovement;
 }
