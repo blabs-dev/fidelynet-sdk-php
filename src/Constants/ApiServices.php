@@ -9,9 +9,9 @@ final class ApiServices
     const CUSTOMER = 'customer';
 
     const ENTRYPOINTS = [
-        self::TERMINAL   => 'https://service.fidely.net/webpos/services/webposservice.php',
-        self::BACKOFFICE => 'https://service.fidely.net/webpos/services/webposservice.php',
-        self::CUSTOMER   => 'https://service.fidely.net/webpos/services/customerservice.php',
+        self::TERMINAL   => 'https://service.fidelynet.it/webpos/services/webposservice.php',
+        self::BACKOFFICE => 'https://service.fidelynet.it/webpos/services/webposservice.php',
+        self::CUSTOMER   => 'https://service.fidelynet.it/webpos/services/customerservice.php',
     ];
 
     const SUPPORTED_ACTIONS = [
@@ -21,7 +21,8 @@ final class ApiServices
         self::BACKOFFICE => [],
         self::CUSTOMER   => [
             ApiActions::VERIFY_EMAIL,
-            ApiActions::REGISTER_WITH_VC,
+            ApiActions::REGISTER_WITH_CODE,
+            ApiActions::REGISTER_WITHOUT_CODE,
             ApiActions::GET_MOVEMENTS,
         ],
     ];
