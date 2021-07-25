@@ -1,0 +1,49 @@
+{
+  "returncode": 0,
+  "data": {
+    "answerCode": 0,
+    "sessionID": "d6eb1e86-2127-4fcc-b755-cd5b1ca66022",
+    "operator": {
+      "id": 3631,
+      "username": "UtenteTerminale",
+      "name": "UtenteTerminale",
+      "surname": "UtenteTerminale",
+      "language": 2,
+      "flags": {
+        "flags": 0,
+        "isEnabled": true
+      },
+      "profile": {
+        "rights": 264241151,
+        "canDoNewCard": true,
+        "canChargeCredits": false,
+        "canDischargeCredits": false,
+        "canChargePoints": false,
+        "canDischargePoints": false,
+        "canDoSale": true,
+        "canApplyDiscount": true,
+        "canAcceptVouchers": true,
+        "canDeliverPromotions": true,
+        "canLockCard": true,
+        "canUnlockCard": true,
+        "canReplaceCard": true,
+        "canSearchCustomer": true,
+        "canExchangePrizes": false,
+        "canDeliverPrizes": false,
+        "canExtendExpirationDate": false,
+        "canModifyCategory": false,
+        "canDeliverStatusPoints": false,
+        "canRequestPoints": false,
+        "canCancelTransaction": true,
+        "canTransferPoints": true,
+        "canCancelOtherTerminalTransactions": false,
+        "canCancelTransactionById": false,
+        "canLockCustomers": false,
+        "canUnlockCustomers": false,
+        "canModifyCustomer": false,
+        "canDoCheckIn": false,
+        "canDoCheckOut": false
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "returncode": 0,
+  "data": {
+    "answerCode": 0,
+    "operator": {
+      "id": 3650,
+      "username": "OperatoreBO",
+      "name": "OperatoreBO",
+      "surname": "OperatoreBO",
+      "language": 2,
+      "flags": {
+        "flags": 0,
+        "isEnabled": true
+      },
+      "shopId": 6090
+    }
+  },
+  "data2": {
+    "sessionId": "3d476cef-0439-498d-af57-4e65eb6cb87f",
+    "username": "OperatoreBO",
+    "password": "123456"
+  },
+  "sessionid": "3d476cef-0439-498d-af57-4e65eb6cb87f"
+}

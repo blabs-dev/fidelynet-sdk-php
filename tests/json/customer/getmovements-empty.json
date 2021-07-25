@@ -1,0 +1,34 @@
+{
+  "returncode": 0,
+  "data": {
+    "answerCode": 0,
+    "pagination": {
+      "InitLimit": 20,
+      "rowCount": 10,
+      "orders": {
+        "columnName": "id",
+        "criterial": false
+      },
+      "recordsTotal": 19,
+      "actualPage": 3,
+      "totalPages": 2
+    }
+  },
+  "data3": {
+    "session": "a69fbc4f-134e-47d8-9b37-294395c79376",
+    "pagination": {
+      "InitLimit": "20",
+      "rowCount": "10",
+      "orders": {
+        "criterial": null,
+        "columnName": null
+      },
+      "recordsTotal": "",
+      "actualPage": "",
+      "totalPages": ""
+    }
+  },
+  "data4": "GetMovements",
+  "data5": "https://v3demo.fidelynet.it/fnet3web/FNET3_CustomerArea_01_23_00.wsdl",
+  "ambiente": "DEMO"
+}

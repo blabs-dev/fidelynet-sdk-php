@@ -1,0 +1,16 @@
+{
+  "returncode": 0,
+  "data": {
+    "answerCode": 0,
+    "emailErrorDescription": ""
+  },
+  "data3": {
+    "session": "b8a9f63a-9a6f-47d9-a3b8-3e36ef582808",
+    "campaignId": "1001",
+    "email": "figakop966@itwbuy.com",
+    "mobile": null
+  },
+  "data4": "VerifyEmail",
+  "data5": "https://v3demo.fidelynet.it/fnet3web/FNET3_CustomerArea_01_23_00.wsdl",
+  "ambiente": "DEMO"
+}
