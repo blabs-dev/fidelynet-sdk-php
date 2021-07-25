@@ -6,6 +6,7 @@ use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Requests\CustomerRequestData;
 use Blabs\FidelyNet\Responses\DataModels\CustomerData;
+use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
 
 final class BackofficeService extends ServiceAbstract
 {
@@ -40,5 +41,11 @@ final class BackofficeService extends ServiceAbstract
         $response = $this->callAction(ApiActions::BO_MODIFY_CUSTOMER, $request_data);
 
         return new CustomerData($response->data['customer']['personalInfo']);
+    }
+
+    public function getCardInfo(int $cardId)
+    {
+        $response = $this->callAction(ApiActions::BO_GET_INFO_CARD, [ 'card' => $cardId ]);
+        return new CardInfoResponseData($response->data['customer']);
     }
 }

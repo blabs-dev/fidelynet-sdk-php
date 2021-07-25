@@ -5,7 +5,7 @@ namespace Blabs\FidelyNet\Responses\ResponseData;
 use Spatie\DataTransferObject\DataTransferObject;
 
 // Unused so far.
-class ModifyCustomerResponseData extends DataTransferObject
+class CardInfoResponseData extends DataTransferObject
 {
     /** @var int */
     public $id;
@@ -42,4 +42,25 @@ class ModifyCustomerResponseData extends DataTransferObject
 
     /** @var mixed */
     public $personalInfo;
+
+    /** @var int|null */
+    public $totalMlmChildren;
+
+    /** @var int|null */
+    public $registration_shop_id;
+
+    /** @var int|null */
+    public $registration_net_id;
+
+    /** @var int|null */
+    public $registration_shop_foreign_id;
+
+    /** @var int|null */
+    public $registration_net_foreign_id;
+
+    /** @var array|null */
+    public $balanceData;
+
+    /** @var int|null */
+    public $customer_area_flags;
 }

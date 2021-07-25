@@ -20,6 +20,7 @@ final class ApiServices
         ],
         self::BACKOFFICE => [
             ApiActions::BO_MODIFY_CUSTOMER,
+            ApiActions::BO_GET_INFO_CARD,
         ],
         self::CUSTOMER   => [
             ApiActions::VERIFY_EMAIL,
