@@ -1,5 +1,5 @@
 {
-  "name": "blabs/fidelynet-php",
+  "name": "blabs/fidelynet-sdk-php",
   "description": "a wrapper for FidelyNET loyalty service API",
   "type": "library",
   "license": "MIT",
