@@ -101,16 +101,15 @@ final class CustomerService extends ServiceAbstract
     /**
      * Register a customer and creates a new card (verification code is required).
      *
-     * @param array $customer_data
-     * @param $verificationCode
+     * @param CustomerRequestData $customer_data
      * @param $campaignId
      * @param $categoryId
      * @param null $shopId
      *
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetServiceException
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
-     *
      * @return CustomerData
+     * @throws FidelyNetServiceException
+     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function registerCustomer(CustomerRequestData $customer_data, $campaignId, $categoryId, $shopId = null): CustomerData
     {
