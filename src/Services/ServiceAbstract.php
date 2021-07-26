@@ -15,14 +15,14 @@ abstract class ServiceAbstract
      *
      * @var Client
      */
-    protected $client;
+    protected Client $client;
 
     /**
      * Service type (backoffice, customer or terminal).
      *
      * @var string
      */
-    public $service_type;
+    public string $service_type;
 
     /**
      * @param Client $client
@@ -66,7 +66,7 @@ abstract class ServiceAbstract
      *
      * @return string|null
      */
-    public function getSessionId()
+    public function getSessionId(): ?string
     {
         return $this->client->getSessionId();
     }
@@ -86,7 +86,7 @@ abstract class ServiceAbstract
      *
      * @return bool
      */
-    public function isDemoMode()
+    public function isDemoMode(): bool
     {
         return $this->client->isDemoMode();
     }
@@ -116,7 +116,7 @@ abstract class ServiceAbstract
      *
      * @return int
      */
-    public function getRequestCount()
+    public function getRequestCount(): int
     {
         return $this->client->getRequestCount();
     }
@@ -126,7 +126,7 @@ abstract class ServiceAbstract
      *
      * @return string
      */
-    public function getSessionType()
+    public function getSessionType(): string
     {
         return $this->client->getSessionType();
     }

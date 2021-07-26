@@ -11,13 +11,15 @@
 
 namespace Blabs\FidelyNet\Responses\Lists;
 
+use Blabs\FidelyNet\Responses\DataModels\MovementData;
+use Blabs\FidelyNet\Responses\DataModels\PaginationData;
 use Spatie\DataTransferObject\DataTransferObject;
 
-class MovementsList extends DataTransferObject
+final class MovementsList extends DataTransferObject
 {
-    /** @var \Blabs\FidelyNet\Responses\DataModels\MovementData[] */
-    public $movements;
+    /** @var MovementData[] */
+    public array $movements;
 
-    /** @var \Blabs\FidelyNet\Responses\DataModels\PaginationData */
-    public $pagination;
+    /** @var PaginationData */
+    public PaginationData $pagination;
 }

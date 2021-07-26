@@ -4,23 +4,23 @@ namespace Blabs\FidelyNet\Responses\DataModels;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-class PaginationData extends DataTransferObject
+final class PaginationData extends DataTransferObject
 {
     /** @var int */
-    public $InitLimit;
+    public int $InitLimit;
 
     /** @var int */
-    public $rowCount;
+    public int $rowCount;
 
     /** @var mixed */
-    public $orders;
+    public mixed $orders;
 
     /** @var int */
-    public $recordsTotal;
+    public int $recordsTotal;
 
     /** @var int */
-    public $actualPage;
+    public int $actualPage;
 
     /** @var int */
-    public $totalPages;
+    public int $totalPages;
 }

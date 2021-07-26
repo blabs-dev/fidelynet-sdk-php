@@ -146,21 +146,15 @@ final class ServiceFactory
                 FactoryOptions::PASSWORD => $options[FactoryOptions::PASSWORD],
             ];
 
-        switch ($serviceType) {
-        case ApiServices::TERMINAL:
-            $additional_parameters = [
+        $additional_parameters = match ($serviceType) {
+            ApiServices::TERMINAL => [
                 FactoryOptions::TERMINAL => $options[FactoryOptions::TERMINAL],
-            ];
-            break;
-        case ApiServices::CUSTOMER:
-            $additional_parameters = [
+            ],
+            ApiServices::CUSTOMER => [
                 FactoryOptions::CAMPAIGN_ID => $options[FactoryOptions::CAMPAIGN_ID],
-            ];
-            break;
-        case ApiServices::BACKOFFICE:
-        default:
-            $additional_parameters = [];
-        }
+            ],
+            default => [],
+        };
 
         return array_merge($default_credentials, $additional_parameters);
     }

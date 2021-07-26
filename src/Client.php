@@ -18,6 +18,9 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\GuzzleException;
+use JetBrains\PhpStorm\ArrayShape;
+use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 final class Client
 {
@@ -26,56 +29,56 @@ final class Client
      *
      * @var string
      */
-    private $service_type;
+    private string $service_type;
 
     /**
      * Requests are made in FNET demo environment.
      *
      * @var bool
      */
-    private $demoMode;
+    private bool $demoMode;
 
     /**
      * SessionManager instance for the current Client.
      *
      * @var SessionManager
      */
-    private $sessionManager;
+    private SessionManager $sessionManager;
 
     /**
      * Guzzle client used to perform requests.
      *
      * @var ClientInterface
      */
-    private $http_client;
+    private ClientInterface $http_client;
 
     /**
      * Service entrypoint.
      *
      * @var string
      */
-    private $baseURI;
+    private string $baseURI;
 
     /**
      * Number of requests made by this instance.
      *
      * @var int
      */
-    private $requestCount = 0;
+    private int $requestCount = 0;
 
     /**
      * Session type opened by this instance (can be 'public' or 'private').
      *
      * @var string
      */
-    private $sessionType;
+    private string $sessionType;
 
     /**
      * If true a session is started automatically when an instance of the Client is created.
      *
      * @var bool
      */
-    private $startSession;
+    private bool $startSession;
 
     /**
      * Client constructor.
@@ -91,7 +94,7 @@ final class Client
     public function __construct(
         string $service_type,
         array $credentials,
-        $demoMode = false,
+        bool $demoMode = false,
         string $session_type = ApiSessionTypes::PRIVATE,
         SessionIdProviderContract $sessionIdProvider = null,
         ClientInterface $http_client = null,
@@ -120,8 +123,8 @@ final class Client
     /**
      * Init the Session Manager using the id provider specified in this instance.
      *
-     * @param array                          $credentials
-     * @param SessionIdProviderContract|null $sessionIdProvider
+     * @param array                     $credentials
+     * @param SessionIdProviderContract $sessionIdProvider
      */
     private function setupSessionManager(array $credentials, SessionIdProviderContract $sessionIdProvider): void
     {
@@ -134,7 +137,7 @@ final class Client
     /**
      * Starts a session on current instance FNET3 service.
      */
-    public function initSession()
+    public function initSession(): void
     {
         if (empty($this->getSessionId())) {
             $this->sessionManager->initSession();
@@ -156,7 +159,7 @@ final class Client
      *
      * @return string
      */
-    public function getSessionType()
+    public function getSessionType(): string
     {
         return $this->sessionManager->getSessionType();
     }
@@ -166,7 +169,7 @@ final class Client
      *
      * @return string|null
      */
-    public function getSessionId()
+    public function getSessionId(): ?string
     {
         return $this->sessionManager->getSessionId();
     }
@@ -186,7 +189,7 @@ final class Client
      *
      * @return bool
      */
-    public function isSessionPersistent()
+    public function isSessionPersistent(): bool
     {
         return $this->sessionManager->isSessionPersistent();
     }
@@ -210,13 +213,10 @@ final class Client
      */
     public function getDefaultParameters(string $action = null): array
     {
-        switch ($this->service_type) {
-        case ApiServices::CUSTOMER:
-            $session_id_key = 'session';
-            break;
-        default:
-            $session_id_key = 'sessionid';
-        }
+        $session_id_key = match ($this->service_type) {
+            ApiServices::CUSTOMER => 'session',
+            default               => 'sessionid',
+        };
 
         $default_parameters = [
             'az'            => $action,
@@ -231,7 +231,7 @@ final class Client
      *
      * @return bool
      */
-    public function isDemoMode()
+    public function isDemoMode(): bool
     {
         return $this->demoMode;
     }
@@ -257,13 +257,14 @@ final class Client
      *
      * @return array
      */
-    private function getHeaders(): array
-    {
-        return [
-            'User-Agent' => Release::USER_AGENT,
-            'Accept'     => 'application/json',
-        ];
-    }
+    #[ArrayShape(['User-Agent' => 'string', 'Accept' => 'string'])]
+ private function getHeaders(): array
+ {
+     return [
+         'User-Agent' => Release::USER_AGENT,
+         'Accept'     => 'application/json',
+     ];
+ }
 
     /**
      * Perform a conversion against data array to convert it in multipart/form-data
@@ -294,7 +295,7 @@ final class Client
      * @param array  $parameters
      *
      * @throws Exceptions\FidelyNetSessionException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return ApiResponse
      */
@@ -335,6 +336,8 @@ final class Client
      *
      * @param string $response_content
      *
+     * @throws UnknownProperties
+     *
      * @return ApiResponse
      */
     protected function parseResponse(string $response_content): ApiResponse
@@ -363,7 +366,7 @@ final class Client
     }
 
     /**
-     * Determines the exception throwed by Guzzle client.
+     * Determines the exception thrown by Guzzle client.
      *
      * @param  $exception
      *

@@ -4,98 +4,98 @@ namespace Blabs\FidelyNet\Responses\DataModels;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-class MovementData extends DataTransferObject
+final class MovementData extends DataTransferObject
 {
     /** @var int */
-    public $id;
+    public int $id;
 
     /** @var int */
-    public $campaign;
+    public int $campaign;
 
     /** @var int */
-    public $terminal;
+    public int $terminal;
 
     /** @var int */
-    public $card;
+    public int $card;
 
     /** @var int */
-    public $cardOld;
+    public int $cardOld;
 
     /** @var int */
-    public $kind;
+    public int $kind;
 
     /** @var int */
-    public $customer;
+    public int $customer;
 
     /** @var int */
-    public $operator;
+    public int $operator;
 
     /** @var string */
-    public $dateTime;
+    public string $dateTime;
 
     /** @var string */
-    public $localTime;
+    public string $localTime;
 
     /** @var int */
-    public $chargedCredits;
+    public int $chargedCredits;
 
     /** @var int */
-    public $dischargedCredits;
+    public int $dischargedCredits;
 
     /** @var int */
-    public $chargedGiftCredits;
+    public int $chargedGiftCredits;
 
     /** @var int */
-    public $dischargedGiftCredits;
+    public int $dischargedGiftCredits;
 
     /** @var float|int */
-    public $chargedPoints;
+    public int | float $chargedPoints;
 
     /** @var int */
-    public $dischargedPoints;
+    public int $dischargedPoints;
 
     /** @var int */
-    public $chargedPointsStatus;
+    public int $chargedPointsStatus;
 
     /** @var int */
-    public $dischargedPointsStatus;
+    public int $dischargedPointsStatus;
 
     /** @var int */
-    public $currencyConversion;
+    public int $currencyConversion;
 
     /** @var int */
-    public $profitMoneyLocal;
+    public int $profitMoneyLocal;
 
     /** @var int */
-    public $totalMoney;
+    public int $totalMoney;
 
     /** @var int */
-    public $totalBenefits;
+    public int $totalBenefits;
 
     /** @var int */
-    public $discount;
+    public int $discount;
 
     /** @var mixed */
-    public $shop;
+    public mixed $shop;
 
     /** @var int */
-    public $shopId;
+    public int $shopId;
 
     /** @var mixed */
-    public $category;
+    public mixed $category;
 
     /** @var int */
-    public $kindCharge;
+    public int $kindCharge;
 
     /** @var mixed */
-    public $periodId;
+    public mixed $periodId;
 
     /** @var mixed */
-    public $flags;
+    public mixed $flags;
 
     /** @var int */
-    public $promotionErrorCode;
+    public int $promotionErrorCode;
 
     /** @var int */
-    public $sellerId;
+    public int $sellerId;
 }

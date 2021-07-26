@@ -9,145 +9,145 @@ final class OperatorProfileData extends DataTransferObject
     /**
      * @var int
      */
-    public $rights;
+    public int $rights;
 
     /**
      * @var bool
      */
-    public $canDoNewCard;
+    public bool $canDoNewCard;
 
     /**
      * @var bool
      */
-    public $canChargeCredits;
+    public bool $canChargeCredits;
 
     /**
      * @var bool
      */
-    public $canDischargeCredits;
+    public bool $canDischargeCredits;
 
     /**
      * @var bool
      */
-    public $canChargePoints;
+    public bool $canChargePoints;
 
     /**
      * @var bool
      */
-    public $canDischargePoints;
+    public bool $canDischargePoints;
 
     /**
      * @var bool
      */
-    public $canDoSale;
+    public bool $canDoSale;
 
     /**
      * @var bool
      */
-    public $canApplyDiscount;
+    public bool $canApplyDiscount;
 
     /**
      * @var bool
      */
-    public $canAcceptVouchers;
+    public bool $canAcceptVouchers;
 
     /**
      * @var bool
      */
-    public $canDeliverPromotions;
+    public bool $canDeliverPromotions;
 
     /**
      * @var bool
      */
-    public $canLockCard;
+    public bool $canLockCard;
 
     /**
      * @var bool
      */
-    public $canUnlockCard;
+    public bool $canUnlockCard;
 
     /**
      * @var bool
      */
-    public $canReplaceCard;
+    public bool $canReplaceCard;
 
     /**
      * @var bool
      */
-    public $canSearchCustomer;
+    public bool $canSearchCustomer;
 
     /**
      * @var bool
      */
-    public $canExchangePrizes;
+    public bool $canExchangePrizes;
 
     /**
      * @var bool
      */
-    public $canDeliverPrizes;
+    public bool $canDeliverPrizes;
 
     /**
      * @var bool
      */
-    public $canExtendExpirationDate;
+    public bool $canExtendExpirationDate;
 
     /**
      * @var bool
      */
-    public $canModifyCategory;
+    public bool $canModifyCategory;
 
     /**
      * @var bool
      */
-    public $canDeliverStatusPoints;
+    public bool $canDeliverStatusPoints;
 
     /**
      * @var bool
      */
-    public $canRequestPoints;
+    public bool $canRequestPoints;
 
     /**
      * @var bool
      */
-    public $canCancelTransaction;
+    public bool $canCancelTransaction;
 
     /**
      * @var bool
      */
-    public $canTransferPoints;
+    public bool $canTransferPoints;
 
     /**
      * @var bool
      */
-    public $canCancelOtherTerminalTransactions;
+    public bool $canCancelOtherTerminalTransactions;
 
     /**
      * @var bool
      */
-    public $canCancelTransactionById;
+    public bool $canCancelTransactionById;
 
     /**
      * @var bool
      */
-    public $canLockCustomers;
+    public bool $canLockCustomers;
 
     /**
      * @var bool
      */
-    public $canUnlockCustomers;
+    public bool $canUnlockCustomers;
 
     /**
      * @var bool
      */
-    public $canModifyCustomer;
+    public bool $canModifyCustomer;
 
     /**
      * @var bool
      */
-    public $canDoCheckIn;
+    public bool $canDoCheckIn;
 
     /**
      * @var bool
      */
-    public $canDoCheckOut;
+    public bool $canDoCheckOut;
 }

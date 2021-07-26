@@ -7,17 +7,20 @@ use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Constants\ApiSessionTypes;
 use Blabs\FidelyNet\Constants\Messages;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
+use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Requests\CustomerRequestData;
 use Blabs\FidelyNet\Responses\ApiResponse;
 use Blabs\FidelyNet\Responses\DataModels\CustomerData;
 use Blabs\FidelyNet\Responses\Lists\MovementsList;
+use GuzzleHttp\Exception\GuzzleException;
+use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 final class CustomerService extends ServiceAbstract
 {
     /**
      * @inheritdoc
      */
-    public $service_type = ApiServices::CUSTOMER;
+    public string $service_type = ApiServices::CUSTOMER;
 
     /**
      * Sends a verification code to certify customer's email address.
@@ -25,9 +28,9 @@ final class CustomerService extends ServiceAbstract
      * @param string $emailAddress
      * @param string $campaignId
      *
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetServiceException
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws FidelyNetSessionException
+     * @throws GuzzleException
+     * @throws FidelyNetServiceException
      *
      * @return ApiResponse
      */
@@ -50,13 +53,13 @@ final class CustomerService extends ServiceAbstract
      * @param string $phoneNumber
      * @param string $campaignId
      *
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetServiceException
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws FidelyNetSessionException
+     * @throws GuzzleException
+     * @throws FidelyNetServiceException
      *
      * @return ApiResponse
      */
-    public function sendMobileVerificationCode(string $phoneNumber, string $campaignId)
+    public function sendMobileVerificationCode(string $phoneNumber, string $campaignId): ApiResponse
     {
         return $this->callAction(
             ApiActions::VERIFY_EMAIL,
@@ -76,8 +79,10 @@ final class CustomerService extends ServiceAbstract
      * @param $categoryId
      * @param null $shopId
      *
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetServiceException
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
+     * @throws FidelyNetServiceException
+     * @throws FidelyNetSessionException
+     * @throws GuzzleException
+     * @throws UnknownProperties
      *
      * @return CustomerData
      */
@@ -107,8 +112,9 @@ final class CustomerService extends ServiceAbstract
      * @param null $shopId
      *
      * @throws FidelyNetServiceException
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws FidelyNetSessionException
+     * @throws GuzzleException
+     * @throws UnknownProperties
      *
      * @return CustomerData
      */
@@ -134,8 +140,10 @@ final class CustomerService extends ServiceAbstract
      * @param int $pageNumber
      * @param int $movementsPerPage
      *
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetServiceException
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
+     * @throws FidelyNetServiceException
+     * @throws FidelyNetSessionException
+     * @throws GuzzleException
+     * @throws UnknownProperties
      *
      * @return MovementsList
      */

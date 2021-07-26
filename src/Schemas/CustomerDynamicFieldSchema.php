@@ -9,10 +9,10 @@ class CustomerDynamicFieldSchema extends DataTransferObject
     /**
      * @var int
      */
-    public $id;
+    public int $id;
 
     /**
      * @var string
      */
-    public $value;
+    public string $value;
 }

@@ -4,16 +4,20 @@ namespace Blabs\FidelyNet\Services;
 
 use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiServices;
+use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
+use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Requests\CustomerRequestData;
 use Blabs\FidelyNet\Responses\DataModels\CustomerData;
 use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
+use GuzzleHttp\Exception\GuzzleException;
+use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 final class BackofficeService extends ServiceAbstract
 {
     /**
      * @inheritdoc
      */
-    public $service_type = ApiServices::BACKOFFICE;
+    public string $service_type = ApiServices::BACKOFFICE;
 
     /**
      * Register a customer and creates a new card (verification code is required).
@@ -22,9 +26,10 @@ final class BackofficeService extends ServiceAbstract
      * @param int                 $customerId
      * @param int                 $campaignId
      *
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetServiceException
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws FidelyNetServiceException
+     * @throws FidelyNetSessionException
+     * @throws GuzzleException
+     * @throws UnknownProperties
      *
      * @return CustomerData
      */
@@ -43,7 +48,17 @@ final class BackofficeService extends ServiceAbstract
         return new CustomerData($response->data['customer']['personalInfo']);
     }
 
-    public function getCardInfo(int $cardId)
+    /**
+     * @param int $cardId
+     *
+     * @throws FidelyNetServiceException
+     * @throws FidelyNetSessionException
+     * @throws GuzzleException
+     * @throws UnknownProperties
+     *
+     * @return CardInfoResponseData
+     */
+    public function getCardInfo(int $cardId): CardInfoResponseData
     {
         $response = $this->callAction(ApiActions::BO_GET_INFO_CARD, ['card' => $cardId]);
 

@@ -9,10 +9,10 @@ final class OperatorFlagsData extends DataTransferObject
     /**
      * @var int
      */
-    public $flags;
+    public int $flags;
 
     /**
      * @var bool
      */
-    public $isEnabled;
+    public bool $isEnabled;
 }

@@ -11,7 +11,7 @@ use Blabs\FidelyNet\Providers\SessionId\InMemorySessionIdProvider;
 
 class DemoConfigurationProvider implements ConfigurationProviderContract
 {
-    private $options = [
+    private array $options = [
         ApiServices::CUSTOMER => [
             FactoryOptions::USERNAME    => ApiDemoData::CUSTOMER_USERNAME,
             FactoryOptions::PASSWORD    => ApiDemoData::CUSTOMER_PASSWORD,
@@ -33,7 +33,7 @@ class DemoConfigurationProvider implements ConfigurationProviderContract
         FactoryOptions::START_SESSION       => true,
     ];
 
-    public function getOption($key, $parent_key = null)
+    public function getOption($key, $parent_key = null): ?string
     {
         if (!$parent_key) {
             return $this->options[$key];
