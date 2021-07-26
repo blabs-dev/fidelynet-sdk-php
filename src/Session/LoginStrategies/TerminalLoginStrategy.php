@@ -4,8 +4,12 @@ namespace Blabs\FidelyNet\Session\LoginStrategies;
 
 use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\FactoryOptions;
+use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Responses\ApiResponse;
 use Blabs\FidelyNet\Responses\ResponseData\LoginResponseData;
+use GuzzleHttp\Exception\GuzzleException;
+use JetBrains\PhpStorm\ArrayShape;
+use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 final class TerminalLoginStrategy extends LoginStrategyAbstract
 {
@@ -13,6 +17,10 @@ final class TerminalLoginStrategy extends LoginStrategyAbstract
 
     /**
      * @inheritDoc
+     *
+     * @throws FidelyNetSessionException
+     * @throws GuzzleException
+     * @throws UnknownProperties
      */
     public function startSession(array $credentials): string
     {
@@ -23,6 +31,8 @@ final class TerminalLoginStrategy extends LoginStrategyAbstract
 
     /**
      * @inheritDoc
+     *
+     * @throws UnknownProperties
      */
     protected function extractSessionId(ApiResponse $response): string
     {
@@ -34,7 +44,11 @@ final class TerminalLoginStrategy extends LoginStrategyAbstract
     /**
      * Adds specifics Terminal Service options to request data.
      */
-    private function prepareCredentials($credentials)
+    #[ArrayShape([
+        'terminalserial' => "string",
+        'username' => "string",
+        'password' => "string"
+    ])] private function prepareCredentials($credentials): array
     {
         return [
             'terminalserial' => $credentials[FactoryOptions::TERMINAL],

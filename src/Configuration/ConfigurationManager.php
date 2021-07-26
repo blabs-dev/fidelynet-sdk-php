@@ -10,9 +10,9 @@ use RecursiveIteratorIterator;
 class ConfigurationManager
 {
     /** @var ConfigurationProviderContract */
-    protected $configurationProvider;
+    protected ConfigurationProviderContract $configurationProvider;
 
-    private $options;
+    private array $options;
 
     /**
      * ConfigurationManagerAbstract constructor.
@@ -34,16 +34,15 @@ class ConfigurationManager
                     $this->options[$key][$sub_key] = $this->configurationProvider->getOption($sub_key, $key);
                 }
             } else {
-//                var_dump(['chiave' => $key, 'valore' => $value]);
                 $this->options[$value] = $this->configurationProvider->getOption($value);
             }
         }
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         $options = [];
         $iterator = new RecursiveIteratorIterator(new RecursiveArrayIterator($this->options));

@@ -13,6 +13,7 @@ use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Session\LoginStrategies\BackofficeLoginStrategy;
 use Blabs\FidelyNet\Session\LoginStrategies\CustomerLoginStrategy;
 use Blabs\FidelyNet\Session\LoginStrategies\TerminalLoginStrategy;
+use GuzzleHttp\Exception\GuzzleException;
 
 final class SessionManager
 {
@@ -23,35 +24,35 @@ final class SessionManager
      *
      * @var int
      */
-    protected $sessionRenews = 0;
+    protected int $sessionRenews = 0;
 
     /**
      * Session ID provider class (sets and gets the session id for every request).
      *
      * @var SessionIdProviderContract
      */
-    protected $sessionIdProvider;
+    protected SessionIdProviderContract $sessionIdProvider;
 
     /**
      * Managed session's Client.
      *
      * @var Client
      */
-    protected $client;
+    protected Client $client;
 
     /**
      * An array containing all credentials needed to open a session.
      *
      * @var array
      */
-    private $credentials;
+    private array $credentials;
 
     /**
      * Current session type (public or private).
      *
      * @var string
      */
-    private $session_type;
+    private string $session_type;
 
     /**
      * SessionManager constructor.
@@ -74,7 +75,7 @@ final class SessionManager
      *
      * @return bool
      */
-    public function isSessionPersistent()
+    public function isSessionPersistent(): bool
     {
         return $this->sessionIdProvider->isSessionPersistent();
     }
@@ -132,17 +133,11 @@ final class SessionManager
      */
     private function openPrivateSession(): string
     {
-        switch ($this->client->getServiceType()) {
-        case ApiServices::BACKOFFICE:
-            $login_strategy = BackofficeLoginStrategy::class;
-            break;
-        case ApiServices::TERMINAL:
-            $login_strategy = TerminalLoginStrategy::class;
-            break;
-        case ApiServices::CUSTOMER:
-            $login_strategy = CustomerLoginStrategy::class;
-            break;
-        }
+        $login_strategy = match ($this->client->getServiceType()) {
+            ApiServices::BACKOFFICE => BackofficeLoginStrategy::class,
+            ApiServices::TERMINAL => TerminalLoginStrategy::class,
+            ApiServices::CUSTOMER => CustomerLoginStrategy::class,
+        };
 
         return (new $login_strategy($this->client))->startSession($this->credentials);
     }
@@ -151,7 +146,7 @@ final class SessionManager
      * Obtain a public session id to access public FNET service methods.
      *
      * @throws FidelyNetSessionException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      *
      * @return string
      */
@@ -167,7 +162,7 @@ final class SessionManager
      *
      * @return string
      */
-    public function getSessionType()
+    public function getSessionType(): string
     {
         return $this->session_type;
     }

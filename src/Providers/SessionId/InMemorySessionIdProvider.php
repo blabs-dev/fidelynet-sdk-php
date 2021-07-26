@@ -14,9 +14,9 @@ final class InMemorySessionIdProvider implements SessionIdProviderContract
     /**
      * Current session id.
      *
-     * @var string
+     * @var string|null
      */
-    private $sessionId;
+    private ?string $sessionId = null;
 
     /**
      * @inheritDoc

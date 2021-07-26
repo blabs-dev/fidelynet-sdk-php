@@ -3,7 +3,9 @@
 namespace Blabs\FidelyNet\Session\LoginStrategies;
 
 use Blabs\FidelyNet\Constants\ApiActions;
+use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Responses\ApiResponse;
+use GuzzleHttp\Exception\GuzzleException;
 
 final class BackofficeLoginStrategy extends LoginStrategyAbstract
 {
@@ -11,6 +13,9 @@ final class BackofficeLoginStrategy extends LoginStrategyAbstract
 
     /**
      * @inheritDoc
+     *
+     * @throws FidelyNetSessionException
+     * @throws GuzzleException
      */
     public function startSession(array $credentials): string
     {

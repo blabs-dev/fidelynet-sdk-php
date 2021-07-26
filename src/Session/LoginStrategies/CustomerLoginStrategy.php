@@ -5,7 +5,10 @@ namespace Blabs\FidelyNet\Session\LoginStrategies;
 use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiDeviceTypes;
 use Blabs\FidelyNet\Constants\FactoryOptions;
+use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Responses\ApiResponse;
+use GuzzleHttp\Exception\GuzzleException;
+use JetBrains\PhpStorm\ArrayShape;
 
 final class CustomerLoginStrategy extends LoginStrategyAbstract
 {
@@ -13,9 +16,13 @@ final class CustomerLoginStrategy extends LoginStrategyAbstract
 
     /**
      * @inheritDoc
+     *
+     * @throws FidelyNetSessionException
+     * @throws GuzzleException
      */
     public function startSession(array $credentials): string
     {
+
         $response = $this->client->actionRequest(self::LOGIN_ACTION, $this->prepareCredentials($credentials));
 
         return $this->extractSessionId($response);
@@ -36,7 +43,12 @@ final class CustomerLoginStrategy extends LoginStrategyAbstract
      *
      * @return array
      */
-    private function prepareCredentials($credentials)
+    #[ArrayShape([
+        'campaignid' => "string",
+        'username' => "string",
+        'password' => "string",
+        'devicetype' => "string"]
+    )] private function prepareCredentials($credentials): array
     {
         return [
             'campaignid' => $credentials[FactoryOptions::CAMPAIGN_ID],

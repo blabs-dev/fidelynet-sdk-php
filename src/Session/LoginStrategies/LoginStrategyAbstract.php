@@ -12,7 +12,7 @@ abstract class LoginStrategyAbstract
      *
      * @var Client
      */
-    public $client;
+    public Client $client;
 
     /**
      * LoginStrategyContract constructor.

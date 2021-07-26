@@ -13,7 +13,7 @@ final class TmpDirSessionIdProvider implements SessionIdProviderContract
      *
      * @var string
      */
-    private $tmpFilePath;
+    private string $tmpFilePath;
 
     /**
      * TmpDirSessionIdProvider constructor.
