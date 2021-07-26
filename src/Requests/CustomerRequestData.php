@@ -8,119 +8,119 @@ use Spatie\DataTransferObject\DataTransferObject;
 class CustomerRequestData extends DataTransferObject
 {
     /** @var string|null */
-    public $campaignid;
+    public ?string $campaignid;
 
     /** @var string|null */
-    public $registrationshopid;
+    public ?string $registrationshopid;
 
     /** @var string|null */
-    public $dni;
+    public ?string $dni;
 
     /** @var string|null */
-    public $email;
+    public ?string $email;
 
     /** @var string|null */
-    public $name;
+    public ?string $name;
 
     /** @var string|null */
-    public $password;
+    public ?string $password;
 
     /** @var string|null */
-    public $surname;
+    public ?string $surname;
 
     /** @var string|null */
-    public $gender;
+    public ?string $gender;
 
     /** @var string|null */
-    public $birthdate;
+    public ?string $birthdate;
 
     /** @var string|null */
-    public $notes;
+    public ?string $notes;
 
     /** @var string|null */
-    public $username;
+    public ?string $username;
 
     /** @var string|null */
-    public $flags;
+    public ?string $flags;
 
     /** @var bool|null */
-    public $usedforpromotions;
+    public ?bool $usedforpromotions;
 
     /** @var bool|null */
-    public $usedforstatistics;
+    public ?bool $usedforstatistics;
 
     /** @var bool|null */
-    public $usedbyothers;
+    public ?bool $usedbyothers;
 
     /** @var string|null */
-    public $cangetcurrentlocation;
+    public ?string $cangetcurrentlocation;
 
     /** @var string|null */
-    public $cancomunicaverification;
+    public ?string $cancomunicaverification;
 
     /** @var string|null */
-    public $mobile;
+    public ?string $mobile;
 
     /** @var string|null */
-    public $telephone;
+    public ?string $telephone;
 
     /** @var string|null */
-    public $fax;
+    public ?string $fax;
 
     /** @var string|null */
-    public $address;
+    public ?string $address;
 
     /** @var string|null */
-    public $addressnumber;
+    public ?string $addressnumber;
 
     /** @var string|null */
-    public $addressprefix;
+    public ?string $addressprefix;
 
     /** @var string|null */
-    public $zipcode;
+    public ?string $zipcode;
 
     /** @var string|null */
-    public $geo_lat;
+    public ?string $geo_lat;
 
     /** @var string|null */
-    public $geo_long;
+    public ?string $geo_long;
 
     /** @var string|null */
-    public $country;
+    public ?string $country;
 
     /** @var string|null */
-    public $geo_level_1;
+    public ?string $geo_level_1;
 
     /** @var string|null */
-    public $geo_level_2;
+    public ?string $geo_level_2;
 
     /** @var string|null */
-    public $geo_level_3;
+    public ?string $geo_level_3;
 
     /** @var string|null */
-    public $geo_level_4;
+    public ?string $geo_level_4;
 
     /** @var string|null */
-    public $geo_level_5;
+    public ?string $geo_level_5;
 
     /** @var string|null */
-    public $facebookid;
+    public ?string $facebookid;
 
     /** @var CustomerDynamicFieldSchema[]|null */
-    public $customerdynamicfields;
+    public ?array $customerdynamicfields;
 
     /** @var string|null */
-    public $twitterid;
+    public ?string $twitterid;
 
     /** @var string|null */
-    public $youtubeid;
+    public ?string $youtubeid;
 
     /** @var string|null */
-    public $instagramid;
+    public ?string $instagramid;
 
     /** @var string|null */
-    public $interestareas;
+    public ?string $interestareas;
 
     /** @var string|null */
-    public $invitecustomerid;
+    public ?string $invitecustomerid;
 }
