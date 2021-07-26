@@ -45,15 +45,16 @@ final class TerminalLoginStrategy extends LoginStrategyAbstract
      * Adds specifics Terminal Service options to request data.
      */
     #[ArrayShape([
-        'terminalserial' => "string",
-        'username' => "string",
-        'password' => "string"
-    ])] private function prepareCredentials($credentials): array
-    {
-        return [
-            'terminalserial' => $credentials[FactoryOptions::TERMINAL],
-            'username'       => $credentials[FactoryOptions::USERNAME],
-            'password'       => $credentials[FactoryOptions::PASSWORD],
-        ];
-    }
+        'terminalserial' => 'string',
+        'username'       => 'string',
+        'password'       => 'string',
+    ])]
+ private function prepareCredentials($credentials): array
+ {
+     return [
+         'terminalserial' => $credentials[FactoryOptions::TERMINAL],
+         'username'       => $credentials[FactoryOptions::USERNAME],
+         'password'       => $credentials[FactoryOptions::PASSWORD],
+     ];
+ }
 }

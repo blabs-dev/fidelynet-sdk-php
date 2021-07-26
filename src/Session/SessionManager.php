@@ -135,8 +135,8 @@ final class SessionManager
     {
         $login_strategy = match ($this->client->getServiceType()) {
             ApiServices::BACKOFFICE => BackofficeLoginStrategy::class,
-            ApiServices::TERMINAL => TerminalLoginStrategy::class,
-            ApiServices::CUSTOMER => CustomerLoginStrategy::class,
+            ApiServices::TERMINAL   => TerminalLoginStrategy::class,
+            ApiServices::CUSTOMER   => CustomerLoginStrategy::class,
         };
 
         return (new $login_strategy($this->client))->startSession($this->credentials);

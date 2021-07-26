@@ -22,7 +22,6 @@ final class CustomerLoginStrategy extends LoginStrategyAbstract
      */
     public function startSession(array $credentials): string
     {
-
         $response = $this->client->actionRequest(self::LOGIN_ACTION, $this->prepareCredentials($credentials));
 
         return $this->extractSessionId($response);
@@ -43,18 +42,20 @@ final class CustomerLoginStrategy extends LoginStrategyAbstract
      *
      * @return array
      */
-    #[ArrayShape([
-        'campaignid' => "string",
-        'username' => "string",
-        'password' => "string",
-        'devicetype' => "string"]
-    )] private function prepareCredentials($credentials): array
-    {
-        return [
-            'campaignid' => $credentials[FactoryOptions::CAMPAIGN_ID],
-            'username'   => $credentials[FactoryOptions::USERNAME],
-            'password'   => $credentials[FactoryOptions::PASSWORD],
-            'devicetype' => ApiDeviceTypes::DESKTOP,
-        ];
-    }
+    #[ArrayShape(
+        [
+            'campaignid' => 'string',
+            'username'   => 'string',
+            'password'   => 'string',
+            'devicetype' => 'string', ]
+    )]
+ private function prepareCredentials($credentials): array
+ {
+     return [
+         'campaignid' => $credentials[FactoryOptions::CAMPAIGN_ID],
+         'username'   => $credentials[FactoryOptions::USERNAME],
+         'password'   => $credentials[FactoryOptions::PASSWORD],
+         'devicetype' => ApiDeviceTypes::DESKTOP,
+     ];
+ }
 }

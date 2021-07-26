@@ -123,7 +123,7 @@ final class Client
     /**
      * Init the Session Manager using the id provider specified in this instance.
      *
-     * @param array $credentials
+     * @param array                     $credentials
      * @param SessionIdProviderContract $sessionIdProvider
      */
     private function setupSessionManager(array $credentials, SessionIdProviderContract $sessionIdProvider): void
@@ -215,7 +215,7 @@ final class Client
     {
         $session_id_key = match ($this->service_type) {
             ApiServices::CUSTOMER => 'session',
-            default => 'sessionid',
+            default               => 'sessionid',
         };
 
         $default_parameters = [
@@ -257,13 +257,14 @@ final class Client
      *
      * @return array
      */
-    #[ArrayShape(['User-Agent' => "string", 'Accept' => "string"])] private function getHeaders(): array
-    {
-        return [
-            'User-Agent' => Release::USER_AGENT,
-            'Accept'     => 'application/json',
-        ];
-    }
+    #[ArrayShape(['User-Agent' => 'string', 'Accept' => 'string'])]
+ private function getHeaders(): array
+ {
+     return [
+         'User-Agent' => Release::USER_AGENT,
+         'Accept'     => 'application/json',
+     ];
+ }
 
     /**
      * Perform a conversion against data array to convert it in multipart/form-data
@@ -335,9 +336,9 @@ final class Client
      *
      * @param string $response_content
      *
-     * @return ApiResponse
-     *
      * @throws UnknownProperties
+     *
+     * @return ApiResponse
      */
     protected function parseResponse(string $response_content): ApiResponse
     {

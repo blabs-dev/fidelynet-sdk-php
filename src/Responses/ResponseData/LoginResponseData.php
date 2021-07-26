@@ -9,7 +9,7 @@ final class LoginResponseData extends DataTransferObject
     /**
      * @var int|string|null
      */
-    public int|string|null $answerCode;
+    public int | string | null $answerCode;
 
     /**
      * @var string|null
