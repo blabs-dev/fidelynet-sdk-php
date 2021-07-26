@@ -1,35 +1,57 @@
 # Fidely NET api wrapper
+A PHP Wrapper for FidelyNET API.
 
-Un wrapper in php per le API di FidelyNET.
+## Getting started
+This SDK lets you interact with `backoffice`, `customer` and `terminal` services. 
+The simplest way of creating an instance of a service is using the `ServiceFactory::create()` method.
+It requires 2 arguments, the first one is a string containing desired service, the second is an array containing the related authentication credentials provided by Data Loyalty along with some other optional parameters.
 
-## Istruzioni veloci
-La libreria permette d'interagire con i servizi, `backoffice`, `customer` e `terminal`, per creare un'istanza di un servizio, è consigliabile utilizzare la classe `ServiceFactory`, passando al metodo statico `create()` un array che contiene la tipologia del servizio desiderato e i relativi parametri di autenticazione forniti da Data Loyalty.
-
-Esempio di utilizzo della factory per creare un'istanza del servizio terminal:
+Example of using the factory to create a `terminal` service instance:
 ```php
 use Blabs\FidelyNet\ServiceFactory;
 
+// Creates an instance of the Terminal service.
 $terminal_service = ServiceFactory::create('terminal', [
     'username' => 'wsTerminal01',
     'password' => 'password',
     'terminal' => '000001'
 ]);
 
+// Uses the instance to query the service to getting info on a campaign id
 /** @var \Blabs\FidelyNet\Services\TerminalService $terminal_service */
 $terminal_service->getCampaign('1001');
 ```
-## Parametri accettati dalla `ServiceFactory`
+## Supported keys for the `ServiceFactory` parameters array
+Other than credentials, you can specify several options within the second argument of the `create()` method, many of them have already a default value, use following array keys if you need to override them.
+
 * `username`
 * `password`
 * `terminal`
 * `campaign_id`
-* `demo_mode`
-* `session_persists`
-* `session_id_provider`
-* `session_type`
-* `http_client`
+* `demo_mode` (boolean)
+* `session_persists` (boolean)
+* `session_id_provider` (implementation of `\Blabs\FidelyNet\Contracts\SessionIdProviderContract` interface)
+* `session_type` (can be `public` or `private`, available for `customer` service only)
+* `http_client` (an instance of `GuzzleHttp\Client` or implementation of `GuzzleHttp\ClientInterface`)
 
-### Parametri obbligatori per ogni servizio
+```php
+use Blabs\FidelyNet\ServiceFactory;
+
+// Creates an instance of the Customer service, using a public session and with other customized options.
+$customer_service = ServiceFactory::create('customer', [
+    // required keys
+    'username'          => 'myCustomerUserName',
+    'password'          => 'myCustomerPassword',
+    'campaign_id'       => '10000',
+    // optional keys
+    'demo_mode'         => true,
+    'session_persists'  => false,
+    'session_type'      => 'public',
+]);
+```
+
+### Required parameters for each service
+Each service needs some specific parameters in the config array in order to be instanced.
 * `BackofficeService`
   * `username`
   * `password`
@@ -44,30 +66,24 @@ $terminal_service->getCampaign('1001');
   * `password`
   * `campaign_id`
 
-## Persistenza Sessione
-Le API di FidelyNET prevedono un meccanismo di autenticazione che richiede l'apertura di una sessione sul servizio.
- 
-Il meccanismo prevede che in una prima richiesta venga effettuato il login sul servizio, che ritornerà un token di sessione, tale token sarà utilizzato per autorizzare tutte le successive richieste. 
-Il token ha una validità di 15 minuti dall'ultima richiesta effettuata.
+## Session Persistence
+FidelyNET APIs provides an authentication system that requires to open a session on the service before starting to make actual requests.
 
-La libreria implementa questo meccanismo in maniera automatica al momento della creazione di un istanza del servizio, inoltre è possibile far persistere l'id di sessione attraverso richieste multiple (anche in più istanze dello stesso servizio).
-In caso di fallimento di una richiesta per sessione scaduta, il client effettua in maniera automatica una nuova richiesta di login, rinnovando il token e reiterando la richiesta fallita.
+Usually you have to make a first request to authenticate passing your credentials, then you receive a session token that will be used to authorize all subsequent requests.
+The token is valid for about 15 minutes from the last request made.
 
-La persistenza della sessione viene attivata passando alla factory il valore `true` per il parametro `session_persists`, di default la libreria utilizza un meccanismo di persistenza della sessione nella directory di sistema dedicata ai file temporanei (tipicamente `tmp/` su un sistema *nix), è possibile tuttavia creare la propria implementazione del meccanismo di persistenza implementando l'interfaccia `\Blabs\FidelyNet\Contracts\SessionIdProviderContract`. 
+The SDK implements this mechanism automatically when creating an instance of the service, and it is also possible to persist the session id through multiple requests (even in multiple instances of the same service).
+In case of failure of a request for an expired session, the client will automatically make a new login request, renewing the token and reiterating the failed request.
+
+Session persistence is enabled by default when you use `ServiceFactory` class, you can override this option using `session_persists` array key in the second argument of the `create()` method. 
+By default the SDK uses a session persistence "driver" that saves data in the temporary files system directory (typically `tmp/` on a *nix system), however you can create your own implementation of the persistence mechanism by implementing the `\Blabs\FidelyNet\Contracts\SessionIdProviderContract` interface (i.e. using session or any other storage system).
 
 
-## Metodi supportati dai servizi
-La libreria supporta un numero di metodi ridotto rispetto a quelli disponibili sul servizio
+## Supported API Actions
+So far the SDK supports fewer "actions" than those available on the service, our goal is to provide a library that simplify most common operations.
 
-### Terminal
-####`getCampaign($campaign_id)`
-Ritorna tutte le informazioni su una campagna. 
-
-### Customer
-Ancora nessun metodo supportato
-
-### Backoffice
-Ancora nessun metodo supportato
+## Service methods reference
+A full documentation about every method available on every service will be available ASAP
 
 ### Testing
 ```shell script
