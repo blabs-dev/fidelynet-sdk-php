@@ -22,11 +22,12 @@ final class TerminalService extends ServiceAbstract
      *
      * @param string $campaignId
      *
-     * @return GetCampaignResponseData
      * @throws FidelyNetServiceException
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return GetCampaignResponseData
      */
     public function getCampaign(string $campaignId): GetCampaignResponseData
     {

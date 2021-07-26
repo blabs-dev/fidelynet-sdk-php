@@ -23,15 +23,15 @@ final class BackofficeService extends ServiceAbstract
      * Register a customer and creates a new card (verification code is required).
      *
      * @param CustomerRequestData $customer_data
-     * @param int $customerId
-     * @param int $campaignId
-     *
-     * @return CustomerData
+     * @param int                 $customerId
+     * @param int                 $campaignId
      *
      * @throws FidelyNetServiceException
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return CustomerData
      */
     public function modifyCustomer(CustomerRequestData $customer_data, int $customerId, int $campaignId): CustomerData
     {
@@ -51,12 +51,12 @@ final class BackofficeService extends ServiceAbstract
     /**
      * @param int $cardId
      *
-     * @return CardInfoResponseData
-     *
      * @throws FidelyNetServiceException
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return CardInfoResponseData
      */
     public function getCardInfo(int $cardId): CardInfoResponseData
     {

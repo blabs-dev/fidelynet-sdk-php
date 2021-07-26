@@ -28,11 +28,11 @@ final class CustomerService extends ServiceAbstract
      * @param string $emailAddress
      * @param string $campaignId
      *
-     * @return ApiResponse
      * @throws FidelyNetSessionException
      * @throws GuzzleException
-     *
      * @throws FidelyNetServiceException
+     *
+     * @return ApiResponse
      */
     public function sendEmailVerificationCode(string $emailAddress, string $campaignId): ApiResponse
     {
@@ -53,11 +53,11 @@ final class CustomerService extends ServiceAbstract
      * @param string $phoneNumber
      * @param string $campaignId
      *
-     * @return ApiResponse
-     *
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws FidelyNetServiceException
+     *
+     * @return ApiResponse
      */
     public function sendMobileVerificationCode(string $phoneNumber, string $campaignId): ApiResponse
     {
@@ -79,12 +79,12 @@ final class CustomerService extends ServiceAbstract
      * @param $categoryId
      * @param null $shopId
      *
-     * @return CustomerData
-     *
      * @throws FidelyNetServiceException
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return CustomerData
      */
     public function registerCustomerWithVerificationCode(array $customer_data, $verificationCode, $campaignId, $categoryId, $shopId = null): CustomerData
     {
@@ -111,12 +111,12 @@ final class CustomerService extends ServiceAbstract
      * @param $categoryId
      * @param null $shopId
      *
-     * @return CustomerData
-     *
      * @throws FidelyNetServiceException
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return CustomerData
      */
     public function registerCustomer(CustomerRequestData $customer_data, $campaignId, $categoryId, $shopId = null): CustomerData
     {
@@ -140,12 +140,12 @@ final class CustomerService extends ServiceAbstract
      * @param int $pageNumber
      * @param int $movementsPerPage
      *
-     * @return MovementsList
-     *
      * @throws FidelyNetServiceException
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return MovementsList
      */
     public function getMovements(int $pageNumber, int $movementsPerPage): MovementsList
     {
