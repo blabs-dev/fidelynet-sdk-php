@@ -9,155 +9,155 @@ final class ShopData extends DataTransferObject
     /**
      * @var int
      */
-    public $campaignId;
+    public int $campaignId;
 
     /**
      * @var int
      */
-    public $shopId;
+    public int $shopId;
 
     /**
      * @var int
      */
-    public $chargedPoints;
+    public int $chargedPoints;
 
     /**
      * @var int
      */
-    public $dischargedPoints;
+    public int $dischargedPoints;
 
     /**
      * @var int
      */
-    public $chargedCredits;
+    public int $chargedCredits;
 
     /**
      * @var int
      */
-    public $dischargedCredits;
+    public int $dischargedCredits;
 
     /**
      * @var int
      */
-    public $chargedCreditsGift;
+    public int $chargedCreditsGift;
 
     /**
      * @var int
      */
-    public $dischargedCreditsGift;
+    public int $dischargedCreditsGift;
 
     /**
      * @var int
      */
-    public $chargedPointsStatus;
+    public int $chargedPointsStatus;
 
     /**
      * @var int
      */
-    public $dischargedPointsStatus;
+    public int $dischargedPointsStatus;
 
     /**
      * @var int
      */
-    public $cardsCharged;
+    public int $cardsCharged;
 
     /**
      * @var int
      */
-    public $cardsEmitted;
+    public int $cardsEmitted;
 
     /**
      * @var int
      */
-    public $limitChargeCredits;
+    public int $limitChargeCredits;
 
     /**
      * @var int
      */
-    public $limitChargeCreditsGift;
+    public int $limitChargeCreditsGift;
 
     /**
      * @var int
      */
-    public $limitChargePoints;
+    public int $limitChargePoints;
 
     /**
      * @var int
      */
-    public $limitDischargeCredits;
+    public int $limitDischargeCredits;
 
     /**
      * @var int
      */
-    public $limitDischargeCreditsGift;
+    public int $limitDischargeCreditsGift;
 
     /**
      * @var int
      */
-    public $limitDischargePoints;
+    public int $limitDischargePoints;
 
     /**
      * @var mixed
      */
-    public $rights_shop;
+    public mixed $rights_shop;
 
     /**
      * @var mixed
      */
-    public $behavior_flags;
+    public mixed $behavior_flags;
 
     /**
      * @var mixed
      */
-    public $behavior_flags2;
+    public mixed $behavior_flags2;
 
     /**
      * @var mixed
      */
-    public $operative_flags;
+    public mixed $operative_flags;
 
     /**
      * @var mixed
      */
-    public $operative_flags2;
+    public mixed $operative_flags2;
 
     /**
      * @var int
      */
-    public $balancePoints;
+    public int $balancePoints;
 
     /**
      * @var int
      */
-    public $balanceCredits;
+    public int $balanceCredits;
 
     /**
      * @var int
      */
-    public $balancePointsStatus;
+    public int $balancePointsStatus;
 
     /**
      * @var int
      */
-    public $balanceCreditsGift;
+    public int $balanceCreditsGift;
 
     /**
      * @var int
      */
-    public $balanceCards;
+    public int $balanceCards;
 
     /**
      * @var int
      */
-    public $balanceCardsGift;
+    public int $balanceCardsGift;
 
     /**
      * @var int
      */
-    public $cardsGiftCharged;
+    public int $cardsGiftCharged;
 
     /**
      * @var int
      */
-    public $cardsGiftEmitted;
+    public int $cardsGiftEmitted;
 }

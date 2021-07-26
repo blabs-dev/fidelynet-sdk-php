@@ -9,32 +9,35 @@ final class OperatorData extends DataTransferObject
     /**
      * @var int
      */
-    public $id;
+    public int $id;
 
     /**
      * @var string
      */
-    public $username;
+    public string $username;
 
     /**
      * @var string
      */
-    public $name;
+    public string $name;
 
     /**
      * @var string
      */
-    public $surname;
+    public string $surname;
 
     /**
      * @var int
      */
-    public $language;
+    public int $language;
 
     /**
-     * @var \Blabs\FidelyNet\Responses\DataModels\OperatorFlagsData
+     * @var mixed
      */
-    public $flags;
+    public mixed $flags;
 
-    public $profile;
+    /**
+     * @var mixed
+     */
+    public mixed $profile;
 }

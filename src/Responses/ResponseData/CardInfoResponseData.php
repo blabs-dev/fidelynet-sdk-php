@@ -4,63 +4,62 @@ namespace Blabs\FidelyNet\Responses\ResponseData;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-// Unused so far.
-class CardInfoResponseData extends DataTransferObject
+final class CardInfoResponseData extends DataTransferObject
 {
     /** @var int */
-    public $id;
+    public int $id;
 
     /** @var int */
-    public $campaignId;
+    public int $campaignId;
 
     /** @var int */
-    public $card;
+    public int $card;
 
     /** @var int */
-    public $status;
+    public int $status;
 
     /** @var int */
-    public $fidelyCode;
+    public int $fidelyCode;
 
     /** @var int */
-    public $parentCustomerId;
+    public int $parentCustomerId;
 
     /** @var int */
-    public $mlmCustomerId;
+    public int $mlmCustomerId;
 
     /** @var int */
-    public $zoneId;
+    public int $zoneId;
 
     /** @var int */
-    public $zoneForeignId;
+    public int $zoneForeignId;
 
     /** @var int */
-    public $customer_area_status;
+    public int $customer_area_status;
 
     /** @var int */
-    public $totalExchangedPrizes;
+    public int $totalExchangedPrizes;
 
     /** @var mixed */
-    public $personalInfo;
+    public mixed $personalInfo;
 
     /** @var int|null */
-    public $totalMlmChildren;
+    public ?int $totalMlmChildren;
 
     /** @var int|null */
-    public $registration_shop_id;
+    public ?int $registration_shop_id;
 
     /** @var int|null */
-    public $registration_net_id;
+    public ?int $registration_net_id;
 
     /** @var int|null */
-    public $registration_shop_foreign_id;
+    public ?int $registration_shop_foreign_id;
 
     /** @var int|null */
-    public $registration_net_foreign_id;
+    public ?int $registration_net_foreign_id;
 
     /** @var array|null */
-    public $balanceData;
+    public ?array $balanceData;
 
     /** @var int|null */
-    public $customer_area_flags;
+    public ?int $customer_area_flags;
 }

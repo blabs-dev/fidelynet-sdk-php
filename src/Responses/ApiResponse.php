@@ -9,40 +9,40 @@ final class ApiResponse extends DataTransferObject
     /**
      * @var int|string|null
      */
-    public $returncode;
+    public int|string|null $returncode;
 
     /**
      * @var mixed
      */
-    public $data;
+    public mixed $data;
 
     /**
      * @var mixed|null
      */
-    public $data2;
+    public mixed $data2;
 
     /**
      * @var mixed|null
      */
-    public $data3;
+    public mixed $data3;
 
     /**
      * @var mixed|null
      */
-    public $data4;
+    public mixed $data4;
 
     /**
      * @var mixed|null
      */
-    public $data5;
+    public mixed $data5;
 
     /**
      * @var string|null
      */
-    public $sessionid;
+    public ?string $sessionid;
 
     /**
      * @var string|null
      */
-    public $ambiente;
+    public ?string $ambiente;
 }

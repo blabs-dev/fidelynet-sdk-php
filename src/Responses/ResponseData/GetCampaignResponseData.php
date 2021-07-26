@@ -2,6 +2,8 @@
 
 namespace Blabs\FidelyNet\Responses\ResponseData;
 
+use Blabs\FidelyNet\Responses\DataModels\CampaignData;
+use Blabs\FidelyNet\Responses\DataModels\TerminalData;
 use Spatie\DataTransferObject\DataTransferObject;
 
 final class GetCampaignResponseData extends DataTransferObject
@@ -9,15 +11,15 @@ final class GetCampaignResponseData extends DataTransferObject
     /**
      * @var int|null
      */
-    public $answerCode;
+    public ?int $answerCode;
 
     /**
-     * @var \Blabs\FidelyNet\Responses\DataModels\CampaignData
+     * @var CampaignData
      */
-    public $campaign;
+    public CampaignData $campaign;
 
     /**
-     * @var \Blabs\FidelyNet\Responses\DataModels\TerminalData
+     * @var TerminalData
      */
-    public $terminal;
+    public TerminalData $terminal;
 }

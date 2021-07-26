@@ -9,15 +9,15 @@ final class TerminalData extends DataTransferObject
     /**
      * @var int
      */
-    public $terminalId;
+    public int $terminalId;
 
     /**
      * @var mixed
      */
-    public $behaviorFlags;
+    public mixed $behaviorFlags;
 
     /**
      * @var mixed
      */
-    public $informativeFlags;
+    public mixed $informativeFlags;
 }

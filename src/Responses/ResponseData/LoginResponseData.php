@@ -9,12 +9,12 @@ final class LoginResponseData extends DataTransferObject
     /**
      * @var int|string|null
      */
-    public $answerCode;
+    public int|string|null $answerCode;
 
     /**
      * @var string|null
      */
-    public $sessionID;
+    public ?string $sessionID;
 
     /**
      * @var \Blabs\FidelyNet\Responses\DataModels\OperatorData|null

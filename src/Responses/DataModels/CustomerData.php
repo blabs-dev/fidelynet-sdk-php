@@ -13,243 +13,303 @@ namespace Blabs\FidelyNet\Responses\DataModels;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-class CustomerData extends DataTransferObject
+final class CustomerData extends DataTransferObject
 {
-    /** @var int|null */
-    public $id;
+    // region IDENTIFIERS, STATUSES AND OTHER INFORMATIONS
 
     /** @var int|null */
-    public $campaign;
+    public ?int $id;
 
     /** @var int|null */
-    public $card;
+    public ?int $category;
 
     /** @var int|null */
-    public $fidelyCode;
-
-    /** @var int|null */
-    public $category;
-
-    /** @var int|null */
-    public $status;
+    public ?int $status;
 
     /** @var string */
-    public $name;
-
-    /** @var string */
-    public $surname;
+    public string $userName;
 
     /** @var string|null */
-    public $gender;
-
-    /** @var string */
-    public $userName;
+    public ?string $pincode;
 
     /** @var string|null */
-    public $pincode;
-
-    /** @var string|null */
-    public $expiration;
+    public ?string $expiration;
 
     /** @var mixed */
-    public $flags;
+    public mixed $flags;
 
     /** @var mixed */
-    public $privacy;
+    public mixed $mlmCustomerId;
 
     /** @var int|null */
-    public $cardType;
+    public ?int $customer_area_status;
 
     /** @var int|null */
-    public $languageId;
+    public ?int $foreignId;
 
     /** @var int|null */
-    public $pointsCharged;
+    public ?int $totalMlmChildren;
+
+    /** @var string|null */
+    public ?string $lastMovement;
+
+    /** @var string|null */
+    public ?string $notes;
+
+    // endregion
+
+    // region CARD DATA
+
+    // region GENERAL
 
     /** @var int|null */
-    public $pointsChargedCount;
+    public ?int $campaign;
 
     /** @var int|null */
-    public $pointsUsed;
+    public ?int $card;
 
     /** @var int|null */
-    public $pointsUsedCount;
+    public ?int $cardType;
 
     /** @var int|null */
-    public $pointsStatusCharged;
+    public ?int $fidelyCode;
 
     /** @var int|null */
-    public $pointsStatusUsed;
+    public ?int $rechargesCard;
 
     /** @var int|null */
-    public $pointsMLMCharged;
+    public ?int $usesCard;
+
+    // endregion
+
+    // region BALANCE
 
     /** @var int|null */
-    public $pointsMLMUsed;
+    public ?int $balance_points;
 
     /** @var int|null */
-    public $creditsCharged;
+    public ?int $balance_credits;
 
     /** @var int|null */
-    public $creditsUsed;
+    public ?int $balance_gift_credits;
 
     /** @var int|null */
-    public $creditsGiftCharged;
+    public ?int $balance_status_points;
+
+    // endregion
+
+    // region POINTS
 
     /** @var int|null */
-    public $creditsGiftUsed;
+    public ?int $pointsCharged;
 
     /** @var int|null */
-    public $rechargesCard;
+    public ?int $pointsChargedCount;
 
     /** @var int|null */
-    public $usesCard;
+    public ?int $pointsUsed;
+
+    /** @var int|null */
+    public ?int $pointsUsedCount;
+
+    /** @var int|null */
+    public ?int $pointsStatusCharged;
+
+    /** @var int|null */
+    public ?int $pointsStatusUsed;
+
+    /** @var int|null */
+    public ?int $pointsMLMCharged;
+
+    /** @var int|null */
+    public ?int $pointsMLMUsed;
+
+    /** @var int|null */
+    public ?int $pointsToExpire;
+
+    /** @var int|null */
+    public ?int $expiredPoints;
+
+    /** @var int|null */
+    public ?int $totalManualDischargedPoints;
+
+    /** @var int|null */
+    public ?int $totalDischargedPointsInSale;
+
+    /** @var int|null */
+    public ?int $totalDischargedPointsInExchanged;
+
+    /** @var int|null */
+    public ?int $totalDischargedPointsInTransfer;
+
+    // endregion
+
+    // region CREDITS
+
+    /** @var int|null */
+    public ?int $creditsCharged;
+
+    /** @var int|null */
+    public ?int $creditsUsed;
+
+    /** @var int|null */
+    public ?int $creditsGiftCharged;
+
+    /** @var int|null */
+    public ?int $creditsGiftUsed;
+
+    // endregion
+
+    // region MONEY
+
+    /** @var int|null */
+    public ?int $totalMoneyInSale;
+
+    /** @var int|null */
+    public ?int $paidMoneyInSale;
+
+    // endregion
+
+    // region PRIZES
+
+    /** @var int|null */
+    public ?int $totalExchangedPrizes;
+
+    // endregion
+
+    // endregion
+
+    // region PERSONAL DATA
 
     /** @var string */
-    public $mailContactData;
+    public string $name;
+
+    /** @var string */
+    public string $surname;
 
     /** @var string|null */
-    public $mobileContactData;
-
-    /** @var string|null */
-    public $address;
-
-    /** @var string|null */
-    public $zip;
-
-    /** @var int|null */
-    public $parentCustomerId;
-
-    /** @var int|null */
-    public $percentajePointsParentCustomer;
-
-    /** @var int|null */
-    public $percentajeCreditsParentCustomer;
+    public ?string $gender;
 
     /** @var mixed */
-    public $mlmCustomerId;
+    public mixed $privacy;
 
     /** @var int|null */
-    public $geo_lat;
+    public ?int $languageId;
 
-    /** @var int|null */
-    public $geo_long;
+    /**
+     * @var string|null
+     */
+    public ?string $identityCard;
+    /**
+     * @var string|null
+     */
+    public ?string $birthdate;
+    /**
+     * @var string|null
+     */
 
-    /** @var int */
-    public $country;
+    // endregion
 
-    /** @var int */
-    public $geoLevel1;
+    // region CONTACTS, ADDRESS AND SOCIAL ACCOUNTS
 
-    /** @var int */
-    public $geoLevel2;
+    // region CONTACTS
 
-    /** @var int */
-    public $geoLevel3;
-
-    /** @var int */
-    public $geoLevel4;
-
-    /** @var int */
-    public $geoLevel5;
-
-    /** @var int|null */
-    public $balance_points;
-
-    /** @var int|null */
-    public $balance_credits;
-
-    /** @var int|null */
-    public $balance_gift_credits;
-
-    /** @var int|null */
-    public $balance_status_points;
-
-    /** @var int|null */
-    public $pointsToExpire;
-
-    /** @var int|null */
-    public $expiredPoints;
-
-    /** @var int|null */
-    public $zoneId;
-
-    /** @var int|null */
-    public $customer_area_status;
-
-    /** @var int|null */
-    public $totalExchangedPrizes;
-
-    /** @var int|null */
-    public $totalMoneyInSale;
-
-    /** @var int|null */
-    public $paidMoneyInSale;
-
-    /** @var int|null */
-    public $totalMlmChildren;
-
-    /** @var int|null */
-    public $totalManualDischargedPoints;
-
-    /** @var int|null */
-    public $totalDischargedPointsInSale;
-
-    /** @var int|null */
-    public $totalDischargedPointsInExchanged;
-
-    /** @var int|null */
-    public $totalDischargedPointsInTransfer;
+    /** @var string */
+    public string $mailContactData;
 
     /** @var string|null */
-    public $lastMovement;
+    public ?string $mobileContactData;
 
     /**
-     * @var int|null
+     * @var string|null
      */
-    public $foreignId;
+    public ?string $telephoneContactData;
     /**
      * @var string|null
      */
-    public $identityCard;
+    public ?string $faxContactData;
+
+    // endregion
+
+    // region ADDRESS
+
+    /** @var string|null */
+    public ?string $address;
+
     /**
      * @var string|null
      */
-    public $birthdate;
+    public ?string $addressNumber;
     /**
      * @var string|null
      */
-    public $notes;
+    public ?string $addressPrefix;
+
+    /** @var string|null */
+    public ?string $zip;
+
+    /** @var int */
+    public int $country;
+
+    /** @var int|null */
+    public ?int $geo_lat;
+
+    /** @var int|null */
+    public ?int $geo_long;
+
+    /** @var int */
+    public int $geoLevel1;
+
+    /** @var int */
+    public int $geoLevel2;
+
+    /** @var int */
+    public int $geoLevel3;
+
+    /** @var int */
+    public int $geoLevel4;
+
+    /** @var int */
+    public int $geoLevel5;
+
+    /** @var int|null */
+    public ?int $zoneId;
+
+    //endregion
+
+    // region SOCIAL ACCOUNTS
+
     /**
      * @var string|null
      */
-    public $telephoneContactData;
+    public ?string $facebookId;
     /**
      * @var string|null
      */
-    public $faxContactData;
+    public ?string $twitterId;
     /**
      * @var string|null
      */
-    public $addressNumber;
+    public ?string $instagramId;
     /**
      * @var string|null
      */
-    public $addressPrefix;
-    /**
-     * @var string|null
-     */
-    public $facebookId;
-    /**
-     * @var string|null
-     */
-    public $twitterId;
-    /**
-     * @var string|null
-     */
-    public $instagramId;
-    /**
-     * @var string|null
-     */
-    public $youtubeId;
+    public ?string $youtubeId;
+
+    // endregion
+
+    // endregion
+
+    // region PARENT CUSTOMER
+
+    /** @var int|null */
+    public ?int $parentCustomerId;
+
+    /** @var int|null */
+    public ?int $percentajePointsParentCustomer;
+
+    /** @var int|null */
+    public ?int $percentajeCreditsParentCustomer;
+
+    // endregion
 }

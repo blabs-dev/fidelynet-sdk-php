@@ -9,70 +9,70 @@ final class CampaignData extends DataTransferObject
     /**
      * @var int
      */
-    public $id;
+    public int $id;
 
     /**
      * @var int
      */
-    public $code;
+    public int $code;
 
     /**
      * @var string
      */
-    public $name;
+    public string $name;
 
     /**
      * @var string
      */
-    public $description;
+    public string $description;
 
     /**
      * @var string
      */
-    public $dirLogo;
+    public string $dirLogo;
 
     /**
      * @var string
      */
-    public $pointsTag;
+    public string $pointsTag;
 
     /**
      * @var string
      */
-    public $creditsTag;
+    public string $creditsTag;
 
     /**
      * @var int
      */
-    public $amountLastMovement;
+    public int $amountLastMovement;
 
     /**
      * @var int
      */
-    public $amountDaysExpiration;
+    public int $amountDaysExpiration;
 
     /**
      * @var int
      */
-    public $amountPrizes;
+    public int $amountPrizes;
 
     /**
      * @var mixed
      */
-    public $completeCustomerFields;
+    public mixed $completeCustomerFields;
 
     /**
      * @var mixed
      */
-    public $ticket;
+    public mixed $ticket;
 
     /**
      * @var mixed
      */
-    public $shop;
+    public mixed $shop;
 
     /**
      * @var mixed
      */
-    public $minimumCustomersFields;
+    public mixed $minimumCustomersFields;
 }
