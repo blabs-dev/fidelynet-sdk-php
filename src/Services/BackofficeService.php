@@ -20,11 +20,11 @@ final class BackofficeService extends ServiceAbstract
      *
      * @param ModifyCustomerRequestData $customer_data
      *
-     * @return CustomerData
-     *
      * @throws \Blabs\FidelyNet\Exceptions\FidelyNetServiceException
      * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return CustomerData
      */
     public function modifyCustomer(ModifyCustomerRequestData $customer_data): CustomerData
     {
