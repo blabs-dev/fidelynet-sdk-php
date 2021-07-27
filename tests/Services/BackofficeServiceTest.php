@@ -92,8 +92,8 @@ class BackofficeServiceTest extends ServiceTestCase
             )
         );
 
-        $response = $backoffice_service->getCardInfo(ApiDemoData::CUSTOMER_CARD);
+        $response = $backoffice_service->getCardInfo(ApiDemoData::CUSTOMER_CARD_NUMBER);
 
-        $this->assertEquals(ApiDemoData::CUSTOMER_CARD, $response->card);
+        $this->assertEquals(ApiDemoData::CUSTOMER_CARD_NUMBER, $response->card);
     }
 }
