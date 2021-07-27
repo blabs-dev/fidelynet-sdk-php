@@ -10,6 +10,7 @@ use Blabs\FidelyNet\Constants\Release;
 use Blabs\FidelyNet\Contracts\SessionIdProviderContract;
 use Blabs\FidelyNet\Exceptions\BadRequestException;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
+use Blabs\FidelyNet\Exceptions\MissingRequiredFieldsException;
 use Blabs\FidelyNet\Responses\ApiResponse;
 use Blabs\FidelyNet\Session\SessionManager;
 use Exception;
@@ -359,7 +360,12 @@ final class Client
 
         $message = ApiMessages::CODES[$return_code];
 
-        return new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."{$return_code}: {$message}");
+        switch ($return_code) {
+            case 240:
+                return new MissingRequiredFieldsException(Messages::SERVICE_MISSING_REQUIRED_FIELDS);
+            default:
+                return new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."{$return_code}: {$message}");
+        }
     }
 
     /**

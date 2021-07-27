@@ -18,4 +18,5 @@ final class Messages
     const SERVICE_REPLIED_WITH_HTTP_ERROR_CODE = 'FidelyNET web service returned an http error code: ';
     const SERVICE_BAD_REQUEST = 'FidelyNET web service returned a "bad request" error, check request format';
     const SERVICE_RETURNED_ERROR_CODE = 'FidelyNET web service returned an error code - ';
+    const SERVICE_MISSING_REQUIRED_FIELDS = 'FidelyNET web service said that some required fields are missing from the request data';
 }
