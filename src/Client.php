@@ -10,6 +10,7 @@ use Blabs\FidelyNet\Constants\Release;
 use Blabs\FidelyNet\Contracts\SessionIdProviderContract;
 use Blabs\FidelyNet\Exceptions\BadRequestException;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
+use Blabs\FidelyNet\Exceptions\MissingRequiredFieldsException;
 use Blabs\FidelyNet\Responses\ApiResponse;
 use Blabs\FidelyNet\Session\SessionManager;
 use Exception;
@@ -356,13 +357,11 @@ final class Client
      */
     protected function determineApiError($return_code): Exception
     {
-        if ($return_code === '9999') {
-            return new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST);
-        }
-
-        $message = ApiMessages::CODES[$return_code];
-
-        return new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."{$return_code}: {$message}");
+        return match ($return_code) {
+            '9999'  => new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST),
+            240     => new MissingRequiredFieldsException(Messages::SERVICE_MISSING_REQUIRED_FIELDS),
+            default => new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."{$return_code}: ".ApiMessages::CODES[$return_code])
+        };
     }
 
     /**

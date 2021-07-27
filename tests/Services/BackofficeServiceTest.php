@@ -5,7 +5,7 @@ namespace Blabs\FidelyNet\Test\Services;
 use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiDemoData;
 use Blabs\FidelyNet\Constants\ApiServices;
-use Blabs\FidelyNet\Requests\CustomerRequestData;
+use Blabs\FidelyNet\Requests\ModifyCustomerRequestData;
 use Blabs\FidelyNet\ServiceFactory;
 use Blabs\FidelyNet\Services\BackofficeService;
 use Blabs\FidelyNet\Test\ServiceTestCase;
@@ -31,45 +31,38 @@ class BackofficeServiceTest extends ServiceTestCase
             )
         );
 
-        $customer_data = new CustomerRequestData([
-            'email'                   => 'customer@domain.com',
-            'dni'                     => '',
+        $customer_data = new ModifyCustomerRequestData([
+            'id'                      => ApiDemoData::CUSTOMER_ID,
+            'campaignid'              => ApiDemoData::CAMPAIGN_ID,
+
             'name'                    => 'John',
             'surname'                 => 'Doe',
             'gender'                  => 'M',
             'birthdate'               => '01/01/1970',
             'notes'                   => '',
             'username'                => 'johndoe',
+
             'flags'                   => '',
             'usedforpromotions'       => true,
             'usedforstatistics'       => true,
             'usedbyothers'            => true,
-            'cangetcurrentlocation'   => '',
-            'cancomunicaverification' => '',
-            'mobile'                  => '',
-            'telephone'               => '',
-            'fax'                     => '',
+
+            'mailcontactdata'         => 'customer@domain.com',
+            'mobilecontactdata'       => '123123123',
+            'telephonecontactdata'    => '',
+            'faxcontactdata'          => '',
+
             'address'                 => '',
             'addressnumber'           => '',
             'addressprefix'           => '',
-            'zipcode'                 => '',
-            'geo_lat'                 => '',
-            'geo_long'                => '',
-            'country'                 => '',
-            'geo_level_1'             => '',
-            'geo_level_2'             => '',
-            'geo_level_3'             => '',
-            'geo_level_4'             => '',
-            'geo_level_5'             => '',
+            'zip'                     => '',
+            //            'country'                 => '',
+
             'facebookid'              => '',
-            'twitterid'               => '',
-            'youtubeid'               => '',
-            'instagramid'             => '',
-            'interestareas'           => '',
-            'invitecustomerid'        => '',
         ]);
 
-        $response = $backoffice_service->modifyCustomer($customer_data, ApiDemoData::CUSTOMER_ID, ApiDemoData::CAMPAIGN_ID);
+        $response = $backoffice_service->modifyCustomer($customer_data);
+
         $this->assertEquals($customer_data->name, $response->name);
     }
 
@@ -92,8 +85,8 @@ class BackofficeServiceTest extends ServiceTestCase
             )
         );
 
-        $response = $backoffice_service->getCardInfo(ApiDemoData::CUSTOMER_CARD);
+        $response = $backoffice_service->getCardInfo(ApiDemoData::CUSTOMER_CARD_NUMBER);
 
-        $this->assertEquals(ApiDemoData::CUSTOMER_CARD, $response->card);
+        $this->assertEquals(ApiDemoData::CUSTOMER_CARD_NUMBER, $response->card);
     }
 }
