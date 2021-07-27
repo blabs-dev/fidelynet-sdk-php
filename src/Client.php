@@ -356,13 +356,10 @@ final class Client
      */
     protected function determineApiError($return_code): Exception
     {
-        if ($return_code === '9999') {
-            return new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST);
-        }
-
-        $message = ApiMessages::CODES[$return_code];
-
-        return new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."{$return_code}: {$message}");
+        return match ($return_code) {
+            '9999' => new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST),
+            default => new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."{$return_code}: " . ApiMessages::CODES[$return_code])
+        };
     }
 
     /**
