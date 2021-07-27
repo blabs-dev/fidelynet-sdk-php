@@ -358,9 +358,9 @@ final class Client
     protected function determineApiError($return_code): Exception
     {
         return match ($return_code) {
-            '9999' => new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST),
-            240 => new MissingRequiredFieldsException(Messages::SERVICE_MISSING_REQUIRED_FIELDS),
-            default => new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."{$return_code}: " . ApiMessages::CODES[$return_code])
+            '9999'  => new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST),
+            240     => new MissingRequiredFieldsException(Messages::SERVICE_MISSING_REQUIRED_FIELDS),
+            default => new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."{$return_code}: ".ApiMessages::CODES[$return_code])
         };
     }
 

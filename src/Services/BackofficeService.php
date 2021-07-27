@@ -23,17 +23,17 @@ final class BackofficeService extends ServiceAbstract
      * Register a customer and creates a new card (verification code is required).
      *
      * @param ModifyCustomerRequestData $customer_data
-     * @param int $customerId
-     * @param int $cardNumber
-     * @param int $cardCode
-     * @param int $campaignId
-     *
-     * @return CustomerData
+     * @param int                       $customerId
+     * @param int                       $cardNumber
+     * @param int                       $cardCode
+     * @param int                       $campaignId
      *
      * @throws FidelyNetServiceException
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return CustomerData
      */
     public function modifyCustomer(ModifyCustomerRequestData $customer_data): CustomerData
     {
