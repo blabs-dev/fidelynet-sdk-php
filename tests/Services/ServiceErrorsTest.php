@@ -9,6 +9,7 @@ use Blabs\FidelyNet\Constants\FactoryOptions;
 use Blabs\FidelyNet\Constants\Messages;
 use Blabs\FidelyNet\Exceptions\BadRequestException;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
+use Blabs\FidelyNet\Exceptions\MissingRequiredFieldsException;
 use Blabs\FidelyNet\ServiceFactory;
 use Blabs\FidelyNet\Services\TerminalService;
 use Blabs\FidelyNet\Test\ServiceTestCase;
@@ -84,7 +85,7 @@ class ServiceErrorsTest extends ServiceTestCase
         $terminal_service->getCampaign(ApiDemoData::CAMPAIGN_ID);
     }
 
-    public function test_api_error_exception_is_thrown()
+    public function test_api_generic_error_exception_is_thrown()
     {
         $random_error = array_rand(ApiMessages::CODES);
         $mock = new MockHandler(
@@ -104,6 +105,28 @@ class ServiceErrorsTest extends ServiceTestCase
         $terminal_service = ServiceFactory::create(ApiServices::TERMINAL, $factory_options);
         $this->expectException(FidelyNetServiceException::class);
         $this->expectExceptionMessage(ApiMessages::CODES[$random_error]);
+        $terminal_service->getCampaign(ApiDemoData::CAMPAIGN_ID);
+    }
+
+    public function test_api_missing_required_fields_exception_is_thrown()
+    {
+        $mock = new MockHandler(
+            [
+                new Response(200, [], $this->getFakeLoginResponse(ApiServices::TERMINAL)),
+                new Response(200, [], $this->getFakeErrorResponse(240)),
+            ]
+        );
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
+
+        $factory_options = array_merge(
+            [FactoryOptions::HTTP_CLIENT => $client],
+            $this->getTerminalServiceDemoFactoryOptions()
+        );
+        /** @var TerminalService $terminal_service */
+        $terminal_service = ServiceFactory::create(ApiServices::TERMINAL, $factory_options);
+        $this->expectException(MissingRequiredFieldsException::class);
+        $this->expectExceptionMessage(Messages::SERVICE_MISSING_REQUIRED_FIELDS);
         $terminal_service->getCampaign(ApiDemoData::CAMPAIGN_ID);
     }
 }
