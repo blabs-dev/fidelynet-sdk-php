@@ -153,11 +153,11 @@ class CustomerServiceTest extends ServiceTestCase
             'birthdate'               => '01/01/1970',
             'notes'                   => 'customer added for testing purposes',
 
-            'usedforpromotions'       => true,
-            'usedforstatistics'       => true,
-            'usedbyothers'            => true,
-            'cangetcurrentlocation'   => true,
-            'cancomunicaverification' => true,
+            'usedForPromotions'       => true,
+            'usedForStatistics'       => true,
+            'usedByOthers'            => true,
+            'canGetCurrentLocation'   => true,
+            'canComunicaVerification' => true,
 
             'email'                   => 'customer@domain.com',
             'mobile'                  => '+39 333 1234 125',
@@ -208,9 +208,11 @@ class CustomerServiceTest extends ServiceTestCase
         $this->assertEquals($customer_data->geo_long, $response->geo_long);
 
         // Skipping this assertions since the service seems to return data that differs from request values
-//        $this->assertEquals($customer_data->usedforpromotions, $response->privacy->usedForPromotions);
-//        $this->assertEquals($customer_data->usedforstatistics, $response->privacy->usedForStatistics);
-//        $this->assertEquals($customer_data->usedbyothers, $response->privacy->usedByOthers);
+        $this->assertEquals($customer_data->usedForPromotions, $response->privacy->usedForPromotions);
+        $this->assertEquals($customer_data->usedForStatistics, $response->privacy->usedForStatistics);
+        $this->assertEquals($customer_data->usedByOthers, $response->privacy->usedByOthers);
+        $this->assertEquals($customer_data->canGetCurrentLocation, $response->privacy->canGetCurrentLocation);
+        $this->assertEquals($customer_data->canComunicaVerification, $response->privacy->canComunicaVerification);
 
         // Skipping this assertions since the service seems to return data that differs from request values
 //        $this->assertEquals($customer_data->facebookid, $response->facebookId);
