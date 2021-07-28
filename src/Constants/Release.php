@@ -6,6 +6,6 @@ final class Release
 {
     const MAJOR = 2;
     const MINOR = 0;
-    const PATCH = 2;
+    const PATCH = 3;
     const USER_AGENT = 'B@Labs FidelyNET Client v'.self::MAJOR.'.'.self::MINOR.'.'.self::PATCH;
 }
