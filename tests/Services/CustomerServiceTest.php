@@ -187,6 +187,7 @@ class CustomerServiceTest extends ServiceTestCase
         $this->assertEquals(ApiDemoData::CAMPAIGN_ID, $response->campaign);
         $this->assertEquals(ApiDemoData::CATEGORY_ID, $response->category);
         $this->assertEquals(1, $response->status);
+        $this->assertEquals(0, $response->balance_points);
 
         $this->assertEquals($customer_data->name, $response->name);
         $this->assertEquals($customer_data->surname, $response->surname);
