@@ -39,13 +39,14 @@ abstract class ServiceAbstract
      * Calls an action on the service using the instanced Client.
      *
      * @param string $action
-     * @param array $parameters
+     * @param array  $parameters
      *
-     * @return ApiResponse
      * @throws FidelyNetServiceException
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return ApiResponse
      */
     public function callAction(string $action, array $parameters): ApiResponse
     {

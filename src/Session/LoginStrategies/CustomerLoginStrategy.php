@@ -19,10 +19,12 @@ final class CustomerLoginStrategy extends LoginStrategyAbstract
      * @inheritDoc
      *
      * @param array $credentials
-     * @return string
+     *
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return string
      */
     public function startSession(array $credentials): string
     {

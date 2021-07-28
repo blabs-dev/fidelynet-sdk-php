@@ -16,10 +16,12 @@ final class BackofficeLoginStrategy extends LoginStrategyAbstract
      * @inheritDoc
      *
      * @param array $credentials
-     * @return string
+     *
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return string
      */
     public function startSession(array $credentials): string
     {

@@ -29,7 +29,8 @@ class SessionIdPersistenceTest extends ServiceTestCase
      *
      * @param string $serviceType
      * @param string $serviceClass
-     * @param array $inputFactoryOptions
+     * @param array  $inputFactoryOptions
+     *
      * @throws FidelyNetServiceException
      */
     public function test_session_id_persists_across_two_different_service_instances_of_same_type(string $serviceType, string $serviceClass, array $inputFactoryOptions)

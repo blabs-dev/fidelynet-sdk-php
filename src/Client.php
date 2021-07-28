@@ -108,11 +108,11 @@ final class Client
 
         // @codeCoverageIgnoreStart
         $this->http_client = $http_client ?: new GuzzleClient(
-                [
-                    'handler'  => GuzzleFactory::handler(),
-                    'base_uri' => $this->baseURI,
-                ]
-            );
+            [
+                'handler'  => GuzzleFactory::handler(),
+                'base_uri' => $this->baseURI,
+            ]
+        );
         // @codeCoverageIgnoreEnd
 
         $this->sessionType = $session_type;
@@ -292,12 +292,13 @@ final class Client
      * Performs the action request to the service.
      *
      * @param string $action
-     * @param array $parameters
+     * @param array  $parameters
      *
-     * @return ApiResponse
      * @throws Exceptions\FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return ApiResponse
      */
     public function actionRequest(string $action, array $parameters): ApiResponse
     {
@@ -354,7 +355,7 @@ final class Client
      *
      * @return Exception
      */
-    protected function determineApiError(int|string $return_code): Exception
+    protected function determineApiError(int | string $return_code): Exception
     {
         return match ($return_code) {
             '9999'  => new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST),

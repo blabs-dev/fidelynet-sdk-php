@@ -24,11 +24,12 @@ final class BackofficeService extends ServiceAbstract
      *
      * @param ModifyCustomerRequestData $customer_data
      *
-     * @return CustomerInfoData
      * @throws FidelyNetServiceException
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return CustomerInfoData
      */
     public function modifyCustomer(ModifyCustomerRequestData $customer_data): CustomerInfoData
     {

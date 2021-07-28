@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blabs\FidelyNet\Responses\DataModels;
-
 
 use Spatie\DataTransferObject\DataTransferObject;
 

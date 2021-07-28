@@ -231,7 +231,7 @@ class ServiceTestCase extends TestCase
      *
      * @return false|string
      */
-    protected function getFakeLoginResponse(string $service): bool|string
+    protected function getFakeLoginResponse(string $service): bool | string
     {
         switch ($service) {
         default:

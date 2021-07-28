@@ -146,10 +146,11 @@ final class SessionManager
     /**
      * Obtain a public session id to access public FNET service methods.
      *
-     * @return string
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return string
      */
     private function openPublicSession(): string
     {

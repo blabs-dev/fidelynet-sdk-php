@@ -28,11 +28,12 @@ final class CustomerService extends ServiceAbstract
      * @param string $emailAddress
      * @param string $campaignId
      *
-     * @return ApiResponse
      * @throws FidelyNetServiceException
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return ApiResponse
      */
     public function sendEmailVerificationCode(string $emailAddress, string $campaignId): ApiResponse
     {
@@ -53,11 +54,12 @@ final class CustomerService extends ServiceAbstract
      * @param string $phoneNumber
      * @param string $campaignId
      *
-     * @return ApiResponse
      * @throws FidelyNetServiceException
      * @throws FidelyNetSessionException
      * @throws GuzzleException
      * @throws UnknownProperties
+     *
+     * @return ApiResponse
      */
     public function sendMobileVerificationCode(string $phoneNumber, string $campaignId): ApiResponse
     {
