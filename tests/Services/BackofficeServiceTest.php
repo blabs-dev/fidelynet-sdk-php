@@ -14,10 +14,6 @@ class BackofficeServiceTest extends ServiceTestCase
 {
     public function test_customer_modify_action()
     {
-        if (!$this->mock_client_enabled) {
-            $this->markTestSkipped('This test can be performed only with a mock client');
-        }
-
         $responses = [
             $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
             $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_MODIFY_CUSTOMER),
@@ -35,35 +31,56 @@ class BackofficeServiceTest extends ServiceTestCase
             'id'                      => ApiDemoData::CUSTOMER_ID,
             'campaignid'              => ApiDemoData::CAMPAIGN_ID,
 
-            'name'                    => 'John',
-            'surname'                 => 'Doe',
-            'gender'                  => 'M',
-            'birthdate'               => '01/01/1970',
-            'notes'                   => '',
-            'username'                => 'johndoe',
+            'name'                    => 'Johnny',
+            'surname'                 => 'Dorelli',
+            'gender'                  => 'F',
+            'birthdate'               => '1971-01-01',
+            'notes'                   => 'customer UPDATED for testing purposes',
+            'username'                => 'johnnydoe',
 
-            'flags'                   => '',
             'usedforpromotions'       => true,
-            'usedforstatistics'       => true,
+            'usedforstatistics'       => false,
             'usedbyothers'            => true,
+            'cangetcurrentlocation'   => false,
+            'cancomunicaverification' => true,
 
-            'mailcontactdata'         => 'customer@domain.com',
-            'mobilecontactdata'       => '123123123',
-            'telephonecontactdata'    => '',
-            'faxcontactdata'          => '',
+            'mailcontactdata'         => 'updatedcustomer@domain.com',
+            'mobilecontactdata'       => '+39 333 1234 125',
+            'telephonecontactdata'    => '+39 02 123 125',
+            'faxcontactdata'          => '+39 02 123 135',
 
-            'address'                 => '',
-            'addressnumber'           => '',
-            'addressprefix'           => '',
-            'zip'                     => '',
-            //            'country'                 => '',
+            'address'                 => 'Via delle Colombe, 35',
+            'zip'                     => '00101',
+            'country'                 => 1,
 
-            'facebookid'              => '',
+            'facebookid'              => 'johnnydoe',
         ]);
 
         $response = $backoffice_service->modifyCustomer($customer_data);
 
         $this->assertEquals($customer_data->name, $response->personalInfo->name);
+        $this->assertEquals($customer_data->surname, $response->personalInfo->surname);
+        $this->assertEquals($customer_data->gender, $response->personalInfo->gender);
+        $this->assertStringContainsString($customer_data->birthdate, $response->personalInfo->birthdate);
+        $this->assertEquals($customer_data->notes, $response->personalInfo->notes);
+
+        // Skipped this assertions since the API gives inconsistent responses so far.
+//        $this->assertEquals((bool) $customer_data->usedforpromotions, $response->personalInfo->privacy->usedForPromotions);
+//        $this->assertEquals((bool) $customer_data->usedforstatistics, $response->personalInfo->privacy->usedForStatistics);
+//        $this->assertEquals((bool) $customer_data->usedbyothers, $response->personalInfo->privacy->usedByOthers);
+//        $this->assertEquals((bool) $customer_data->cangetcurrentlocation, $response->personalInfo->privacy->canGetCurrentLocation);
+//        $this->assertEquals((bool) $customer_data->cancomunicaverification, $response->personalInfo->privacy->canComunicaVerification);
+
+        $this->assertEquals($customer_data->mailcontactdata, $response->personalInfo->mailContactData);
+        $this->assertEquals($customer_data->mobilecontactdata, $response->personalInfo->mobileContactData);
+        $this->assertEquals($customer_data->telephonecontactdata, $response->personalInfo->telephoneContactData);
+        $this->assertEquals($customer_data->faxcontactdata, $response->personalInfo->faxContactData);
+
+        $this->assertEquals($customer_data->address, $response->personalInfo->address);
+        $this->assertEquals($customer_data->zip, $response->personalInfo->zip);
+        $this->assertEquals($customer_data->country, $response->personalInfo->country);
+
+        $this->assertEquals($customer_data->facebookid, $response->personalInfo->facebookId);
     }
 
     public function test_get_card_info()
