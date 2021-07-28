@@ -64,12 +64,11 @@ class BackofficeServiceTest extends ServiceTestCase
         $this->assertStringContainsString($customer_data->birthdate, $response->personalInfo->birthdate);
         $this->assertEquals($customer_data->notes, $response->personalInfo->notes);
 
-        // Skipped this assertions since the API gives inconsistent responses so far.
-//        $this->assertEquals((bool) $customer_data->usedforpromotions, $response->personalInfo->privacy->usedForPromotions);
-//        $this->assertEquals((bool) $customer_data->usedforstatistics, $response->personalInfo->privacy->usedForStatistics);
-//        $this->assertEquals((bool) $customer_data->usedbyothers, $response->personalInfo->privacy->usedByOthers);
-//        $this->assertEquals((bool) $customer_data->cangetcurrentlocation, $response->personalInfo->privacy->canGetCurrentLocation);
-//        $this->assertEquals((bool) $customer_data->cancomunicaverification, $response->personalInfo->privacy->canComunicaVerification);
+        $this->assertEquals($customer_data->usedforpromotions, $response->personalInfo->privacy->usedForPromotions);
+        $this->assertEquals($customer_data->usedforstatistics, $response->personalInfo->privacy->usedForStatistics);
+        $this->assertEquals($customer_data->usedbyothers, $response->personalInfo->privacy->usedByOthers);
+        $this->assertEquals($customer_data->cangetcurrentlocation, $response->personalInfo->privacy->canGetCurrentLocation);
+        $this->assertEquals($customer_data->cancomunicaverification, $response->personalInfo->privacy->canComunicaVerification);
 
         $this->assertEquals($customer_data->mailcontactdata, $response->personalInfo->mailContactData);
         $this->assertEquals($customer_data->mobilecontactdata, $response->personalInfo->mobileContactData);
