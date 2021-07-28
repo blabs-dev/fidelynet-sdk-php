@@ -42,6 +42,11 @@ class PersonalInfoData extends DataTransferObject
      * @var string|null
      */
     public ?string $userName;
+
+    /**
+     * @var string|null
+     */
+    public ?string $interestAreas;
     // endregion
 
     // region PRIVACY AND OTHER FLAGS

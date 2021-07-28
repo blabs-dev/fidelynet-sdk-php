@@ -56,6 +56,9 @@ final class CustomerData extends DataTransferObject
     /** @var string|null */
     public ?string $notes;
 
+    /** @var string|null */
+    public ?string $interestAreas;
+
     // endregion
 
     // region CARD DATA
@@ -190,8 +193,8 @@ final class CustomerData extends DataTransferObject
     /** @var string|null */
     public ?string $gender;
 
-    /** @var mixed */
-    public mixed $privacy;
+    /** @var PrivacyData|null */
+    public ?PrivacyData $privacy;
 
     /** @var string|null */
     public ?string $languageId;
