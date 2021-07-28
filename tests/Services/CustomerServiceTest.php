@@ -133,10 +133,6 @@ class CustomerServiceTest extends ServiceTestCase
 
     public function test_customer_registration_without_verification_code()
     {
-        if (!$this->mock_client_enabled) {
-            $this->markTestSkipped('This test can be performed only with a mock client');
-        }
-
         $responses = [
             $this->getFakeResponse(ApiServices::CUSTOMER, ApiActions::SYNCHRO),
             $this->getFakeResponse(ApiServices::CUSTOMER, ApiActions::REGISTER_WITHOUT_CODE),
@@ -151,45 +147,75 @@ class CustomerServiceTest extends ServiceTestCase
         );
 
         $customer_data = new CustomerRequestData([
-            'email'                   => 'customer@domain.com',
-            'dni'                     => '',
             'name'                    => 'John',
             'surname'                 => 'Doe',
             'gender'                  => 'M',
             'birthdate'               => '01/01/1970',
-            'notes'                   => '',
-            'username'                => 'johndoe',
-            'flags'                   => '',
+            'notes'                   => 'customer added for testing purposes',
+
             'usedforpromotions'       => true,
             'usedforstatistics'       => true,
             'usedbyothers'            => true,
-            'cangetcurrentlocation'   => '',
-            'cancomunicaverification' => '',
-            'mobile'                  => '',
-            'telephone'               => '',
-            'fax'                     => '',
-            'address'                 => '',
-            'addressnumber'           => '',
-            'addressprefix'           => '',
-            'zipcode'                 => '',
-            'geo_lat'                 => '',
-            'geo_long'                => '',
-            'country'                 => '',
-            'geo_level_1'             => '',
-            'geo_level_2'             => '',
-            'geo_level_3'             => '',
-            'geo_level_4'             => '',
-            'geo_level_5'             => '',
-            'facebookid'              => '',
-            'twitterid'               => '',
-            'youtubeid'               => '',
-            'instagramid'             => '',
-            'interestareas'           => '',
-            'invitecustomerid'        => '',
+            'cangetcurrentlocation'   => true,
+            'cancomunicaverification' => true,
+
+            'email'                   => 'customer@domain.com',
+            'mobile'                  => '+39 333 1234 125',
+            'telephone'               => '+39 02 123 125',
+            'fax'                     => '+39 02 123 135',
+
+            'address'                 => 'Via delle Albicocche, 25',
+            'zipcode'                 => '00100',
+            'geo_lat'                 => 37.507877,
+            'geo_long'                => 15.083030,
+            'country'                 => 3,
+
+            'facebookid'              => 'johndoefb',
+            'twitterid'               => 'johndoetw',
+            'youtubeid'               => 'johndoeyt',
+            'instagramid'             => 'johndoeig',
+
+            'interestareas'           => 'movies, music',
         ]);
 
         $response = $customer_service->registerCustomer($customer_data, ApiDemoData::CAMPAIGN_ID, ApiDemoData::CATEGORY_ID);
+
         $this->assertGreaterThan(0, $response->card);
+        $this->assertGreaterThan(0, $response->id);
+        $this->assertNotEmpty($response->pincode);
+
+        $this->assertEquals(ApiDemoData::CAMPAIGN_ID, $response->campaign);
+        $this->assertEquals(ApiDemoData::CATEGORY_ID, $response->category);
+        $this->assertEquals(1, $response->status);
+
+        $this->assertEquals($customer_data->name, $response->name);
+        $this->assertEquals($customer_data->surname, $response->surname);
+        $this->assertEquals($customer_data->gender, $response->gender);
+        $this->assertEquals($customer_data->notes, $response->notes);
+        $this->assertEquals($customer_data->interestareas, $response->interestAreas);
+
+        $this->assertEquals($customer_data->email, $response->mailContactData);
+        $this->assertEquals($customer_data->mobile, $response->mobileContactData);
+        $this->assertEquals($customer_data->telephone, $response->telephoneContactData);
+        $this->assertEquals($customer_data->fax, $response->faxContactData);
+
+        $this->assertEquals($customer_data->address, $response->address);
+        $this->assertEquals($customer_data->country, $response->country);
+        $this->assertEquals($customer_data->zipcode, $response->zip);
+
+        $this->assertEquals($customer_data->geo_lat, $response->geo_lat);
+        $this->assertEquals($customer_data->geo_long, $response->geo_long);
+
+        // Skipping this assertions since the service seems to return data that differs from request values
+//        $this->assertEquals($customer_data->usedforpromotions, $response->privacy->usedForPromotions);
+//        $this->assertEquals($customer_data->usedforstatistics, $response->privacy->usedForStatistics);
+//        $this->assertEquals($customer_data->usedbyothers, $response->privacy->usedByOthers);
+
+        // Skipping this assertions since the service seems to return data that differs from request values
+//        $this->assertEquals($customer_data->facebookid, $response->facebookId);
+//        $this->assertEquals($customer_data->twitterid, $response->twitterId);
+//        $this->assertEquals($customer_data->youtubeid, $response->youtubeId);
+//        $this->assertEquals($customer_data->instagramid, $response->instagramId);
     }
 
     public function test_list_customer_movements()

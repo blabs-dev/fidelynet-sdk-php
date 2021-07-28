@@ -17,14 +17,14 @@ final class CustomerData extends DataTransferObject
 {
     // region IDENTIFIERS, STATUSES AND OTHER INFORMATIONS
 
-    /** @var int|null */
-    public ?int $id;
+    /** @var string|null */
+    public ?string $id;
 
-    /** @var int|null */
-    public ?int $category;
+    /** @var string|null */
+    public ?string $category;
 
-    /** @var int|null */
-    public ?int $status;
+    /** @var string|null */
+    public ?string $status;
 
     /** @var string */
     public string $userName;
@@ -41,14 +41,14 @@ final class CustomerData extends DataTransferObject
     /** @var mixed */
     public mixed $mlmCustomerId;
 
-    /** @var int|null */
-    public ?int $customer_area_status;
+    /** @var string|null */
+    public ?string $customer_area_status;
 
-    /** @var int|null */
-    public ?int $foreignId;
+    /** @var string|null */
+    public ?string $foreignId;
 
-    /** @var int|null */
-    public ?int $totalMlmChildren;
+    /** @var string|null */
+    public ?string $totalMlmChildren;
 
     /** @var string|null */
     public ?string $lastMovement;
@@ -56,124 +56,127 @@ final class CustomerData extends DataTransferObject
     /** @var string|null */
     public ?string $notes;
 
+    /** @var string|null */
+    public ?string $interestAreas;
+
     // endregion
 
     // region CARD DATA
 
     // region GENERAL
 
-    /** @var int|null */
-    public ?int $campaign;
+    /** @var string|null */
+    public ?string $campaign;
 
-    /** @var int|null */
-    public ?int $card;
+    /** @var string|null */
+    public ?string $card;
 
-    /** @var int|null */
-    public ?int $cardType;
+    /** @var string|null */
+    public ?string $cardType;
 
-    /** @var int|null */
-    public ?int $fidelyCode;
+    /** @var string|null */
+    public ?string $fidelyCode;
 
-    /** @var int|null */
-    public ?int $rechargesCard;
+    /** @var string|null */
+    public ?string $rechargesCard;
 
-    /** @var int|null */
-    public ?int $usesCard;
+    /** @var string|null */
+    public ?string $usesCard;
 
     // endregion
 
     // region BALANCE
 
-    /** @var int|null */
-    public ?int $balance_points;
+    /** @var string|null */
+    public ?string $balance_postrings;
 
-    /** @var int|null */
-    public ?int $balance_credits;
+    /** @var string|null */
+    public ?string $balance_credits;
 
-    /** @var int|null */
-    public ?int $balance_gift_credits;
+    /** @var string|null */
+    public ?string $balance_gift_credits;
 
-    /** @var int|null */
-    public ?int $balance_status_points;
+    /** @var string|null */
+    public ?string $balance_status_postrings;
 
     // endregion
 
-    // region POINTS
+    // region POstringS
 
-    /** @var int|null */
-    public ?int $pointsCharged;
+    /** @var string|null */
+    public ?string $postringsCharged;
 
-    /** @var int|null */
-    public ?int $pointsChargedCount;
+    /** @var string|null */
+    public ?string $postringsChargedCount;
 
-    /** @var int|null */
-    public ?int $pointsUsed;
+    /** @var string|null */
+    public ?string $postringsUsed;
 
-    /** @var int|null */
-    public ?int $pointsUsedCount;
+    /** @var string|null */
+    public ?string $postringsUsedCount;
 
-    /** @var int|null */
-    public ?int $pointsStatusCharged;
+    /** @var string|null */
+    public ?string $postringsStatusCharged;
 
-    /** @var int|null */
-    public ?int $pointsStatusUsed;
+    /** @var string|null */
+    public ?string $postringsStatusUsed;
 
-    /** @var int|null */
-    public ?int $pointsMLMCharged;
+    /** @var string|null */
+    public ?string $postringsMLMCharged;
 
-    /** @var int|null */
-    public ?int $pointsMLMUsed;
+    /** @var string|null */
+    public ?string $postringsMLMUsed;
 
-    /** @var int|null */
-    public ?int $pointsToExpire;
+    /** @var string|null */
+    public ?string $postringsToExpire;
 
-    /** @var int|null */
-    public ?int $expiredPoints;
+    /** @var string|null */
+    public ?string $expiredPostrings;
 
-    /** @var int|null */
-    public ?int $totalManualDischargedPoints;
+    /** @var string|null */
+    public ?string $totalManualDischargedPostrings;
 
-    /** @var int|null */
-    public ?int $totalDischargedPointsInSale;
+    /** @var string|null */
+    public ?string $totalDischargedPostringsInSale;
 
-    /** @var int|null */
-    public ?int $totalDischargedPointsInExchanged;
+    /** @var string|null */
+    public ?string $totalDischargedPostringsInExchanged;
 
-    /** @var int|null */
-    public ?int $totalDischargedPointsInTransfer;
+    /** @var string|null */
+    public ?string $totalDischargedPostringsstringransfer;
 
     // endregion
 
     // region CREDITS
 
-    /** @var int|null */
-    public ?int $creditsCharged;
+    /** @var string|null */
+    public ?string $creditsCharged;
 
-    /** @var int|null */
-    public ?int $creditsUsed;
+    /** @var string|null */
+    public ?string $creditsUsed;
 
-    /** @var int|null */
-    public ?int $creditsGiftCharged;
+    /** @var string|null */
+    public ?string $creditsGiftCharged;
 
-    /** @var int|null */
-    public ?int $creditsGiftUsed;
+    /** @var string|null */
+    public ?string $creditsGiftUsed;
 
     // endregion
 
     // region MONEY
 
-    /** @var int|null */
-    public ?int $totalMoneyInSale;
+    /** @var string|null */
+    public ?string $totalMoneyInSale;
 
-    /** @var int|null */
-    public ?int $paidMoneyInSale;
+    /** @var string|null */
+    public ?string $paidMoneyInSale;
 
     // endregion
 
     // region PRIZES
 
-    /** @var int|null */
-    public ?int $totalExchangedPrizes;
+    /** @var string|null */
+    public ?string $totalExchangedPrizes;
 
     // endregion
 
@@ -190,11 +193,11 @@ final class CustomerData extends DataTransferObject
     /** @var string|null */
     public ?string $gender;
 
-    /** @var mixed */
-    public mixed $privacy;
+    /** @var PrivacyData|null */
+    public ?PrivacyData $privacy;
 
-    /** @var int|null */
-    public ?int $languageId;
+    /** @var string|null */
+    public ?string $languageId;
 
     /**
      * @var string|null
@@ -248,32 +251,32 @@ final class CustomerData extends DataTransferObject
     /** @var string|null */
     public ?string $zip;
 
-    /** @var int */
-    public int $country;
+    /** @var string */
+    public string $country;
 
-    /** @var int|null */
-    public ?int $geo_lat;
+    /** @var string|null */
+    public ?string $geo_lat;
 
-    /** @var int|null */
-    public ?int $geo_long;
+    /** @var string|null */
+    public ?string $geo_long;
 
-    /** @var int */
-    public int $geoLevel1;
+    /** @var string */
+    public string $geoLevel1;
 
-    /** @var int */
-    public int $geoLevel2;
+    /** @var string */
+    public string $geoLevel2;
 
-    /** @var int */
-    public int $geoLevel3;
+    /** @var string */
+    public string $geoLevel3;
 
-    /** @var int */
-    public int $geoLevel4;
+    /** @var string */
+    public string $geoLevel4;
 
-    /** @var int */
-    public int $geoLevel5;
+    /** @var string */
+    public string $geoLevel5;
 
-    /** @var int|null */
-    public ?int $zoneId;
+    /** @var string|null */
+    public ?string $zoneId;
 
     //endregion
 
@@ -302,14 +305,14 @@ final class CustomerData extends DataTransferObject
 
     // region PARENT CUSTOMER
 
-    /** @var int|null */
-    public ?int $parentCustomerId;
+    /** @var string|null */
+    public ?string $parentCustomerId;
 
-    /** @var int|null */
-    public ?int $percentajePointsParentCustomer;
+    /** @var string|null */
+    public ?string $percentajePostringsParentCustomer;
 
-    /** @var int|null */
-    public ?int $percentajeCreditsParentCustomer;
+    /** @var string|null */
+    public ?string $percentajeCreditsParentCustomer;
 
     // endregion
 }

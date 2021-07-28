@@ -133,7 +133,14 @@ final class CustomerService extends ServiceAbstract
 
         $response = $this->callAction(ApiActions::REGISTER_WITHOUT_CODE, $request_data);
 
-        return new CustomerData($response->data['customer']);
+        $customer_data = new CustomerData(
+            array_merge(
+                $response->data['customer'],
+                $response->data3['customer']['personalInfo']
+            )
+        );
+
+        return $customer_data;
     }
 
     /**

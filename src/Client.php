@@ -316,7 +316,8 @@ final class Client
             throw $this->determineClientException($exception);
         }
 
-        $response_data = $this->parseResponse($response->getBody()->getContents());
+        $response_content = $response->getBody()->getContents();
+        $response_data = $this->parseResponse($response_content);
 
         // If service returns an expired session error, session is renewed and request is performed again
         if ($response_data->returncode == 998) {
