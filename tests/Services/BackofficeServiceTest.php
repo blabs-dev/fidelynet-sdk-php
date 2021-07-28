@@ -63,7 +63,7 @@ class BackofficeServiceTest extends ServiceTestCase
 
         $response = $backoffice_service->modifyCustomer($customer_data);
 
-        $this->assertEquals($customer_data->name, $response->name);
+        $this->assertEquals($customer_data->name, $response->personalInfo->name);
     }
 
     public function test_get_card_info()
