@@ -7,27 +7,27 @@ use Spatie\DataTransferObject\DataTransferObject;
 class PrivacyData extends DataTransferObject
 {
     /**
-     * @var int
+     * @var mixed
      */
-    public int $flags;
+    public mixed $flags;
+    /**
+     * @var bool|null
+     */
+    public ?bool $usedForPromotions;
     /**
      * @var bool
      */
-    public bool $usedForPromotions;
+    public ?bool $usedForStatistics;
     /**
-     * @var bool
+     * @var bool|null
      */
-    public bool $usedForStatistics;
+    public ?bool $usedByOthers;
     /**
-     * @var bool
+     * @var bool|null
      */
-    public bool $usedByOthers;
+    public ?bool $canGetCurrentLocation;
     /**
-     * @var bool
+     * @var bool|null
      */
-    public bool $canGetCurrentLocation;
-    /**
-     * @var bool
-     */
-    public bool $canComunicaVerification;
+    public ?bool $canComunicaVerification;
 }
