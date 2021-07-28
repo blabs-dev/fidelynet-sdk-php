@@ -95,35 +95,35 @@ class PersonalInfoData extends DataTransferObject
     /**
      * @var int|string|null
      */
-    public int|string|null $country;
+    public int | string | null $country;
     /**
      * @var float|string|null
      */
-    public float|string|null $geo_lat;
+    public float | string | null $geo_lat;
     /**
      * @var float|string|null
      */
-    public float|string|null $geo_long;
+    public float | string | null $geo_long;
     /**
      * @var int|string|null
      */
-    public int|string|null $geoLevel1;
+    public int | string | null $geoLevel1;
     /**
      * @var int|string|null
      */
-    public int|string|null $geoLevel2;
+    public int | string | null $geoLevel2;
     /**
      * @var int|string|null
      */
-    public int|string|null $geoLevel3;
+    public int | string | null $geoLevel3;
     /**
      * @var int|string|null
      */
-    public int|string|null $geoLevel4;
+    public int | string | null $geoLevel4;
     /**
      * @var int|string|null
      */
-    public int|string|null $geoLevel5;
+    public int | string | null $geoLevel5;
     // endregion
 
     // region SOCIAL ACCOUNTS
