@@ -88,7 +88,7 @@ final class CustomerData extends DataTransferObject
     // region BALANCE
 
     /** @var string|null */
-    public ?string $balance_postrings;
+    public ?string $balance_points;
 
     /** @var string|null */
     public ?string $balance_credits;
@@ -97,53 +97,53 @@ final class CustomerData extends DataTransferObject
     public ?string $balance_gift_credits;
 
     /** @var string|null */
-    public ?string $balance_status_postrings;
+    public ?string $balance_status_points;
 
     // endregion
 
-    // region POstringS
+    // region points
 
     /** @var string|null */
-    public ?string $postringsCharged;
+    public ?string $pointsCharged;
 
     /** @var string|null */
-    public ?string $postringsChargedCount;
+    public ?string $pointsChargedCount;
 
     /** @var string|null */
-    public ?string $postringsUsed;
+    public ?string $pointsUsed;
 
     /** @var string|null */
-    public ?string $postringsUsedCount;
+    public ?string $pointsUsedCount;
 
     /** @var string|null */
-    public ?string $postringsStatusCharged;
+    public ?string $pointsStatusCharged;
 
     /** @var string|null */
-    public ?string $postringsStatusUsed;
+    public ?string $pointsStatusUsed;
 
     /** @var string|null */
-    public ?string $postringsMLMCharged;
+    public ?string $pointsMLMCharged;
 
     /** @var string|null */
-    public ?string $postringsMLMUsed;
+    public ?string $pointsMLMUsed;
 
     /** @var string|null */
-    public ?string $postringsToExpire;
+    public ?string $pointsToExpire;
 
     /** @var string|null */
-    public ?string $expiredPostrings;
+    public ?string $expiredpoints;
 
     /** @var string|null */
-    public ?string $totalManualDischargedPostrings;
+    public ?string $totalManualDischargedpoints;
 
     /** @var string|null */
-    public ?string $totalDischargedPostringsInSale;
+    public ?string $totalDischargedpointsInSale;
 
     /** @var string|null */
-    public ?string $totalDischargedPostringsInExchanged;
+    public ?string $totalDischargedpointsInExchanged;
 
     /** @var string|null */
-    public ?string $totalDischargedPostringsstringransfer;
+    public ?string $totalDischargedpointsstringransfer;
 
     // endregion
 
@@ -309,7 +309,7 @@ final class CustomerData extends DataTransferObject
     public ?string $parentCustomerId;
 
     /** @var string|null */
-    public ?string $percentajePostringsParentCustomer;
+    public ?string $percentajepointsParentCustomer;
 
     /** @var string|null */
     public ?string $percentajeCreditsParentCustomer;
