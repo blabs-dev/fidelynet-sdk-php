@@ -2,6 +2,7 @@
 
 namespace Blabs\FidelyNet\Responses\ResponseData;
 
+use Blabs\FidelyNet\Responses\DataModels\OperatorData;
 use Spatie\DataTransferObject\DataTransferObject;
 
 final class LoginResponseData extends DataTransferObject
@@ -17,7 +18,7 @@ final class LoginResponseData extends DataTransferObject
     public ?string $sessionID;
 
     /**
-     * @var \Blabs\FidelyNet\Responses\DataModels\OperatorData|null
+     * @var OperatorData|null
      */
-    public $operator;
+    public ?OperatorData $operator;
 }

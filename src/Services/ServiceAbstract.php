@@ -6,7 +6,10 @@ use Blabs\FidelyNet\Client;
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Constants\Messages;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
+use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Responses\ApiResponse;
+use GuzzleHttp\Exception\GuzzleException;
+use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 abstract class ServiceAbstract
 {
@@ -36,13 +39,13 @@ abstract class ServiceAbstract
      * Calls an action on the service using the instanced Client.
      *
      * @param string $action
-     * @param array  $parameters
+     * @param array $parameters
      *
+     * @return ApiResponse
      * @throws FidelyNetServiceException
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
-     * @return \Blabs\FidelyNet\Responses\ApiResponse
+     * @throws FidelyNetSessionException
+     * @throws GuzzleException
+     * @throws UnknownProperties
      */
     public function callAction(string $action, array $parameters): ApiResponse
     {

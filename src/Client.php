@@ -107,8 +107,7 @@ final class Client
         $this->baseURI = Constants\ApiServices::ENTRYPOINTS[$service_type];
 
         // @codeCoverageIgnoreStart
-        $this->http_client = $http_client ? $http_client
-            : new GuzzleClient(
+        $this->http_client = $http_client ?: new GuzzleClient(
                 [
                     'handler'  => GuzzleFactory::handler(),
                     'base_uri' => $this->baseURI,
@@ -293,12 +292,12 @@ final class Client
      * Performs the action request to the service.
      *
      * @param string $action
-     * @param array  $parameters
-     *
-     * @throws Exceptions\FidelyNetSessionException
-     * @throws GuzzleException
+     * @param array $parameters
      *
      * @return ApiResponse
+     * @throws Exceptions\FidelyNetSessionException
+     * @throws GuzzleException
+     * @throws UnknownProperties
      */
     public function actionRequest(string $action, array $parameters): ApiResponse
     {
@@ -351,16 +350,16 @@ final class Client
     /**
      * Determines the error returned by the service.
      *
-     * @param string|int $return_code Error code provided by service
+     * @param int|string $return_code Error code provided by service
      *
      * @return Exception
      */
-    protected function determineApiError($return_code): Exception
+    protected function determineApiError(int|string $return_code): Exception
     {
         return match ($return_code) {
             '9999'  => new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST),
             240     => new MissingRequiredFieldsException(Messages::SERVICE_MISSING_REQUIRED_FIELDS),
-            default => new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."{$return_code}: ".ApiMessages::CODES[$return_code])
+            default => new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."$return_code: ".ApiMessages::CODES[$return_code])
         };
     }
 

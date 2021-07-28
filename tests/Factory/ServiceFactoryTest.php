@@ -4,6 +4,7 @@ namespace Blabs\FidelyNet\Test\Factory;
 
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Constants\FactoryOptions;
+use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\ServiceFactory;
 use Blabs\FidelyNet\Test\ServiceTestCase;
 
@@ -14,7 +15,8 @@ class ServiceFactoryTest extends ServiceTestCase
      *
      * @param string $serviceType
      * @param string $expectedClass
-     * @param array  $inputOptions
+     * @param array $inputOptions
+     * @throws FidelyNetServiceException
      */
     public function test_service_is_created_with_valid_demo_options(string $serviceType, string $expectedClass, array $inputOptions)
     {
@@ -50,7 +52,9 @@ class ServiceFactoryTest extends ServiceTestCase
      * @dataProvider invalidServiceFactoryOptionsDataProvider
      *
      * @param string $expectedMessage
-     * @param array  $inputOptions
+     * @param string $serviceType
+     * @param array $inputOptions
+     * @throws FidelyNetServiceException
      */
     public function test_exception_is_thrown_when_required_service_options_is_missing(string $expectedMessage, string $serviceType, array $inputOptions)
     {
@@ -63,7 +67,8 @@ class ServiceFactoryTest extends ServiceTestCase
      *
      * @param string $serviceType
      * @param string $expectedKey
-     * @param array  $inputOptions
+     * @param array $inputOptions
+     * @throws FidelyNetServiceException
      */
     public function test_session_id_key_is_set_accordingly(string $serviceType, string $expectedKey, array $inputOptions)
     {

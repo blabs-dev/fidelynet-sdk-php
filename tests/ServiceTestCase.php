@@ -40,14 +40,14 @@ class ServiceTestCase extends TestCase
      *
      * @var bool
      */
-    public $mock_client_enabled = true;
+    public bool $mock_client_enabled = true;
 
     /**
      * If true tests that performs requests to FNET3 service will automatically be run in the DEMO environment.
      *
      * @var bool
      */
-    public $enable_demo_environment = true;
+    public bool $enable_demo_environment = true;
 
     /**
      * If true tests that performs requests to FNET3 service will use a "persistent" session manager
@@ -55,7 +55,7 @@ class ServiceTestCase extends TestCase
      *
      * @var bool
      */
-    public $enable_persistent_session = false;
+    public bool $enable_persistent_session = false;
     // endregion
 
     // region TEST CREDENTIALS
@@ -64,7 +64,7 @@ class ServiceTestCase extends TestCase
      *
      * @var array
      */
-    protected $backoffice_demo_credentials = [
+    protected array $backoffice_demo_credentials = [
         FactoryOptions::USERNAME => ApiDemoData::BACKOFFICE_USER,
         FactoryOptions::PASSWORD => ApiDemoData::BACKOFFICE_PASSWORD,
     ];
@@ -73,7 +73,7 @@ class ServiceTestCase extends TestCase
      *
      * @var array
      */
-    protected $terminal_demo_credentials = [
+    protected array $terminal_demo_credentials = [
         FactoryOptions::USERNAME => ApiDemoData::TERMINAL_USERNAME,
         FactoryOptions::PASSWORD => ApiDemoData::TERMINAL_PASSWORD,
         FactoryOptions::TERMINAL => ApiDemoData::TERMINAL_SERIAL,
@@ -83,7 +83,7 @@ class ServiceTestCase extends TestCase
      *
      * @var array
      */
-    protected $customer_demo_credentials = [
+    protected array $customer_demo_credentials = [
         FactoryOptions::USERNAME    => ApiDemoData::CUSTOMER_USERNAME,
         FactoryOptions::PASSWORD    => ApiDemoData::CUSTOMER_PASSWORD,
         FactoryOptions::CAMPAIGN_ID => ApiDemoData::CAMPAIGN_ID,
@@ -98,7 +98,7 @@ class ServiceTestCase extends TestCase
      *
      * @return array
      */
-    protected function getCustomerServiceDemoFactoryOptions()
+    protected function getCustomerServiceDemoFactoryOptions(): array
     {
         return [
             FactoryOptions::DEMO_MODE        => $this->enable_demo_environment,
@@ -116,7 +116,7 @@ class ServiceTestCase extends TestCase
      *
      * @return array
      */
-    protected function getCustomerServicePublicSessionFactoryOptions()
+    protected function getCustomerServicePublicSessionFactoryOptions(): array
     {
         return [
             FactoryOptions::DEMO_MODE        => $this->enable_demo_environment,
@@ -132,7 +132,7 @@ class ServiceTestCase extends TestCase
      *
      * @return array
      */
-    protected function getBackofficeServiceDemoFactoryOptions()
+    protected function getBackofficeServiceDemoFactoryOptions(): array
     {
         return [
             FactoryOptions::DEMO_MODE        => $this->enable_demo_environment,
@@ -148,7 +148,7 @@ class ServiceTestCase extends TestCase
      *
      * @return array
      */
-    protected function getTerminalServiceDemoFactoryOptions()
+    protected function getTerminalServiceDemoFactoryOptions(): array
     {
         return [
             FactoryOptions::DEMO_MODE        => $this->enable_demo_environment,
@@ -211,7 +211,7 @@ class ServiceTestCase extends TestCase
      *
      * @return string The response body
      */
-    protected function getFakeResponse($service_type, $action, $suffix = null)
+    protected function getFakeResponse(string $service_type, string $action, $suffix = null): string
     {
         $filename = $suffix === null ? "{$action}.json" : "{$action}-{$suffix}.json";
         $filepath = dirname(__FILE__)."/json/{$service_type}/{$filename}";
@@ -231,7 +231,7 @@ class ServiceTestCase extends TestCase
      *
      * @return false|string
      */
-    protected function getFakeLoginResponse(string $service)
+    protected function getFakeLoginResponse(string $service): bool|string
     {
         switch ($service) {
         default:
@@ -294,7 +294,7 @@ class ServiceTestCase extends TestCase
      *
      * @return array
      */
-    protected function addClientMockToFactoryOptions(array $options, array $responseBodiesQueue)
+    protected function addClientMockToFactoryOptions(array $options, array $responseBodiesQueue): array
     {
         return $this->mock_client_enabled ? array_merge(
             $options,
@@ -310,7 +310,7 @@ class ServiceTestCase extends TestCase
      *
      * @return array
      */
-    protected function addLoginClientMockToFactoryOptions(array $options, string $serviceType)
+    protected function addLoginClientMockToFactoryOptions(array $options, string $serviceType): array
     {
         $response_queue = [
             $this->getFakeLoginResponse($serviceType),
@@ -328,7 +328,7 @@ class ServiceTestCase extends TestCase
      *
      * @return array[]
      */
-    public function validFactoryOptionsDataProvider()
+    public function validFactoryOptionsDataProvider(): array
     {
         return [
             'customer service' => [
@@ -354,7 +354,7 @@ class ServiceTestCase extends TestCase
      *
      * @return array[]
      */
-    public function sessionIdKeyDataProvider()
+    public function sessionIdKeyDataProvider(): array
     {
         return [
             'customer service' => [
@@ -380,7 +380,7 @@ class ServiceTestCase extends TestCase
      *
      * @return array[]
      */
-    public function invalidServiceFactoryOptionsDataProvider()
+    public function invalidServiceFactoryOptionsDataProvider(): array
     {
         return [
             'unsupported service type' => [

@@ -14,6 +14,7 @@ use Blabs\FidelyNet\Session\LoginStrategies\BackofficeLoginStrategy;
 use Blabs\FidelyNet\Session\LoginStrategies\CustomerLoginStrategy;
 use Blabs\FidelyNet\Session\LoginStrategies\TerminalLoginStrategy;
 use GuzzleHttp\Exception\GuzzleException;
+use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 final class SessionManager
 {
@@ -145,10 +146,10 @@ final class SessionManager
     /**
      * Obtain a public session id to access public FNET service methods.
      *
+     * @return string
      * @throws FidelyNetSessionException
      * @throws GuzzleException
-     *
-     * @return string
+     * @throws UnknownProperties
      */
     private function openPublicSession(): string
     {

@@ -50,6 +50,8 @@ class SessionRenewTest extends ServiceTestCase
 
     public function test_session_cant_be_renewed_after_max_tries()
     {
+        $response_queue = [];
+
         for ($i = 1; $i <= SessionManager::MAX_SESSION_RENEW_TRIES; $i++) {
             $response_queue[] = new Response(200, [], $this->getFakeLoginResponse(ApiServices::TERMINAL));
             $response_queue[] = new Response(200, [], $this->getFakeExpiredSessionResponse());
