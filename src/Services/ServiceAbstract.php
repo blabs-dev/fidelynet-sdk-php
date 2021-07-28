@@ -6,7 +6,10 @@ use Blabs\FidelyNet\Client;
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Constants\Messages;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
+use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Responses\ApiResponse;
+use GuzzleHttp\Exception\GuzzleException;
+use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 abstract class ServiceAbstract
 {
@@ -39,10 +42,11 @@ abstract class ServiceAbstract
      * @param array  $parameters
      *
      * @throws FidelyNetServiceException
-     * @throws \Blabs\FidelyNet\Exceptions\FidelyNetSessionException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws FidelyNetSessionException
+     * @throws GuzzleException
+     * @throws UnknownProperties
      *
-     * @return \Blabs\FidelyNet\Responses\ApiResponse
+     * @return ApiResponse
      */
     public function callAction(string $action, array $parameters): ApiResponse
     {

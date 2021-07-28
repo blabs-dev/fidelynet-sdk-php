@@ -4,6 +4,7 @@ namespace Blabs\FidelyNet\Test\Session;
 
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Constants\FactoryOptions;
+use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\Providers\SessionId\InMemorySessionIdProvider;
 use Blabs\FidelyNet\Providers\SessionId\TmpDirSessionIdProvider;
 use Blabs\FidelyNet\ServiceFactory;
@@ -29,6 +30,8 @@ class SessionIdPersistenceTest extends ServiceTestCase
      * @param string $serviceType
      * @param string $serviceClass
      * @param array  $inputFactoryOptions
+     *
+     * @throws FidelyNetServiceException
      */
     public function test_session_id_persists_across_two_different_service_instances_of_same_type(string $serviceType, string $serviceClass, array $inputFactoryOptions)
     {

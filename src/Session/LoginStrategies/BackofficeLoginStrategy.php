@@ -6,6 +6,7 @@ use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Responses\ApiResponse;
 use GuzzleHttp\Exception\GuzzleException;
+use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 final class BackofficeLoginStrategy extends LoginStrategyAbstract
 {
@@ -14,8 +15,13 @@ final class BackofficeLoginStrategy extends LoginStrategyAbstract
     /**
      * @inheritDoc
      *
+     * @param array $credentials
+     *
      * @throws FidelyNetSessionException
      * @throws GuzzleException
+     * @throws UnknownProperties
+     *
+     * @return string
      */
     public function startSession(array $credentials): string
     {

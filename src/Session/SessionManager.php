@@ -14,6 +14,7 @@ use Blabs\FidelyNet\Session\LoginStrategies\BackofficeLoginStrategy;
 use Blabs\FidelyNet\Session\LoginStrategies\CustomerLoginStrategy;
 use Blabs\FidelyNet\Session\LoginStrategies\TerminalLoginStrategy;
 use GuzzleHttp\Exception\GuzzleException;
+use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 final class SessionManager
 {
@@ -147,6 +148,7 @@ final class SessionManager
      *
      * @throws FidelyNetSessionException
      * @throws GuzzleException
+     * @throws UnknownProperties
      *
      * @return string
      */

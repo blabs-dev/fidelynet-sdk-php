@@ -9,6 +9,7 @@ use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Responses\ApiResponse;
 use GuzzleHttp\Exception\GuzzleException;
 use JetBrains\PhpStorm\ArrayShape;
+use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 final class CustomerLoginStrategy extends LoginStrategyAbstract
 {
@@ -17,8 +18,13 @@ final class CustomerLoginStrategy extends LoginStrategyAbstract
     /**
      * @inheritDoc
      *
+     * @param array $credentials
+     *
      * @throws FidelyNetSessionException
      * @throws GuzzleException
+     * @throws UnknownProperties
+     *
+     * @return string
      */
     public function startSession(array $credentials): string
     {

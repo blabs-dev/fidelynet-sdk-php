@@ -19,7 +19,7 @@ class ArrTest extends TestCase
         $this->assertEquals($expectedMissingOptions, Arr::getMissingRequiredOptions($requiredOptions, $inputOptions));
     }
 
-    public function missingRequiredOptionsProvider()
+    public function missingRequiredOptionsProvider(): array
     {
         return [
             'missing some options' => [

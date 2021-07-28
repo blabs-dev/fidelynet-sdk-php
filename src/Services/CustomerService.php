@@ -28,9 +28,10 @@ final class CustomerService extends ServiceAbstract
      * @param string $emailAddress
      * @param string $campaignId
      *
+     * @throws FidelyNetServiceException
      * @throws FidelyNetSessionException
      * @throws GuzzleException
-     * @throws FidelyNetServiceException
+     * @throws UnknownProperties
      *
      * @return ApiResponse
      */
@@ -53,9 +54,10 @@ final class CustomerService extends ServiceAbstract
      * @param string $phoneNumber
      * @param string $campaignId
      *
+     * @throws FidelyNetServiceException
      * @throws FidelyNetSessionException
      * @throws GuzzleException
-     * @throws FidelyNetServiceException
+     * @throws UnknownProperties
      *
      * @return ApiResponse
      */
