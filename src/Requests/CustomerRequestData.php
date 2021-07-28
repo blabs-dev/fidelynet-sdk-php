@@ -70,27 +70,27 @@ class CustomerRequestData extends DataTransferObject
     /**
      * @var bool|null
      */
-    public ?bool $usedforpromotions;
+    public ?bool $usedForPromotions;
 
     /**
      * @var bool|null
      */
-    public ?bool $usedforstatistics;
+    public ?bool $usedForStatistics;
 
     /**
      * @var bool|null
      */
-    public ?bool $usedbyothers;
+    public ?bool $usedByOthers;
 
     /**
      * @var bool|null
      */
-    public ?bool $cangetcurrentlocation;
+    public ?bool $canGetCurrentLocation;
 
     /**
      * @var bool|null
      */
-    public ?bool $cancomunicaverification;
+    public ?bool $canComunicaVerification;
 
     // endregion
 

@@ -32,9 +32,9 @@
         "notGivePointsOnActivationFromExternalComponent": false
       },
       "privacy": {
-        "usedForPromotions": false,
-        "usedForStatistics": false,
-        "usedByOthers": false
+        "usedForPromotions": true,
+        "usedForStatistics": true,
+        "usedByOthers": true
       },
       "cardType": 0,
       "languageId": 2,
@@ -105,11 +105,11 @@
         "userName": "",
         "privacy": {
           "flags": "",
-          "usedForPromotions": false,
-          "usedForStatistics": false,
-          "usedByOthers": false,
-          "canGetCurrentLocation": false,
-          "canComunicaVerification": false
+          "usedForPromotions": true,
+          "usedForStatistics": true,
+          "usedByOthers": true,
+          "canGetCurrentLocation": true,
+          "canComunicaVerification": true
         },
         "mailContactData": "customer@domain.com",
         "mobileContactData": "+39 333 1234 125",
