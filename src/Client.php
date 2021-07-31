@@ -319,6 +319,9 @@ final class Client
         $response_content = $response->getBody()->getContents();
         $response_data = $this->parseResponse($response_content);
 
+        if (! $response_data->returncode)
+            throw new FidelyNetServiceException(Messages::UNKNOWN_ERROR);
+
         // If service returns an expired session error, session is renewed and request is performed again
         if ($response_data->returncode == 998) {
             $this->sessionManager->renewSession();

@@ -4,7 +4,7 @@ namespace Blabs\FidelyNet\Constants;
 
 final class Messages
 {
-    const UNKNOWN_ERROR = 'Unknown error';
+    const UNKNOWN_ERROR = 'Unknown error occurred during request (no error code provided)';
     const MISSING_SERVICE_TYPE = 'A Service type must be specified';
     const MISSING_REQUIRED_FACTORY_OPTIONS = 'Missing required factory options: ';
     const MISSING_REQUIRED_SERVICE_OPTIONS = 'Missing one or more service parameters: ';
