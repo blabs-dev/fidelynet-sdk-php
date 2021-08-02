@@ -25,6 +25,4 @@ class FidelyNetServiceException extends Exception
     {
         return $this->responseBody;
     }
-
-
 }

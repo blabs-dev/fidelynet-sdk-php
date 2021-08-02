@@ -37,6 +37,5 @@ class ClientTest extends ServiceTestCase
         } catch (FidelyNetServiceException $exception) {
             $this->assertEquals('unknown response', $exception->getResponseBody());
         }
-
     }
 }
