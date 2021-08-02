@@ -25,11 +25,11 @@
         "userName": "johnnydoe",
         "privacy": {
           "flags": 0,
-          "usedForPromotions": false,
+          "usedForPromotions": true,
           "usedForStatistics": false,
-          "usedByOthers": false,
+          "usedByOthers": true,
           "canGetCurrentLocation": false,
-          "canComunicaVerification": false
+          "canComunicaVerification": true
         },
         "mailContactData": "updatedcustomer@domain.com",
         "mobileContactData": "+39 333 1234 125",

@@ -319,6 +319,10 @@ final class Client
         $response_content = $response->getBody()->getContents();
         $response_data = $this->parseResponse($response_content);
 
+        if ($response_data->returncode === null) {
+            throw new FidelyNetServiceException(Messages::UNKNOWN_ERROR, $response_content);
+        }
+
         // If service returns an expired session error, session is renewed and request is performed again
         if ($response_data->returncode == 998) {
             $this->sessionManager->renewSession();
@@ -352,16 +356,17 @@ final class Client
     /**
      * Determines the error returned by the service.
      *
-     * @param int|string $return_code Error code provided by service
+     * @param $returnCode
+     * @param string $responseBody
      *
      * @return Exception
      */
-    protected function determineApiError(int | string $return_code): Exception
+    protected function determineApiError($returnCode, string $responseBody = ''): Exception
     {
-        return match ($return_code) {
-            '9999'  => new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST),
+        return match ($returnCode) {
+            '9999'  => new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST, $responseBody),
             240     => new MissingRequiredFieldsException(Messages::SERVICE_MISSING_REQUIRED_FIELDS),
-            default => new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."$return_code: ".ApiMessages::CODES[$return_code])
+            default => new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."$returnCode: ".ApiMessages::CODES[$returnCode], $responseBody)
         };
     }
 
