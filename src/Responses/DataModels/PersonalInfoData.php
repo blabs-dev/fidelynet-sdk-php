@@ -4,7 +4,7 @@ namespace Blabs\FidelyNet\Responses\DataModels;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-class PersonalInfoData extends DataTransferObject
+final class PersonalInfoData extends DataTransferObject
 {
     // region IDENTIFIERS
     /**

@@ -4,7 +4,7 @@ namespace Blabs\FidelyNet\Responses\DataModels;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-class CustomerInfoData extends DataTransferObject
+final class CustomerInfoData extends DataTransferObject
 {
     /**
      * @var int

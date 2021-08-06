@@ -218,6 +218,10 @@ final class Client
             default               => 'sessionid',
         };
 
+        if (in_array($action, ApiServices::ACTIONS_THAT_USES_SESSION_PARAMETER)) {
+            $session_id_key = 'session';
+        }
+
         $default_parameters = [
             'az'            => $action,
             $session_id_key => $this->getSessionId(),
