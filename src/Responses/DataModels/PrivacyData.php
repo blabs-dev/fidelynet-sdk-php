@@ -4,7 +4,7 @@ namespace Blabs\FidelyNet\Responses\DataModels;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-class PrivacyData extends DataTransferObject
+final class PrivacyData extends DataTransferObject
 {
     /**
      * @var mixed
