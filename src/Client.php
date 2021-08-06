@@ -218,8 +218,7 @@ final class Client
             default               => 'sessionid',
         };
 
-        if (in_array($action, ApiServices::ACTIONS_THAT_USES_SESSION_PARAMETER))
-        {
+        if (in_array($action, ApiServices::ACTIONS_THAT_USES_SESSION_PARAMETER)) {
             $session_id_key = 'session';
         }
 

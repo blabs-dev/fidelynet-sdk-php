@@ -130,8 +130,8 @@ class BackofficeServiceTest extends ServiceTestCase
         $this->assertCount(3, $dynamic_fields);
 
         $single_field = $dynamic_fields[0];
-        $this->assertInstanceOf(DynamicField::class,$single_field);
-        $this->assertEquals(1328,$single_field->id);
-        $this->assertEquals('city',$single_field->name);
+        $this->assertInstanceOf(DynamicField::class, $single_field);
+        $this->assertEquals(1328, $single_field->id);
+        $this->assertEquals('city', $single_field->name);
     }
 }
