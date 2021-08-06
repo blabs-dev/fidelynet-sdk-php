@@ -21,6 +21,7 @@ final class ApiServices
         self::BACKOFFICE => [
             ApiActions::BO_MODIFY_CUSTOMER,
             ApiActions::BO_GET_INFO_CARD,
+            ApiActions::BO_GET_DYNAMIC_FIELDS,
         ],
         self::CUSTOMER   => [
             ApiActions::VERIFY_EMAIL,
@@ -28,5 +29,9 @@ final class ApiServices
             ApiActions::REGISTER_WITHOUT_CODE,
             ApiActions::GET_MOVEMENTS,
         ],
+    ];
+
+    const ACTIONS_THAT_USES_SESSION_PARAMETER = [
+        ApiActions::BO_GET_DYNAMIC_FIELDS,
     ];
 }
