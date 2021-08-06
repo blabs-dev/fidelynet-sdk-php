@@ -1,0 +1,66 @@
+{
+  "returncode": 0,
+  "data": {
+    "answerCode": 0,
+    "dynamicFields": [
+      {
+        "id": 1328,
+        "campaignID": 602,
+        "name": "city",
+        "order": 0,
+        "representation": 0,
+        "type": {
+          "id": 1976,
+          "dataType": 7,
+          "length": 0
+        }
+      },
+      {
+        "id": 1329,
+        "campaignID": 602,
+        "name": "district",
+        "order": 0,
+        "representation": 0,
+        "type": {
+          "id": 1978,
+          "dataType": 7,
+          "length": 0
+        }
+      },
+      {
+        "id": 1348,
+        "campaignID": 602,
+        "name": "address_reference",
+        "order": 0,
+        "representation": 0,
+        "type": {
+          "id": 1996,
+          "dataType": 7,
+          "length": 0
+        }
+      }
+    ],
+    "pagination": {
+      "initLimit": 0,
+      "rowCount": 100,
+      "recordsTotal": 3,
+      "actualPage": 1,
+      "totalPages": 1
+    }
+  },
+  "data2": {
+    "sessionId": "0ba93fba-71d1-46b1-a959-ccee14133f35",
+    "kind": null,
+    "pagination": {
+      "initLimit": null,
+      "rowCount": null,
+      "orders": {
+        "criteria": "",
+        "columnName": ""
+      },
+      "recordsTotal": "",
+      "actualPage": "",
+      "totalPages": ""
+    }
+  }
+}

@@ -6,6 +6,7 @@ use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiDemoData;
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Requests\ModifyCustomerRequestData;
+use Blabs\FidelyNet\Responses\DataModels\DynamicField;
 use Blabs\FidelyNet\ServiceFactory;
 use Blabs\FidelyNet\Services\BackofficeService;
 use Blabs\FidelyNet\Test\ServiceTestCase;
@@ -104,5 +105,33 @@ class BackofficeServiceTest extends ServiceTestCase
         $response = $backoffice_service->getCardInfo(ApiDemoData::CUSTOMER_CARD_NUMBER);
 
         $this->assertEquals(ApiDemoData::CUSTOMER_CARD_NUMBER, $response->card);
+    }
+
+    public function test_get_dynamic_fields()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $responses = [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_DYNAMIC_FIELDS),
+        ];
+        /** @var BackofficeService $backoffice_service */
+        $backoffice_service = ServiceFactory::create(
+            ApiServices::BACKOFFICE,
+            $this->addClientMockToFactoryOptions(
+                $this->getBackofficeServiceDemoFactoryOptions(),
+                $responses
+            )
+        );
+
+        $dynamic_fields = $backoffice_service->getDynamicFields();
+        $this->assertCount(3, $dynamic_fields);
+
+        $single_field = $dynamic_fields[0];
+        $this->assertInstanceOf(DynamicField::class,$single_field);
+        $this->assertEquals(1328,$single_field->id);
+        $this->assertEquals('city',$single_field->name);
     }
 }

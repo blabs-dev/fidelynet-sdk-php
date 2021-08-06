@@ -18,4 +18,5 @@ final class ApiActions
     const BO_LOGIN = 'loginbo';
     const BO_MODIFY_CUSTOMER = 'modifycustomerbo';
     const BO_GET_INFO_CARD = 'getinfocardbo2';
+    const BO_GET_DYNAMIC_FIELDS = 'getdynamicfieldsbo';
 }
