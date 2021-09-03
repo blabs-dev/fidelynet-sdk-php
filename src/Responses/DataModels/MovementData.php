@@ -76,7 +76,7 @@ final class MovementData extends DataTransferObject
     public int $discount;
 
     /** @var mixed */
-    public mixed $shop;
+    public MovementShopData $shop;
 
     /** @var int */
     public int $shopId;
