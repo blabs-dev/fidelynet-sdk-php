@@ -13,6 +13,7 @@ use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\Exceptions\MissingRequiredFieldsException;
 use Blabs\FidelyNet\Responses\ApiResponse;
 use Blabs\FidelyNet\Session\SessionManager;
+use Blabs\FidelyNet\Support\UserAgentHelper;
 use Exception;
 use GrahamCampbell\GuzzleFactory\GuzzleFactory;
 use GuzzleHttp\Client as GuzzleClient;
@@ -265,7 +266,7 @@ final class Client
  private function getHeaders(): array
  {
      return [
-         'User-Agent' => Release::USER_AGENT,
+         'User-Agent' => UserAgentHelper::getUserAgent(),
          'Accept'     => 'application/json',
      ];
  }
