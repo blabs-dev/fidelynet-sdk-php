@@ -6,7 +6,6 @@ use Blabs\FidelyNet\Constants\ApiMessages;
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Constants\ApiSessionTypes;
 use Blabs\FidelyNet\Constants\Messages;
-use Blabs\FidelyNet\Constants\Release;
 use Blabs\FidelyNet\Contracts\SessionIdProviderContract;
 use Blabs\FidelyNet\Exceptions\BadRequestException;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;

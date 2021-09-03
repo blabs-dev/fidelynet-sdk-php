@@ -4,12 +4,11 @@ namespace Blabs\FidelyNet\Support;
 
 class VersionHelper
 {
-
     public static function getCurrentVersion(): string
     {
         $composerJsonPath = self::getComposerJsonPath();
         $content = file_get_contents(($composerJsonPath));
-        $composer_data = json_decode($content,true);
+        $composer_data = json_decode($content, true);
 
         return array_key_exists('version', $composer_data) ?
             $composer_data['version']
