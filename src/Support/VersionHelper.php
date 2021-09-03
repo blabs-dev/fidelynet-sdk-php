@@ -2,7 +2,7 @@
 
 namespace Blabs\FidelyNet\Support;
 
-class VersionHelper
+final class VersionHelper
 {
     public static function getCurrentVersion(): string
     {

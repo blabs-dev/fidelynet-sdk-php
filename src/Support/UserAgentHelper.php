@@ -2,7 +2,7 @@
 
 namespace Blabs\FidelyNet\Support;
 
-class UserAgentHelper
+final class UserAgentHelper
 {
     const USER_AGENT_PREFIX = 'B@Labs FidelyNET Client v';
 
