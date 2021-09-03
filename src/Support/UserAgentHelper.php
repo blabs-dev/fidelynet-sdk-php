@@ -8,6 +8,6 @@ final class UserAgentHelper
 
     public static function getUserAgent(): string
     {
-        return self::USER_AGENT_PREFIX . VersionHelper::getCurrentVersion();
+        return self::USER_AGENT_PREFIX.VersionHelper::getCurrentVersion();
     }
 }

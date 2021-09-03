@@ -20,6 +20,6 @@ final class VersionHelper
      */
     private static function getComposerJsonPath(): string
     {
-        return realpath($_SERVER['DOCUMENT_ROOT']) . '/composer.json';
+        return realpath($_SERVER['DOCUMENT_ROOT']).'/composer.json';
     }
 }
