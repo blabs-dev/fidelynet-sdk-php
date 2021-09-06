@@ -81,7 +81,7 @@ final class BackofficeService extends ServiceAbstract
 
     public function getMovementList(string $cardNumber): MovementListBackOffice
     {
-        $response = $this->callAction(ApiActions::BO_GET_MOVEMENT_LIST,['card' => $cardNumber]);
+        $response = $this->callAction(ApiActions::BO_GET_MOVEMENT_LIST, ['card' => $cardNumber]);
 
         return  MovementListBackOffice::createFromApiResponse($response);
     }

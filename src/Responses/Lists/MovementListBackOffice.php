@@ -15,8 +15,8 @@ class MovementListBackOffice extends \Spatie\DataTransferObject\DataTransferObje
     public static function createFromApiResponse(ApiResponse $response)
     {
         return new self([
-            'count' => $response->recordsTotal,
-            'movements' => array_map(fn($movement) => new MovementBackOfficeData($movement),$response->data)
+            'count'     => $response->recordsTotal,
+            'movements' => array_map(fn ($movement) => new MovementBackOfficeData($movement), $response->data),
         ]);
     }
 }
