@@ -45,4 +45,9 @@ final class ApiResponse extends DataTransferObject
      * @var string|null
      */
     public ?string $ambiente;
+
+    /**
+     * @var int|null
+     */
+    public int |  null $recordsTotal;
 }
