@@ -49,7 +49,7 @@ final class MovementData extends DataTransferObject
     public int $dischargedGiftCredits;
 
     /** @var float|int */
-    public int | float $chargedPoints;
+    public int|float $chargedPoints;
 
     /** @var int */
     public int $dischargedPoints;
@@ -76,7 +76,7 @@ final class MovementData extends DataTransferObject
     public int $discount;
 
     /** @var mixed */
-    public mixed $shop;
+    public MovementShopData $shop;
 
     /** @var int */
     public int $shopId;

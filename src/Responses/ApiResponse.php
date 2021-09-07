@@ -9,7 +9,7 @@ final class ApiResponse extends DataTransferObject
     /**
      * @var int|string|null
      */
-    public int | string | null $returncode;
+    public int|string|null $returncode;
 
     /**
      * @var mixed
@@ -45,4 +45,9 @@ final class ApiResponse extends DataTransferObject
      * @var string|null
      */
     public ?string $ambiente;
+
+    /**
+     * @var int|null
+     */
+    public int|null $recordsTotal;
 }

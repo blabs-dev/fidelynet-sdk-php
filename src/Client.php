@@ -6,13 +6,13 @@ use Blabs\FidelyNet\Constants\ApiMessages;
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Constants\ApiSessionTypes;
 use Blabs\FidelyNet\Constants\Messages;
-use Blabs\FidelyNet\Constants\Release;
 use Blabs\FidelyNet\Contracts\SessionIdProviderContract;
 use Blabs\FidelyNet\Exceptions\BadRequestException;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\Exceptions\MissingRequiredFieldsException;
 use Blabs\FidelyNet\Responses\ApiResponse;
 use Blabs\FidelyNet\Session\SessionManager;
+use Blabs\FidelyNet\Support\UserAgentHelper;
 use Exception;
 use GrahamCampbell\GuzzleFactory\GuzzleFactory;
 use GuzzleHttp\Client as GuzzleClient;
@@ -265,7 +265,7 @@ final class Client
  private function getHeaders(): array
  {
      return [
-         'User-Agent' => Release::USER_AGENT,
+         'User-Agent' => UserAgentHelper::getUserAgent(),
          'Accept'     => 'application/json',
      ];
  }
@@ -377,7 +377,7 @@ final class Client
     /**
      * Determines the exception thrown by Guzzle client.
      *
-     * @param  $exception
+     * @param $exception
      *
      * @return Exception
      */

@@ -22,6 +22,7 @@ final class ApiServices
             ApiActions::BO_MODIFY_CUSTOMER,
             ApiActions::BO_GET_INFO_CARD,
             ApiActions::BO_GET_DYNAMIC_FIELDS,
+            ApiActions::BO_GET_MOVEMENT_LIST,
         ],
         self::CUSTOMER   => [
             ApiActions::VERIFY_EMAIL,

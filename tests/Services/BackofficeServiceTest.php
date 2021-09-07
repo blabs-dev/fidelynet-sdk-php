@@ -7,6 +7,7 @@ use Blabs\FidelyNet\Constants\ApiDemoData;
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Requests\ModifyCustomerRequestData;
 use Blabs\FidelyNet\Responses\DataModels\DynamicField;
+use Blabs\FidelyNet\Responses\DataModels\MovementBackOfficeData;
 use Blabs\FidelyNet\ServiceFactory;
 use Blabs\FidelyNet\Services\BackofficeService;
 use Blabs\FidelyNet\Test\ServiceTestCase;
@@ -133,5 +134,32 @@ class BackofficeServiceTest extends ServiceTestCase
         $this->assertInstanceOf(DynamicField::class, $single_field);
         $this->assertEquals(1328, $single_field->id);
         $this->assertEquals('city', $single_field->name);
+    }
+
+    public function test_get_movement_list()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $responses = [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_MOVEMENT_LIST),
+        ];
+        /** @var BackofficeService $backoffice_service */
+        $backoffice_service = ServiceFactory::create(
+            ApiServices::BACKOFFICE,
+            $this->addClientMockToFactoryOptions(
+                $this->getBackofficeServiceDemoFactoryOptions(),
+                $responses
+            )
+        );
+
+        $response = $backoffice_service->getMovementList(ApiDemoData::CUSTOMER_CARD_NUMBER, new \DateTime(), new \DateTime());
+
+        $this->assertIsArray($response->movements);
+        $first_item = $response->movements[0];
+        $this->assertCount(9, $response->movements);
+        $this->assertInstanceOf(MovementBackOfficeData::class, $first_item);
     }
 }

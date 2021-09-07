@@ -9,8 +9,10 @@ use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Requests\ModifyCustomerRequestData;
 use Blabs\FidelyNet\Responses\DataModels\CustomerInfoData;
 use Blabs\FidelyNet\Responses\DataModels\DynamicField;
+use Blabs\FidelyNet\Responses\Lists\MovementListBackOffice;
 use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
 use Blabs\FidelyNet\Responses\ResponseData\GetDynamicFieldsResponseData;
+use DateTime;
 use GuzzleHttp\Exception\GuzzleException;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
@@ -76,5 +78,16 @@ final class BackofficeService extends ServiceAbstract
         $data = new GetDynamicFieldsResponseData($response->data);
 
         return $data->dynamicFields;
+    }
+
+    public function getMovementList(string $cardNumber, DateTime $initDate, DateTime $endDate): MovementListBackOffice
+    {
+        $response = $this->callAction(ApiActions::BO_GET_MOVEMENT_LIST, [
+            'card'     => $cardNumber,
+            'initDate' => $initDate->format('Y-m-d'),
+            'endDate'  => $endDate->format('Y-m-d'),
+        ]);
+
+        return  MovementListBackOffice::createFromApiResponse($response);
     }
 }
