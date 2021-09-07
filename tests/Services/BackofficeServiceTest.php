@@ -155,7 +155,7 @@ class BackofficeServiceTest extends ServiceTestCase
             )
         );
 
-        $response = $backoffice_service->getMovementList(ApiDemoData::CUSTOMER_CARD_NUMBER);
+        $response = $backoffice_service->getMovementList(ApiDemoData::CUSTOMER_CARD_NUMBER, new \DateTime(), new \DateTime());
 
         $this->assertIsArray($response->movements);
         $first_item = $response->movements[0];
