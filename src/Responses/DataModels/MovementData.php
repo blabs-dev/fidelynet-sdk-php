@@ -49,7 +49,7 @@ final class MovementData extends DataTransferObject
     public int $dischargedGiftCredits;
 
     /** @var float|int */
-    public int | float $chargedPoints;
+    public int|float $chargedPoints;
 
     /** @var int */
     public int $dischargedPoints;

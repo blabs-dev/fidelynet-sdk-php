@@ -377,7 +377,7 @@ final class Client
     /**
      * Determines the exception thrown by Guzzle client.
      *
-     * @param  $exception
+     * @param $exception
      *
      * @return Exception
      */
