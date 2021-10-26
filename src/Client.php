@@ -8,6 +8,7 @@ use Blabs\FidelyNet\Constants\ApiSessionTypes;
 use Blabs\FidelyNet\Constants\Messages;
 use Blabs\FidelyNet\Contracts\SessionIdProviderContract;
 use Blabs\FidelyNet\Exceptions\BadRequestException;
+use Blabs\FidelyNet\Exceptions\CustomerNotFoundException;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\Exceptions\MissingRequiredFieldsException;
 use Blabs\FidelyNet\Responses\ApiResponse;
@@ -369,6 +370,7 @@ final class Client
     {
         return match ($returnCode) {
             '9999'  => new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST, $responseBody),
+            50      => new CustomerNotFoundException(),
             240     => new MissingRequiredFieldsException(Messages::SERVICE_MISSING_REQUIRED_FIELDS),
             default => new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."$returnCode: ".ApiMessages::CODES[$returnCode], $responseBody)
         };
