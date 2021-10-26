@@ -83,9 +83,9 @@ final class BackofficeService extends ServiceAbstract
     public function getMovementList(string $cardNumber, DateTime $initDate, DateTime $endDate): MovementListBackOffice
     {
         $response = $this->callAction(ApiActions::BO_GET_MOVEMENT_LIST, [
-            'card'     => $cardNumber,
-            'initDate' => $initDate->format('Y-m-d'),
-            'endDate'  => $endDate->format('Y-m-d'),
+            'card'        => $cardNumber,
+            'initialDate' => $initDate->format('Y-m-d'),
+            'finalDate'   => $endDate->format('Y-m-d'),
         ]);
 
         return  MovementListBackOffice::createFromApiResponse($response);

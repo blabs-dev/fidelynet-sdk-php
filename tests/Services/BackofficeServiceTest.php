@@ -5,6 +5,7 @@ namespace Blabs\FidelyNet\Test\Services;
 use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiDemoData;
 use Blabs\FidelyNet\Constants\ApiServices;
+use Blabs\FidelyNet\Exceptions\CustomerNotFoundException;
 use Blabs\FidelyNet\Requests\ModifyCustomerRequestData;
 use Blabs\FidelyNet\Responses\DataModels\DynamicField;
 use Blabs\FidelyNet\Responses\DataModels\MovementBackOfficeData;
@@ -106,6 +107,29 @@ class BackofficeServiceTest extends ServiceTestCase
         $response = $backoffice_service->getCardInfo(ApiDemoData::CUSTOMER_CARD_NUMBER);
 
         $this->assertEquals(ApiDemoData::CUSTOMER_CARD_NUMBER, $response->card);
+    }
+
+    public function test_get_card_info_will_throw_an_exception_when_customer_does_not_exists()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $responses = [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_INFO_CARD, 'customer-not-exists'),
+        ];
+        /** @var BackofficeService $backoffice_service */
+        $backoffice_service = ServiceFactory::create(
+            ApiServices::BACKOFFICE,
+            $this->addClientMockToFactoryOptions(
+                $this->getBackofficeServiceDemoFactoryOptions(),
+                $responses
+            )
+        );
+
+        $this->expectException(CustomerNotFoundException::class);
+        $backoffice_service->getCardInfo(ApiDemoData::CUSTOMER_CARD_NUMBER);
     }
 
     public function test_get_dynamic_fields()
