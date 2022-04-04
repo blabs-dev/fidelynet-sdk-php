@@ -8,7 +8,6 @@ use Blabs\FidelyNet\Constants\FactoryOptions;
 use Blabs\FidelyNet\Constants\Messages;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\ServiceFactory;
-use Blabs\FidelyNet\Services\BackofficeService;
 use Blabs\FidelyNet\Services\ServiceAbstract;
 
 class ClientTest extends ServiceTestCase
@@ -72,7 +71,6 @@ class ClientTest extends ServiceTestCase
     }
 
     /**
-
      * @throws FidelyNetServiceException
      */
     private function setUpBackofficeService($demoModeEnabled = true)
