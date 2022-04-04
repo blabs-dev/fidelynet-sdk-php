@@ -95,8 +95,9 @@ final class BackofficeService extends ServiceAbstract
     public function getShopCategories(int $parentId = 0): array
     {
         $response = $this->callAction(ApiActions::BO_GET_SHOP_CATEGORIES, ['languageid' => 1, 'fatherid' => $parentId]);
+
         return array_map(
-            fn($item) => ShopCategoryData::fromAttributes($item['id'], $item['fatherId'], $item['description']),
+            fn ($item) => ShopCategoryData::fromAttributes($item['id'], $item['fatherId'], $item['description']),
             $response->data['shopCategories']
         );
     }

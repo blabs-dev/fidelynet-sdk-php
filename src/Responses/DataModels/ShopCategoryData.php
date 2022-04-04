@@ -16,9 +16,9 @@ class ShopCategoryData extends DataTransferObject
     public static function fromAttributes(int $id, int $fatherId, string $description): ShopCategoryData
     {
         return new self([
-            'id' => $id,
-            'fatherId' => $fatherId,
-            'description' => $description
+            'id'          => $id,
+            'fatherId'    => $fatherId,
+            'description' => $description,
         ]);
     }
 }

@@ -2,8 +2,6 @@
 
 namespace Blabs\FidelyNet\Constants;
 
-use PHPUnit\Framework\MockObject\Api;
-
 final class ApiServices
 {
     const TERMINAL = 'terminal';
@@ -26,7 +24,7 @@ final class ApiServices
             ApiActions::BO_GET_DYNAMIC_FIELDS,
             ApiActions::BO_GET_MOVEMENT_LIST,
             ApiActions::BO_GET_SHOP_CATEGORIES,
-            ApiActions::BO_GET_SHOPS
+            ApiActions::BO_GET_SHOPS,
         ],
         self::CUSTOMER   => [
             ApiActions::VERIFY_EMAIL,
