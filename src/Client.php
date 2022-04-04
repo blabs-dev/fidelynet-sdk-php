@@ -228,7 +228,12 @@ final class Client
             $session_id_key => $this->getSessionId(),
         ];
 
-        return array_merge($default_parameters, $this->demoMode ? ['ambiente' => 'DEMO'] : []);
+        return array_merge(
+            $default_parameters,
+            $this->demoMode ?
+                ['ambiente' => 'DEMO']
+                : ['ambiente' => 'PROD']
+        );
     }
 
     /**

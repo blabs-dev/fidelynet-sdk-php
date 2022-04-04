@@ -9,6 +9,7 @@ use Blabs\FidelyNet\Exceptions\CustomerNotFoundException;
 use Blabs\FidelyNet\Requests\ModifyCustomerRequestData;
 use Blabs\FidelyNet\Responses\DataModels\DynamicField;
 use Blabs\FidelyNet\Responses\DataModels\MovementBackOfficeData;
+use Blabs\FidelyNet\Responses\DataModels\ShopCategoryData;
 use Blabs\FidelyNet\ServiceFactory;
 use Blabs\FidelyNet\Services\BackofficeService;
 use Blabs\FidelyNet\Test\ServiceTestCase;
@@ -185,5 +186,76 @@ class BackofficeServiceTest extends ServiceTestCase
         $first_item = $response->movements[0];
         $this->assertCount(9, $response->movements);
         $this->assertInstanceOf(MovementBackOfficeData::class, $first_item);
+    }
+
+    public function test_get_top_level_categories()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $responses = [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_SHOP_CATEGORIES, 'top-level'),
+        ];
+        /** @var BackofficeService $backoffice_service */
+        $backoffice_service = ServiceFactory::create(
+            ApiServices::BACKOFFICE,
+            $this->addClientMockToFactoryOptions(
+                $this->getBackofficeServiceDemoFactoryOptions(),
+                $responses
+            )
+        );
+
+        $topLevelCategories = $backoffice_service->getShopCategories();
+        $this->assertCount(20, $topLevelCategories);
+        $this->assertInstanceOf(ShopCategoryData::class, $topLevelCategories[0]);
+    }
+
+    public function test_get_child_categories()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $responses = [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_SHOP_CATEGORIES, '1292'),
+        ];
+        /** @var BackofficeService $backoffice_service */
+        $backoffice_service = ServiceFactory::create(
+            ApiServices::BACKOFFICE,
+            $this->addClientMockToFactoryOptions(
+                $this->getBackofficeServiceDemoFactoryOptions(),
+                $responses
+            )
+        );
+
+        $childCategories = $backoffice_service->getShopCategories(1292);
+        $this->assertCount(23, $childCategories);
+        $firstChild = $childCategories[0];
+        $this->assertInstanceOf(ShopCategoryData::class, $firstChild);
+        $this->assertEquals(1292, $firstChild->fatherId);
+    }
+
+    public function test_get_shops_and_networks()
+    {
+        $this->markTestSkipped('to do');
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $responses = [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_SHOPS),
+        ];
+        /** @var BackofficeService $backoffice_service */
+        $backoffice_service = ServiceFactory::create(
+            ApiServices::BACKOFFICE,
+            $this->addClientMockToFactoryOptions(
+                $this->getBackofficeServiceDemoFactoryOptions(),
+                $responses
+            )
+        );
     }
 }

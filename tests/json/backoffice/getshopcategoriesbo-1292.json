@@ -1,0 +1,146 @@
+{
+  "returncode": 0,
+  "data": {
+    "answerCode": 0,
+    "shopCategories": [
+      {
+        "id": 1293,
+        "fatherId": 1292,
+        "description": "Abbigliamento Intimo"
+      },
+      {
+        "id": 1294,
+        "fatherId": 1292,
+        "description": "Abbigliamento Donna"
+      },
+      {
+        "id": 1295,
+        "fatherId": 1292,
+        "description": "Abbigliamento Uomo"
+      },
+      {
+        "id": 1296,
+        "fatherId": 1292,
+        "description": "Abbigliamento Bambino"
+      },
+      {
+        "id": 1297,
+        "fatherId": 1292,
+        "description": "Abbigliamento Uomo/Donna"
+      },
+      {
+        "id": 1298,
+        "fatherId": 1292,
+        "description": "Abbigliamento Uomo/Donna/Bambino"
+      },
+      {
+        "id": 1299,
+        "fatherId": 1292,
+        "description": "Abbigliamento Uomo/Donna Outlet"
+      },
+      {
+        "id": 1300,
+        "fatherId": 1292,
+        "description": "Abbigliamento Uomo/Donna/Bambino Outlet"
+      },
+      {
+        "id": 1301,
+        "fatherId": 1292,
+        "description": "Abbigliamento/Attrezzatura sportive"
+      },
+      {
+        "id": 1302,
+        "fatherId": 1292,
+        "description": "Abbigliamento/Attrezzatura sportive Outlet"
+      },
+      {
+        "id": 1303,
+        "fatherId": 1292,
+        "description": "Abiti da cerimonia"
+      },
+      {
+        "id": 1304,
+        "fatherId": 1292,
+        "description": "Abiti da lavoro e protettivi"
+      },
+      {
+        "id": 1305,
+        "fatherId": 1292,
+        "description": "Accessori moda"
+      },
+      {
+        "id": 1373,
+        "fatherId": 1292,
+        "description": "Pelliccerie"
+      },
+      {
+        "id": 1395,
+        "fatherId": 1292,
+        "description": "Valigerie"
+      },
+      {
+        "id": 1414,
+        "fatherId": 1292,
+        "description": "Calzature"
+      },
+      {
+        "id": 1415,
+        "fatherId": 1292,
+        "description": "Calzature Uomo/Donna"
+      },
+      {
+        "id": 1416,
+        "fatherId": 1292,
+        "description": "Calzature Bambino"
+      },
+      {
+        "id": 1417,
+        "fatherId": 1292,
+        "description": "Calzature Uomo/Donna/Bambino"
+      },
+      {
+        "id": 1418,
+        "fatherId": 1292,
+        "description": "Calzature OUTLET"
+      },
+      {
+        "id": 1419,
+        "fatherId": 1292,
+        "description": "Calzolai"
+      },
+      {
+        "id": 1431,
+        "fatherId": 1292,
+        "description": "Danza - Articoli"
+      },
+      {
+        "id": 1439,
+        "fatherId": 1292,
+        "description": "Lavanderie"
+      }
+    ],
+    "pagination": {
+      "initLimit": 0,
+      "rowCount": 10000,
+      "recordsTotal": 23,
+      "actualPage": 1,
+      "totalPages": 1
+    }
+  },
+  "data2": {
+    "sessionId": "bdfd48da-a093-4706-be7d-5c38dc0e38e8",
+    "languageId": "1",
+    "fatherId": "1292",
+    "pagination": {
+      "initLimit": null,
+      "rowCount": 10000,
+      "orders": {
+        "criteria": "",
+        "columnName": ""
+      },
+      "recordsTotal": "",
+      "actualPage": "",
+      "totalPages": ""
+    }
+  }
+}
