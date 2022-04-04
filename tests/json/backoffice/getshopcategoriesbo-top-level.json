@@ -1,0 +1,131 @@
+{
+  "returncode": 0,
+  "data": {
+    "answerCode": 0,
+    "shopCategories": [
+      {
+        "id": 1292,
+        "fatherId": 0,
+        "description": "Abbigliamento"
+      },
+      {
+        "id": 1312,
+        "fatherId": 0,
+        "description": "Turismo"
+      },
+      {
+        "id": 1320,
+        "fatherId": 0,
+        "description": "Sport e tempo libero"
+      },
+      {
+        "id": 1326,
+        "fatherId": 0,
+        "description": "Arredamento"
+      },
+      {
+        "id": 1328,
+        "fatherId": 0,
+        "description": "Medicina ed estetica"
+      },
+      {
+        "id": 1344,
+        "fatherId": 0,
+        "description": "Cultura, arte ed editoria"
+      },
+      {
+        "id": 1356,
+        "fatherId": 0,
+        "description": "Meccanica"
+      },
+      {
+        "id": 1390,
+        "fatherId": 0,
+        "description": "Informatica e telecomunicazioni"
+      },
+      {
+        "id": 1397,
+        "fatherId": 0,
+        "description": "Elettronica ed elettrotecnica"
+      },
+      {
+        "id": 1409,
+        "fatherId": 0,
+        "description": "Alimentazioni"
+      },
+      {
+        "id": 1420,
+        "fatherId": 0,
+        "description": "Carta e stampa"
+      },
+      {
+        "id": 1446,
+        "fatherId": 0,
+        "description": "Commercio Ambulante"
+      },
+      {
+        "id": 1339,
+        "fatherId": 0,
+        "description": "Ecologia e termotecnica"
+      },
+      {
+        "id": 1306,
+        "fatherId": 0,
+        "description": "Automobili, trasporti ed imballaggi"
+      },
+      {
+        "id": 1308,
+        "fatherId": 0,
+        "description": "Finanza, credito, assicurazioni"
+      },
+      {
+        "id": 1310,
+        "fatherId": 0,
+        "description": "Edilizia e lavori pubblici"
+      },
+      {
+        "id": 1316,
+        "fatherId": 0,
+        "description": "Alimentazione"
+      },
+      {
+        "id": 1324,
+        "fatherId": 0,
+        "description": "Forniture per uffici ed aziende"
+      },
+      {
+        "id": 1333,
+        "fatherId": 0,
+        "description": "Orologi, gioielli ed articoli da regalo"
+      },
+      {
+        "id": 1359,
+        "fatherId": 0,
+        "description": "Agricoltura, orticoltura e floricoltura"
+      }
+    ],
+    "pagination": {
+      "initLimit": 0,
+      "rowCount": 10000,
+      "recordsTotal": 20,
+      "actualPage": 1,
+      "totalPages": 1
+    }
+  },
+  "data2": {
+    "sessionId": "a9599ac7-2aa4-41ae-83c1-75ab05e4e4d7",
+    "languageId": "1",
+    "fatherId": null,
+    "pagination": {
+      "initLimit": null,
+      "rowCount": 10000,
+      "orders": {
+        "criteria": "",
+        "columnName": ""
+      },
+      "recordsTotal": "",
+      "actualPage": "",
+      "totalPages": ""
+    }
+  }
+}

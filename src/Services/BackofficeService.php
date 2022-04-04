@@ -9,6 +9,7 @@ use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Requests\ModifyCustomerRequestData;
 use Blabs\FidelyNet\Responses\DataModels\CustomerInfoData;
 use Blabs\FidelyNet\Responses\DataModels\DynamicField;
+use Blabs\FidelyNet\Responses\DataModels\ShopCategoryData;
 use Blabs\FidelyNet\Responses\Lists\MovementListBackOffice;
 use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
 use Blabs\FidelyNet\Responses\ResponseData\GetDynamicFieldsResponseData;
@@ -89,5 +90,14 @@ final class BackofficeService extends ServiceAbstract
         ]);
 
         return  MovementListBackOffice::createFromApiResponse($response);
+    }
+
+    public function getShopCategories(int $parentId = 0): array
+    {
+        $response = $this->callAction(ApiActions::BO_GET_SHOP_CATEGORIES, ['languageid' => 1, 'fatherid' => $parentId]);
+        return array_map(
+            fn($item) => ShopCategoryData::fromAttributes($item['id'], $item['fatherId'], $item['description']),
+            $response->data['shopCategories']
+        );
     }
 }
