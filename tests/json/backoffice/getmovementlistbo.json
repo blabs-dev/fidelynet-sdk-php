@@ -2,7 +2,7 @@
   "returncode": 0,
   "recordsTotal": 9,
   "data": [
-    {
+    { "movement": {
       "id": 1773964,
       "campaign": 362,
       "terminal": 1270,
@@ -59,8 +59,9 @@
       },
       "promotionErrorCode": 0,
       "sellerId": 0
+    }
     },
-    {
+    { "movement": {
       "id": 1774142,
       "campaign": 362,
       "terminal": 0,
@@ -142,451 +143,466 @@
       },
       "promotionErrorCode": 0,
       "sellerId": 0
+    }
     },
     {
-      "id": 1774143,
-      "campaign": 362,
-      "terminal": 0,
-      "shopId": 0,
-      "card": 3,
-      "cardOld": 0,
-      "kind": 7,
-      "customer": 15841,
-      "customerName": "Manola",
-      "customerSurname": "Tani",
-      "operatorId": 0,
-      "dateTime": "2018-02-06T15:46:52.267+01:00",
-      "localTime": "2018-02-06T16:46:52.267+01:00",
-      "chargedCredits": 0,
-      "chargedGiftCredits": 0,
-      "chargedPoints": 0,
-      "chargedPointsStatus": 0,
-      "dischargedCredits": 0,
-      "dischargedGiftCredits": 0,
-      "dischargedPoints": 130,
-      "dischargedPointsStatus": 0,
-      "currencyConversion": 0,
-      "profitMoneyLocal": 0,
-      "totalMoney": 0,
-      "totalBenefits": 0,
-      "discount": 0,
-      "paymentMethodId": 0,
-      "categoryId": null,
-      "kindCharge": 0,
-      "periodId": null,
-      "flags": {
-        "flags": 16,
-        "canceled": false,
-        "winPromo": false,
-        "winDiscount": false
-      },
-      "prizes": {
-        "id": 41942,
-        "exchangeDate": "2018-02-06T16:46:52.270+01:00",
+      "movement": {
+        "id": 1774143,
+        "campaign": 362,
+        "terminal": 0,
+        "shopId": 0,
+        "card": 3,
+        "cardOld": 0,
+        "kind": 7,
+        "customer": 15841,
+        "customerName": "Manola",
+        "customerSurname": "Tani",
+        "operatorId": 0,
+        "dateTime": "2018-02-06T15:46:52.267+01:00",
+        "localTime": "2018-02-06T16:46:52.267+01:00",
+        "chargedCredits": 0,
+        "chargedGiftCredits": 0,
+        "chargedPoints": 0,
+        "chargedPointsStatus": 0,
+        "dischargedCredits": 0,
+        "dischargedGiftCredits": 0,
+        "dischargedPoints": 130,
+        "dischargedPointsStatus": 0,
+        "currencyConversion": 0,
+        "profitMoneyLocal": 0,
+        "totalMoney": 0,
+        "totalBenefits": 0,
+        "discount": 0,
+        "paymentMethodId": 0,
+        "categoryId": null,
+        "kindCharge": 0,
+        "periodId": null,
         "flags": {
-          "flags": 1,
-          "ordered": true,
-          "confirmed": false,
-          "inStock": false,
-          "sentToShop": false,
-          "availableForRetirement": false,
-          "retired": false,
-          "returnedForDamage": false,
-          "notDeliveredCustomerMissing": false,
-          "inTransit": false
+          "flags": 16,
+          "canceled": false,
+          "winPromo": false,
+          "winDiscount": false
         },
-        "points": 130,
-        "quantity": 1,
-        "prize": {
-          "id": 8329,
-          "name": "FISCHIETTO MULTIFUNZIONE 6 IN 1",
-          "description": "Pratico e super funzionale, è uno strumento indispensabile\r\nper ogni tipo di escursione, non è solo un fischietto, ma\r\nanche un indicatore di temperatura, lente di ingrandimento,\r\nspecchietto, minitorcia e bussola magnetica!",
+        "prizes": {
+          "id": 41942,
+          "exchangeDate": "2018-02-06T16:46:52.270+01:00",
+          "flags": {
+            "flags": 1,
+            "ordered": true,
+            "confirmed": false,
+            "inStock": false,
+            "sentToShop": false,
+            "availableForRetirement": false,
+            "retired": false,
+            "returnedForDamage": false,
+            "notDeliveredCustomerMissing": false,
+            "inTransit": false
+          },
           "points": 130,
-          "stock": 993,
-          "maxToExchange": 0,
-          "prizeCode": "CA1001",
-          "catalogId": 581,
-          "categoryId": 21,
-          "flags": {
-            "flags": 1,
-            "enabled": true
+          "quantity": 1,
+          "prize": {
+            "id": 8329,
+            "name": "FISCHIETTO MULTIFUNZIONE 6 IN 1",
+            "description": "Pratico e super funzionale, è uno strumento indispensabile\r\nper ogni tipo di escursione, non è solo un fischietto, ma\r\nanche un indicatore di temperatura, lente di ingrandimento,\r\nspecchietto, minitorcia e bussola magnetica!",
+            "points": 130,
+            "stock": 993,
+            "maxToExchange": 0,
+            "prizeCode": "CA1001",
+            "catalogId": 581,
+            "categoryId": 21,
+            "flags": {
+              "flags": 1,
+              "enabled": true
+            },
+            "pathImage": "files/dev/prizes/8329/fischietto.jpg",
+            "issueDate": "2017-05-03+02:00"
           },
-          "pathImage": "files/dev/prizes/8329/fischietto.jpg",
-          "issueDate": "2017-05-03+02:00"
+          "name": "FISCHIETTO MULTIFUNZIONE 6 IN 1",
+          "shopId": 0,
+          "shippingDocumentNbr": 0,
+          "shippingCost": {
+            "shippingCost": 0,
+            "shippingTaxes": 0
+          },
+          "exchangeCode": 1154808232657577
         },
-        "name": "FISCHIETTO MULTIFUNZIONE 6 IN 1",
-        "shopId": 0,
-        "shippingDocumentNbr": 0,
-        "shippingCost": {
-          "shippingCost": 0,
-          "shippingTaxes": 0
-        },
-        "exchangeCode": 1154808232657577
-      },
-      "promotionErrorCode": 0,
-      "sellerId": 0
+        "promotionErrorCode": 0,
+        "sellerId": 0
+      }
     },
     {
-      "id": 1774144,
-      "campaign": 362,
-      "terminal": 0,
-      "shopId": 0,
-      "card": 3,
-      "cardOld": 0,
-      "kind": 7,
-      "customer": 15841,
-      "customerName": "Manola",
-      "customerSurname": "Tani",
-      "operatorId": 0,
-      "dateTime": "2018-02-06T16:04:52.045+01:00",
-      "localTime": "2018-02-06T17:04:52.045+01:00",
-      "chargedCredits": 0,
-      "chargedGiftCredits": 0,
-      "chargedPoints": 0,
-      "chargedPointsStatus": 0,
-      "dischargedCredits": 0,
-      "dischargedGiftCredits": 0,
-      "dischargedPoints": 100,
-      "dischargedPointsStatus": 0,
-      "currencyConversion": 0,
-      "profitMoneyLocal": 0,
-      "totalMoney": 0,
-      "totalBenefits": 0,
-      "discount": 0,
-      "paymentMethodId": 0,
-      "categoryId": null,
-      "kindCharge": 0,
-      "periodId": null,
-      "flags": {
-        "flags": 16,
-        "canceled": false,
-        "winPromo": false,
-        "winDiscount": false
-      },
-      "prizes": {
-        "id": 41943,
-        "exchangeDate": "2018-02-06T17:04:52.049+01:00",
+      "movement": {
+        "id": 1774144,
+        "campaign": 362,
+        "terminal": 0,
+        "shopId": 0,
+        "card": 3,
+        "cardOld": 0,
+        "kind": 7,
+        "customer": 15841,
+        "customerName": "Manola",
+        "customerSurname": "Tani",
+        "operatorId": 0,
+        "dateTime": "2018-02-06T16:04:52.045+01:00",
+        "localTime": "2018-02-06T17:04:52.045+01:00",
+        "chargedCredits": 0,
+        "chargedGiftCredits": 0,
+        "chargedPoints": 0,
+        "chargedPointsStatus": 0,
+        "dischargedCredits": 0,
+        "dischargedGiftCredits": 0,
+        "dischargedPoints": 100,
+        "dischargedPointsStatus": 0,
+        "currencyConversion": 0,
+        "profitMoneyLocal": 0,
+        "totalMoney": 0,
+        "totalBenefits": 0,
+        "discount": 0,
+        "paymentMethodId": 0,
+        "categoryId": null,
+        "kindCharge": 0,
+        "periodId": null,
+        "flags": {
+          "flags": 16,
+          "canceled": false,
+          "winPromo": false,
+          "winDiscount": false
+        },
+        "prizes": {
+          "id": 41943,
+          "exchangeDate": "2018-02-06T17:04:52.049+01:00",
+          "flags": {
+            "flags": 1,
+            "ordered": true,
+            "confirmed": false,
+            "inStock": false,
+            "sentToShop": false,
+            "availableForRetirement": false,
+            "retired": false,
+            "returnedForDamage": false,
+            "notDeliveredCustomerMissing": false,
+            "inTransit": false
+          },
+          "points": 100,
+          "quantity": 1,
+          "prize": {
+            "id": 8333,
+            "name": "KIT LENTI",
+            "description": "Set per fotocamera 3 in 1, clip universale, 3\r\ntipi di lenti, lente fisheye per scattare foto\r\ncon un angolo da 180°, lente macro per\r\nscattare foto ravvicinate di oggetti piccoli,\r\nlente grandangolo per scattare foto\r\ncon un orizzonte più largo, custodia",
+            "points": 100,
+            "stock": 988,
+            "maxToExchange": 0,
+            "prizeCode": "CA1005",
+            "catalogId": 581,
+            "categoryId": 161,
+            "flags": {
+              "flags": 1,
+              "enabled": true
+            },
+            "pathImage": "files/dev/prizes/8333/kit-lenti.jpg",
+            "issueDate": "2017-05-03+02:00"
+          },
+          "name": "KIT LENTI",
+          "shopId": 0,
+          "shippingDocumentNbr": 0,
+          "shippingCost": {
+            "shippingCost": 0,
+            "shippingTaxes": 0
+          },
+          "exchangeCode": 2519528006276777
+        },
+        "promotionErrorCode": 0,
+        "sellerId": 0
+      }
+    },
+    {
+      "movement": {
+        "id": 1774145,
+        "campaign": 362,
+        "terminal": 0,
+        "shopId": 0,
+        "card": 3,
+        "cardOld": 0,
+        "kind": 37,
+        "customer": 15841,
+        "customerName": "Manola",
+        "customerSurname": "Tani",
+        "operatorId": 0,
+        "dateTime": "2018-02-06T16:53:28.235+01:00",
+        "localTime": "2018-02-06T17:53:28.239+01:00",
+        "chargedCredits": 0,
+        "chargedGiftCredits": 0,
+        "chargedPoints": 0,
+        "chargedPointsStatus": 0,
+        "dischargedCredits": 0,
+        "dischargedGiftCredits": 0,
+        "dischargedPoints": 0,
+        "dischargedPointsStatus": 0,
+        "currencyConversion": 0,
+        "profitMoneyLocal": 0,
+        "totalMoney": 0,
+        "totalBenefits": 0,
+        "discount": 0,
+        "paymentMethodId": 0,
+        "categoryId": null,
+        "kindCharge": 0,
+        "periodId": null,
         "flags": {
           "flags": 1,
-          "ordered": true,
-          "confirmed": false,
-          "inStock": false,
-          "sentToShop": false,
-          "availableForRetirement": false,
-          "retired": false,
-          "returnedForDamage": false,
-          "notDeliveredCustomerMissing": false,
-          "inTransit": false
+          "canceled": true,
+          "winPromo": false,
+          "winDiscount": false
         },
-        "points": 100,
-        "quantity": 1,
-        "prize": {
-          "id": 8333,
-          "name": "KIT LENTI",
-          "description": "Set per fotocamera 3 in 1, clip universale, 3\r\ntipi di lenti, lente fisheye per scattare foto\r\ncon un angolo da 180°, lente macro per\r\nscattare foto ravvicinate di oggetti piccoli,\r\nlente grandangolo per scattare foto\r\ncon un orizzonte più largo, custodia",
-          "points": 100,
-          "stock": 988,
-          "maxToExchange": 0,
-          "prizeCode": "CA1005",
-          "catalogId": 581,
-          "categoryId": 161,
-          "flags": {
-            "flags": 1,
-            "enabled": true
+        "promotionErrorCode": 0,
+        "sellerId": 0
+      }
+    },
+    {
+      "movement": {
+        "id": 1794401,
+        "campaign": 362,
+        "terminal": 1270,
+        "shopId": 1112,
+        "card": 3,
+        "cardOld": 0,
+        "kind": 2,
+        "customer": 15841,
+        "customerName": "Manola",
+        "customerSurname": "Tani",
+        "operatorId": 959,
+        "dateTime": "2018-03-30T09:15:18.917+02:00",
+        "localTime": "2018-03-30T11:15:18.904+02:00",
+        "chargedCredits": 0,
+        "chargedGiftCredits": 0,
+        "chargedPoints": 0,
+        "chargedPointsStatus": 0,
+        "dischargedCredits": 0,
+        "dischargedGiftCredits": 0,
+        "dischargedPoints": 0,
+        "dischargedPointsStatus": 0,
+        "currencyConversion": 0,
+        "profitMoneyLocal": 0,
+        "totalMoney": 25,
+        "totalBenefits": 0,
+        "discount": 0,
+        "paymentMethodId": 0,
+        "shop": {
+          "id": 1112,
+          "name": "APPLEBEE´S FORUM BUENAVISTA",
+          "campaignIDByDefault": 362,
+          "currencyID": 3,
+          "currencySymbol": "€",
+          "behaviorFlags": {
+            "flags": 132517,
+            "isEnabled": true,
+            "useOperator": false
           },
-          "pathImage": "files/dev/prizes/8333/kit-lenti.jpg",
-          "issueDate": "2017-05-03+02:00"
-        },
-        "name": "KIT LENTI",
-        "shopId": 0,
-        "shippingDocumentNbr": 0,
-        "shippingCost": {
-          "shippingCost": 0,
-          "shippingTaxes": 0
-        },
-        "exchangeCode": 2519528006276777
-      },
-      "promotionErrorCode": 0,
-      "sellerId": 0
-    },
-    {
-      "id": 1774145,
-      "campaign": 362,
-      "terminal": 0,
-      "shopId": 0,
-      "card": 3,
-      "cardOld": 0,
-      "kind": 37,
-      "customer": 15841,
-      "customerName": "Manola",
-      "customerSurname": "Tani",
-      "operatorId": 0,
-      "dateTime": "2018-02-06T16:53:28.235+01:00",
-      "localTime": "2018-02-06T17:53:28.239+01:00",
-      "chargedCredits": 0,
-      "chargedGiftCredits": 0,
-      "chargedPoints": 0,
-      "chargedPointsStatus": 0,
-      "dischargedCredits": 0,
-      "dischargedGiftCredits": 0,
-      "dischargedPoints": 0,
-      "dischargedPointsStatus": 0,
-      "currencyConversion": 0,
-      "profitMoneyLocal": 0,
-      "totalMoney": 0,
-      "totalBenefits": 0,
-      "discount": 0,
-      "paymentMethodId": 0,
-      "categoryId": null,
-      "kindCharge": 0,
-      "periodId": null,
-      "flags": {
-        "flags": 1,
-        "canceled": true,
-        "winPromo": false,
-        "winDiscount": false
-      },
-      "promotionErrorCode": 0,
-      "sellerId": 0
-    },
-    {
-      "id": 1794401,
-      "campaign": 362,
-      "terminal": 1270,
-      "shopId": 1112,
-      "card": 3,
-      "cardOld": 0,
-      "kind": 2,
-      "customer": 15841,
-      "customerName": "Manola",
-      "customerSurname": "Tani",
-      "operatorId": 959,
-      "dateTime": "2018-03-30T09:15:18.917+02:00",
-      "localTime": "2018-03-30T11:15:18.904+02:00",
-      "chargedCredits": 0,
-      "chargedGiftCredits": 0,
-      "chargedPoints": 0,
-      "chargedPointsStatus": 0,
-      "dischargedCredits": 0,
-      "dischargedGiftCredits": 0,
-      "dischargedPoints": 0,
-      "dischargedPointsStatus": 0,
-      "currencyConversion": 0,
-      "profitMoneyLocal": 0,
-      "totalMoney": 25,
-      "totalBenefits": 0,
-      "discount": 0,
-      "paymentMethodId": 0,
-      "shop": {
-        "id": 1112,
-        "name": "APPLEBEE´S FORUM BUENAVISTA",
-        "campaignIDByDefault": 362,
-        "currencyID": 3,
-        "currencySymbol": "€",
-        "behaviorFlags": {
-          "flags": 132517,
-          "isEnabled": true,
-          "useOperator": false
-        },
-        "campaigns": {
-          "shopByCampaignNode": {
-            "campaignId": 362,
-            "qualificationAvg": 0
+          "campaigns": {
+            "shopByCampaignNode": {
+              "campaignId": 362,
+              "qualificationAvg": 0
+            }
           }
-        }
-      },
-      "categoryId": null,
-      "kindCharge": 0,
-      "periodId": null,
-      "flags": {
-        "flags": 1048576,
-        "canceled": false,
-        "winPromo": false,
-        "winDiscount": false
-      },
-      "productList": {
-        "code": "pro1",
-        "name": "Prodotto 1ok",
-        "price": 25,
-        "amount": 1,
-        "category": null
-      },
-      "promotionErrorCode": 0,
-      "sellerId": 0
+        },
+        "categoryId": null,
+        "kindCharge": 0,
+        "periodId": null,
+        "flags": {
+          "flags": 1048576,
+          "canceled": false,
+          "winPromo": false,
+          "winDiscount": false
+        },
+        "productList": {
+          "code": "pro1",
+          "name": "Prodotto 1ok",
+          "price": 25,
+          "amount": 1,
+          "category": null
+        },
+        "promotionErrorCode": 0,
+        "sellerId": 0
+      }
     },
     {
-      "id": 1794424,
-      "campaign": 362,
-      "terminal": 5049,
-      "shopId": 4047,
-      "card": 3,
-      "cardOld": 0,
-      "kind": 2,
-      "customer": 15841,
-      "customerName": "Manola",
-      "customerSurname": "Tani",
-      "operatorId": 0,
-      "dateTime": "2018-04-04T13:43:20.948+02:00",
-      "localTime": "2018-04-04T10:43:20.892+02:00",
-      "chargedCredits": 0,
-      "chargedGiftCredits": 0,
-      "chargedPoints": 0,
-      "chargedPointsStatus": 0,
-      "dischargedCredits": 0,
-      "dischargedGiftCredits": 0,
-      "dischargedPoints": 0,
-      "dischargedPointsStatus": 0,
-      "currencyConversion": 0,
-      "profitMoneyLocal": 0,
-      "totalMoney": 1,
-      "totalBenefits": 0,
-      "discount": 0,
-      "paymentMethodId": 0,
-      "shop": {
-        "id": 4047,
-        "name": "AppleBee Firenze",
-        "campaignIDByDefault": 362,
-        "currencyID": 3,
-        "currencySymbol": "€",
-        "behaviorFlags": {
-          "flags": 132481,
-          "isEnabled": true,
-          "useOperator": false
-        },
-        "campaigns": {
-          "shopByCampaignNode": {
-            "campaignId": 362,
-            "qualificationAvg": 0
+      "movement": {
+        "id": 1794424,
+        "campaign": 362,
+        "terminal": 5049,
+        "shopId": 4047,
+        "card": 3,
+        "cardOld": 0,
+        "kind": 2,
+        "customer": 15841,
+        "customerName": "Manola",
+        "customerSurname": "Tani",
+        "operatorId": 0,
+        "dateTime": "2018-04-04T13:43:20.948+02:00",
+        "localTime": "2018-04-04T10:43:20.892+02:00",
+        "chargedCredits": 0,
+        "chargedGiftCredits": 0,
+        "chargedPoints": 0,
+        "chargedPointsStatus": 0,
+        "dischargedCredits": 0,
+        "dischargedGiftCredits": 0,
+        "dischargedPoints": 0,
+        "dischargedPointsStatus": 0,
+        "currencyConversion": 0,
+        "profitMoneyLocal": 0,
+        "totalMoney": 1,
+        "totalBenefits": 0,
+        "discount": 0,
+        "paymentMethodId": 0,
+        "shop": {
+          "id": 4047,
+          "name": "AppleBee Firenze",
+          "campaignIDByDefault": 362,
+          "currencyID": 3,
+          "currencySymbol": "€",
+          "behaviorFlags": {
+            "flags": 132481,
+            "isEnabled": true,
+            "useOperator": false
+          },
+          "campaigns": {
+            "shopByCampaignNode": {
+              "campaignId": 362,
+              "qualificationAvg": 0
+            }
           }
-        }
-      },
-      "categoryId": null,
-      "kindCharge": 0,
-      "periodId": null,
-      "flags": {
-        "flags": 1048576,
-        "canceled": false,
-        "winPromo": false,
-        "winDiscount": false
-      },
-      "promotionErrorCode": 0,
-      "sellerId": 0
+        },
+        "categoryId": null,
+        "kindCharge": 0,
+        "periodId": null,
+        "flags": {
+          "flags": 1048576,
+          "canceled": false,
+          "winPromo": false,
+          "winDiscount": false
+        },
+        "promotionErrorCode": 0,
+        "sellerId": 0
+      }
     },
     {
-      "id": 1794425,
-      "campaign": 362,
-      "terminal": 5049,
-      "shopId": 4047,
-      "card": 3,
-      "cardOld": 0,
-      "kind": 2,
-      "customer": 15841,
-      "customerName": "Manola",
-      "customerSurname": "Tani",
-      "operatorId": 0,
-      "dateTime": "2018-04-04T13:51:42.594+02:00",
-      "localTime": "2018-04-04T10:51:42.580+02:00",
-      "chargedCredits": 0,
-      "chargedGiftCredits": 0,
-      "chargedPoints": 0,
-      "chargedPointsStatus": 0,
-      "dischargedCredits": 0,
-      "dischargedGiftCredits": 0,
-      "dischargedPoints": 0,
-      "dischargedPointsStatus": 0,
-      "currencyConversion": 0,
-      "profitMoneyLocal": 0,
-      "totalMoney": 5,
-      "totalBenefits": 0,
-      "discount": 0,
-      "paymentMethodId": 0,
-      "shop": {
-        "id": 4047,
-        "name": "AppleBee Firenze",
-        "campaignIDByDefault": 362,
-        "currencyID": 3,
-        "currencySymbol": "€",
-        "behaviorFlags": {
-          "flags": 132481,
-          "isEnabled": true,
-          "useOperator": false
-        },
-        "campaigns": {
-          "shopByCampaignNode": {
-            "campaignId": 362,
-            "qualificationAvg": 0
+      "movement": {
+        "id": 1794425,
+        "campaign": 362,
+        "terminal": 5049,
+        "shopId": 4047,
+        "card": 3,
+        "cardOld": 0,
+        "kind": 2,
+        "customer": 15841,
+        "customerName": "Manola",
+        "customerSurname": "Tani",
+        "operatorId": 0,
+        "dateTime": "2018-04-04T13:51:42.594+02:00",
+        "localTime": "2018-04-04T10:51:42.580+02:00",
+        "chargedCredits": 0,
+        "chargedGiftCredits": 0,
+        "chargedPoints": 0,
+        "chargedPointsStatus": 0,
+        "dischargedCredits": 0,
+        "dischargedGiftCredits": 0,
+        "dischargedPoints": 0,
+        "dischargedPointsStatus": 0,
+        "currencyConversion": 0,
+        "profitMoneyLocal": 0,
+        "totalMoney": 5,
+        "totalBenefits": 0,
+        "discount": 0,
+        "paymentMethodId": 0,
+        "shop": {
+          "id": 4047,
+          "name": "AppleBee Firenze",
+          "campaignIDByDefault": 362,
+          "currencyID": 3,
+          "currencySymbol": "€",
+          "behaviorFlags": {
+            "flags": 132481,
+            "isEnabled": true,
+            "useOperator": false
+          },
+          "campaigns": {
+            "shopByCampaignNode": {
+              "campaignId": 362,
+              "qualificationAvg": 0
+            }
           }
-        }
-      },
-      "categoryId": null,
-      "kindCharge": 0,
-      "periodId": null,
-      "flags": {
-        "flags": 1048579,
-        "canceled": true,
-        "winPromo": true,
-        "winDiscount": false
-      },
-      "promotionErrorCode": 0,
-      "sellerId": 0
+        },
+        "categoryId": null,
+        "kindCharge": 0,
+        "periodId": null,
+        "flags": {
+          "flags": 1048579,
+          "canceled": true,
+          "winPromo": true,
+          "winDiscount": false
+        },
+        "promotionErrorCode": 0,
+        "sellerId": 0
+      }
     },
     {
-      "id": 1794426,
-      "campaign": 362,
-      "terminal": 5049,
-      "shopId": 4047,
-      "card": 3,
-      "cardOld": 0,
-      "kind": 2,
-      "customer": 15841,
-      "customerName": "Manola",
-      "customerSurname": "Tani",
-      "operatorId": 0,
-      "dateTime": "2018-04-04T14:02:46.173+02:00",
-      "localTime": "2018-04-04T11:02:46.167+02:00",
-      "chargedCredits": 0,
-      "chargedGiftCredits": 0,
-      "chargedPoints": 0,
-      "chargedPointsStatus": 0,
-      "dischargedCredits": 0,
-      "dischargedGiftCredits": 0,
-      "dischargedPoints": 0,
-      "dischargedPointsStatus": 0,
-      "currencyConversion": 0,
-      "profitMoneyLocal": 0,
-      "totalMoney": 10,
-      "totalBenefits": 0.5,
-      "discount": 0,
-      "paymentMethodId": 0,
-      "shop": {
-        "id": 4047,
-        "name": "AppleBee Firenze",
-        "campaignIDByDefault": 362,
-        "currencyID": 3,
-        "currencySymbol": "€",
-        "behaviorFlags": {
-          "flags": 132481,
-          "isEnabled": true,
-          "useOperator": false
-        },
-        "campaigns": {
-          "shopByCampaignNode": {
-            "campaignId": 362,
-            "qualificationAvg": 0
+      "movement": {
+        "id": 1794426,
+        "campaign": 362,
+        "terminal": 5049,
+        "shopId": 4047,
+        "card": 3,
+        "cardOld": 0,
+        "kind": 2,
+        "customer": 15841,
+        "customerName": "Manola",
+        "customerSurname": "Tani",
+        "operatorId": 0,
+        "dateTime": "2018-04-04T14:02:46.173+02:00",
+        "localTime": "2018-04-04T11:02:46.167+02:00",
+        "chargedCredits": 0,
+        "chargedGiftCredits": 0,
+        "chargedPoints": 0,
+        "chargedPointsStatus": 0,
+        "dischargedCredits": 0,
+        "dischargedGiftCredits": 0,
+        "dischargedPoints": 0,
+        "dischargedPointsStatus": 0,
+        "currencyConversion": 0,
+        "profitMoneyLocal": 0,
+        "totalMoney": 10,
+        "totalBenefits": 0.5,
+        "discount": 0,
+        "paymentMethodId": 0,
+        "shop": {
+          "id": 4047,
+          "name": "AppleBee Firenze",
+          "campaignIDByDefault": 362,
+          "currencyID": 3,
+          "currencySymbol": "€",
+          "behaviorFlags": {
+            "flags": 132481,
+            "isEnabled": true,
+            "useOperator": false
+          },
+          "campaigns": {
+            "shopByCampaignNode": {
+              "campaignId": 362,
+              "qualificationAvg": 0
+            }
           }
-        }
-      },
-      "categoryId": null,
-      "kindCharge": 0,
-      "periodId": null,
-      "flags": {
-        "flags": 1048578,
-        "canceled": false,
-        "winPromo": true,
-        "winDiscount": false
-      },
-      "promotionErrorCode": 0,
-      "sellerId": 0
+        },
+        "categoryId": null,
+        "kindCharge": 0,
+        "periodId": null,
+        "flags": {
+          "flags": 1048578,
+          "canceled": false,
+          "winPromo": true,
+          "winDiscount": false
+        },
+        "promotionErrorCode": 0,
+        "sellerId": 0
+      }
     }
   ]
 }
