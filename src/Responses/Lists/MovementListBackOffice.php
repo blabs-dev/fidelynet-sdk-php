@@ -16,7 +16,7 @@ class MovementListBackOffice extends \Spatie\DataTransferObject\DataTransferObje
     {
         return new self([
             'count'     => $response->recordsTotal,
-            'movements' => array_map(fn ($movement) => new MovementBackOfficeData($movement), $response->data),
+            'movements' => array_map(fn ($movement) => new MovementBackOfficeData($movement['movement']), $response->data),
         ]);
     }
 }
