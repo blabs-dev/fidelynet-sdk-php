@@ -13,6 +13,7 @@ class MovementBackOfficeData extends DataTransferObject
     public int $card;
     public int $cardOld;
     public int $kind;
+    public ?string $kindDescription;
     public int $customer;
     public string $customerName;
     public string $customerSurname;
