@@ -21,6 +21,7 @@ class MovementListBackOffice extends \Spatie\DataTransferObject\DataTransferObje
                 function ($movement) {
                     $movementData = new MovementBackOfficeData($movement['movement']);
                     $movementData->kindDescription = CardMovementConstants::KIND_IDS_MAP[$movementData->kind];
+
                     return $movementData;
                 },
                 $response->data
