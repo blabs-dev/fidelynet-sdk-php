@@ -36,10 +36,10 @@ class MovementBackOfficeData extends DataTransferObject
     public int $paymentMethodId;
     public $shop;
     public $categoryId;
-    public int $kindCharge;
+    public ?int $kindCharge;
     public $periodId;
     public $flags;
     public $productList;
-    public int $promotionErrorCode;
-    public int $sellerId;
+    public ?int $promotionErrorCode;
+    public ?int $sellerId;
 }
