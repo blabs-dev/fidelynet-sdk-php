@@ -5,6 +5,7 @@ namespace Blabs\FidelyNet\Constants;
 final class ApiServices
 {
     const TERMINAL = 'terminal';
+    const TERMINAL_MOBILE = 'terminal-mobile';
     const BACKOFFICE = 'backoffice';
     const CUSTOMER = 'customer';
 
@@ -12,11 +13,13 @@ final class ApiServices
         self::TERMINAL   => 'https://service.fidelynet.it/webpos/services/webposservice.php',
         self::BACKOFFICE => 'https://service.fidelynet.it/webpos/services/webposservice.php',
         self::CUSTOMER   => 'https://service.fidelynet.it/webpos/services/customerservice.php',
+        self::TERMINAL_MOBILE   => 'https://service.fidelynet.it/webposfil/services/mobileservice.php',
     ];
 
     const SUPPORTED_ACTIONS = [
         self::TERMINAL => [
             ApiActions::GET_CAMPAIGN,
+            ApiActions::TERM_CHECK_CARD,
         ],
         self::BACKOFFICE => [
             ApiActions::BO_MODIFY_CUSTOMER,

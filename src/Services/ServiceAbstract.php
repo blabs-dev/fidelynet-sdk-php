@@ -48,13 +48,15 @@ abstract class ServiceAbstract
      *
      * @return ApiResponse
      */
-    public function callAction(string $action, array $parameters): ApiResponse
+    public function callAction(string $action, array $parameters, string $entryPointOverride = ''): ApiResponse
     {
         if (!in_array($action, ApiServices::SUPPORTED_ACTIONS[$this->service_type])) {
             throw new FidelyNetServiceException(Messages::UNSUPPORTED_ACTION);
         }
 
-        return $this->client->actionRequest($action, $parameters);
+        return empty($entryPointOverride) ?
+            $this->client->actionRequest($action, $parameters)
+            : $this->client->actionRequest($action, $parameters, $entryPointOverride);
     }
 
     /**

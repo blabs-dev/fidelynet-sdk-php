@@ -17,7 +17,7 @@ final class ApiDemoData
     const CUSTOMER_PASSWORD = '12345678';
     const CUSTOMER_ID = '1';
     const CUSTOMER_CARD_NUMBER = '1';
-    const CUSTOMER_CARD_CODE = '1414141424141';
+    const CUSTOMER_CARD_CODE = '53424185296134';
 
     const CAMPAIGN_ID = 1001;
     const CATEGORY_ID = 1001;

@@ -310,11 +310,14 @@ final class Client
      *
      * @return ApiResponse
      */
-    public function actionRequest(string $action, array $parameters): ApiResponse
+    public function actionRequest(string $action, array $parameters, string $overrideEntrypoint = ''): ApiResponse
     {
         $this->requestCount++;
 
         $parameters = $this->prepareRequest($action, $parameters);
+
+        if (empty($overrideEntrypoint))
+            $this->useEntryPoint($overrideEntrypoint);
 
         try {
             $options = [
@@ -403,5 +406,11 @@ final class Client
         // @codeCoverageIgnoreStart
         return new FidelyNetServiceException(Constants\Messages::UNKNOWN_ERROR);
         // @codeCoverageIgnoreEnd
+    }
+
+    public function useEntryPoint(string $entryPoint): self
+    {
+        $this->baseURI = $entryPoint;
+        return $this;
     }
 }
