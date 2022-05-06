@@ -40,4 +40,7 @@ final class ApiServices
     const ACTIONS_THAT_USES_SESSION_PARAMETER = [
         ApiActions::BO_GET_DYNAMIC_FIELDS,
     ];
+    const ACTIONS_THAT_DOES_NOT_USE_SESSION_PARAMETER = [
+        ApiActions::TERM_CHECK_CARD
+    ];
 }
