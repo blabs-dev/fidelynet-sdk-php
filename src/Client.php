@@ -316,7 +316,7 @@ final class Client
 
         $parameters = $this->prepareRequest($action, $parameters);
 
-        if (empty($overrideEntrypoint)) {
+        if (!empty($overrideEntrypoint)) {
             $this->useEntryPoint($overrideEntrypoint);
         }
 
@@ -325,7 +325,7 @@ final class Client
                 'headers'   => $this->getHeaders(),
                 'multipart' => $this->convertToMultipart($parameters),
             ];
-            $response = $this->http_client->post('', $options);
+            $response = $this->http_client->post($this->baseURI, $options);
         } catch (Exception $exception) {
             throw $this->determineClientException($exception);
         }
