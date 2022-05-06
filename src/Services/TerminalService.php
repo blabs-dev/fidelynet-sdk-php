@@ -42,7 +42,7 @@ final class TerminalService extends ServiceAbstract
         return new GetCampaignResponseData($api_response->data);
     }
 
-    public function checkCard(int $campaignId, string $cardIdentifier)
+    public function checkCard(int $campaignId, string $cardIdentifier, string $username, string $password)
     {
         $api_response = $this
             ->callAction(
@@ -50,6 +50,8 @@ final class TerminalService extends ServiceAbstract
                 [
                     'campaignid' => $campaignId,
                     'card'       => $cardIdentifier,
+                    'username'   => $username,
+                    'password'   => $password,
                     // 'autounlock' => 'N', // ??
                 ],
                 ApiServices::ENTRYPOINTS[ApiServices::TERMINAL_MOBILE]

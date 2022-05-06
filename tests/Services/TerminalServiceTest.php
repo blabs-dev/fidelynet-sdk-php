@@ -55,7 +55,12 @@ class TerminalServiceTest extends ServiceTestCase
         /** @var TerminalService $service */
         $service = ServiceFactory::create(ApiServices::TERMINAL, $factory_options);
 
-        $check_card = $service->checkCard(ApiDemoData::CAMPAIGN_ID, ApiDemoData::CUSTOMER_CARD_CODE);
+        $check_card = $service->checkCard(
+            ApiDemoData::CAMPAIGN_ID,
+            ApiDemoData::CUSTOMER_CARD_CODE,
+            ApiDemoData::TERMINAL_USERNAME,
+            ApiDemoData::TERMINAL_PASSWORD,
+        );
 
         $this->assertEquals(CardInfoResponseData::class, get_class($check_card));
         $this->assertEquals(437948, $check_card->id);
