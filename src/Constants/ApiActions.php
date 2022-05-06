@@ -22,4 +22,6 @@ final class ApiActions
     const BO_GET_MOVEMENT_LIST = 'getmovementlistbo';
     const BO_GET_SHOP_CATEGORIES = 'getshopcategoriesbo';
     const BO_GET_SHOPS = 'getshopsbo';
+
+    const TERM_CHECK_CARD = 'checkcard';
 }

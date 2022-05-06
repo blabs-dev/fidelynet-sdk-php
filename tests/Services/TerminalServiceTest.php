@@ -5,8 +5,10 @@ namespace Blabs\FidelyNet\Test\Services;
 use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiDemoData;
 use Blabs\FidelyNet\Constants\ApiServices;
+use Blabs\FidelyNet\Constants\FactoryOptions;
 use Blabs\FidelyNet\Constants\Messages;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
+use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
 use Blabs\FidelyNet\ServiceFactory;
 use Blabs\FidelyNet\Services\TerminalService;
 use Blabs\FidelyNet\Test\ServiceTestCase;
@@ -40,5 +42,24 @@ class TerminalServiceTest extends ServiceTestCase
         $service = ServiceFactory::create(ApiServices::TERMINAL, $factory_options);
         $campaign_info = $service->getCampaign(ApiDemoData::CAMPAIGN_ID);
         $this->assertEquals(ApiDemoData::CAMPAIGN_ID, $campaign_info->campaign->id);
+    }
+
+    public function test_check_card_action()
+    {
+        $response_bodies_queue = [
+            $this->getFakeResponse(ApiServices::TERMINAL, ApiActions::TERM_CHECK_CARD),
+        ];
+        $demo_options = $this->getTerminalServiceDemoFactoryOptions();
+        $factory_options = $this->addClientMockToFactoryOptions($demo_options, $response_bodies_queue);
+        $factory_options[FactoryOptions::START_SESSION] = false;
+        /** @var TerminalService $service */
+        $service = ServiceFactory::create(ApiServices::TERMINAL, $factory_options);
+
+        $check_card = $service->checkCard(ApiDemoData::CAMPAIGN_ID, ApiDemoData::CUSTOMER_CARD_CODE);
+
+        $this->assertEquals(CardInfoResponseData::class, get_class($check_card));
+        $this->assertEquals(437948, $check_card->id);
+        $this->assertEquals(53424185296134, $check_card->fidelyCode);
+        $this->assertEquals('1', $check_card->card);
     }
 }
