@@ -60,6 +60,6 @@ class TerminalServiceTest extends ServiceTestCase
         $this->assertEquals(CardInfoResponseData::class, get_class($check_card));
         $this->assertEquals(437948, $check_card->id);
         $this->assertEquals(53424185296134, $check_card->fidelyCode);
-        $this->assertEquals("1", $check_card->card);
+        $this->assertEquals('1', $check_card->card);
     }
 }

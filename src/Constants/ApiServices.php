@@ -10,9 +10,9 @@ final class ApiServices
     const CUSTOMER = 'customer';
 
     const ENTRYPOINTS = [
-        self::TERMINAL   => 'https://service.fidelynet.it/webpos/services/webposservice.php',
-        self::BACKOFFICE => 'https://service.fidelynet.it/webpos/services/webposservice.php',
-        self::CUSTOMER   => 'https://service.fidelynet.it/webpos/services/customerservice.php',
+        self::TERMINAL          => 'https://service.fidelynet.it/webpos/services/webposservice.php',
+        self::BACKOFFICE        => 'https://service.fidelynet.it/webpos/services/webposservice.php',
+        self::CUSTOMER          => 'https://service.fidelynet.it/webpos/services/customerservice.php',
         self::TERMINAL_MOBILE   => 'https://service.fidelynet.it/webposfil/services/mobileservice.php',
     ];
 

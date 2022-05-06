@@ -316,8 +316,9 @@ final class Client
 
         $parameters = $this->prepareRequest($action, $parameters);
 
-        if (empty($overrideEntrypoint))
+        if (empty($overrideEntrypoint)) {
             $this->useEntryPoint($overrideEntrypoint);
+        }
 
         try {
             $options = [
@@ -411,6 +412,7 @@ final class Client
     public function useEntryPoint(string $entryPoint): self
     {
         $this->baseURI = $entryPoint;
+
         return $this;
     }
 }

@@ -6,7 +6,6 @@ use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
-use Blabs\FidelyNet\Responses\DataModels\CustomerData;
 use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
 use Blabs\FidelyNet\Responses\ResponseData\GetCampaignResponseData;
 use GuzzleHttp\Exception\GuzzleException;
@@ -47,14 +46,15 @@ final class TerminalService extends ServiceAbstract
     {
         $api_response = $this
             ->callAction(
-            ApiActions::TERM_CHECK_CARD,
+                ApiActions::TERM_CHECK_CARD,
                 [
                     'campaignid' => $campaignId,
-                    'card' => $cardIdentifier,
+                    'card'       => $cardIdentifier,
                     // 'autounlock' => 'N', // ??
                 ],
                 ApiServices::ENTRYPOINTS[ApiServices::TERMINAL_MOBILE]
             );
+
         return new CardInfoResponseData($api_response->data['customer']);
     }
 }
