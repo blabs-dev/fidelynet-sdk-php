@@ -101,4 +101,15 @@ final class BackofficeService extends ServiceAbstract
             $response->data['shopCategories']
         );
     }
+
+    public function modifyUsernameAndPassword(mixed $customerId, string $username, string $password): CardInfoResponseData
+    {
+        $response = $this->callAction(ApiActions::BO_MODIFY_USERNAME_AND_PASSWORD, [
+            'customerid' => $customerId,
+            'username'   => $username,
+            'password'   => $password,
+        ]);
+
+        return new CardInfoResponseData($response->data['customer']);
+    }
 }

@@ -22,22 +22,22 @@ final class CardInfoResponseData extends DataTransferObject
     public int $fidelyCode;
 
     /** @var int */
-    public int $parentCustomerId;
+    public ?int $parentCustomerId;
 
     /** @var int */
-    public int $mlmCustomerId;
+    public ?int $mlmCustomerId;
 
     /** @var int */
-    public int $zoneId;
+    public ?int $zoneId;
 
     /** @var int */
-    public int $zoneForeignId;
+    public ?int $zoneForeignId;
 
     /** @var int */
-    public int $customer_area_status;
+    public ?int $customer_area_status;
 
     /** @var int */
-    public int $totalExchangedPrizes;
+    public ?int $totalExchangedPrizes;
 
     /** @var mixed */
     public mixed $personalInfo;
