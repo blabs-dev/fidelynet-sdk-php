@@ -133,6 +133,32 @@ class BackofficeServiceTest extends ServiceTestCase
         $backoffice_service->getCardInfo(ApiDemoData::CUSTOMER_CARD_NUMBER);
     }
 
+    public function test_modify_username_and_password()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $responses = [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_MODIFY_USERNAME_AND_PASSWORD),
+        ];
+        /** @var BackofficeService $backoffice_service */
+        $backoffice_service = ServiceFactory::create(
+            ApiServices::BACKOFFICE,
+            $this->addClientMockToFactoryOptions(
+                $this->getBackofficeServiceDemoFactoryOptions(),
+                $responses
+            )
+        );
+
+        $testCustomerId = 439403;
+        $testUsername = 'testblabs';
+        $testPassword = '123456';
+        $result = $backoffice_service->modifyUsernameAndPassword($testCustomerId, $testUsername, $testPassword);
+        $this->assertEquals($testCustomerId, $result->id);
+    }
+
     public function test_get_dynamic_fields()
     {
         if (!$this->mock_client_enabled) {
@@ -238,7 +264,7 @@ class BackofficeServiceTest extends ServiceTestCase
         $this->assertEquals(1292, $firstChild->fatherId);
     }
 
-    public function test_get_shops_and_networks()
+    public function test_get_shops_and_networks()/**/
     {
         $this->markTestSkipped('to do');
         if (!$this->mock_client_enabled) {
