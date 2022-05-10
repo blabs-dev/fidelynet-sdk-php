@@ -106,8 +106,8 @@ final class BackofficeService extends ServiceAbstract
     {
         $response = $this->callAction(ApiActions::BO_MODIFY_USERNAME_AND_PASSWORD, [
             'customerid' => $customerId,
-            'username' => $username,
-            'password' => $password,
+            'username'   => $username,
+            'password'   => $password,
         ]);
 
         return new CardInfoResponseData($response->data['customer']);
