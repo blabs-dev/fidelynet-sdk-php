@@ -9,9 +9,9 @@ final class ApiDemoData
     const BACKOFFICE_USER = 'OperatoreBO';
     const BACKOFFICE_PASSWORD = '123456';
 
-    const TERMINAL_USERNAME = 'wsInReteVelletri';
+    const TERMINAL_USERNAME = 'UtenteTerminale';
     const TERMINAL_PASSWORD = self::BACKOFFICE_PASSWORD;
-    const TERMINAL_SERIAL = '6090609301';
+    const TERMINAL_SERIAL = '1234567890';
 
     const CUSTOMER_USERNAME = '1';
     const CUSTOMER_PASSWORD = '12345678';
