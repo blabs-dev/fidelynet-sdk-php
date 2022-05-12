@@ -112,4 +112,18 @@ final class BackofficeService extends ServiceAbstract
 
         return new CardInfoResponseData($response->data['customer']);
     }
+
+    public function modifyPinCode(string $cardNumber, int $customerId, string $newPinCode)
+    {
+        $response = $this->callAction(ApiActions::BO_MODIFY_USERNAME_AND_PASSWORD, [
+            'customerid'    => $customerId,
+            'card'          => $cardNumber,
+            'pincode'       => $newPinCode,
+            'mobile'        => '',
+            'email'         => '',
+            'identitycard'  => '',
+        ]);
+
+        return new CustomerInfoData($response->data['customer']);
+    }
 }

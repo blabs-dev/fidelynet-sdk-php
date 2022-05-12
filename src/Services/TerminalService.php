@@ -6,6 +6,7 @@ use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
+use Blabs\FidelyNet\Responses\DataModels\CategoryData;
 use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
 use Blabs\FidelyNet\Responses\ResponseData\GetCampaignResponseData;
 use GuzzleHttp\Exception\GuzzleException;
@@ -33,7 +34,7 @@ final class TerminalService extends ServiceAbstract
     public function getCampaign(string $campaignId): GetCampaignResponseData
     {
         $api_response = $this->callAction(
-            ApiActions::GET_CAMPAIGN,
+            ApiActions::TERM_GET_CAMPAIGN,
             [
                 'campaignid' => $campaignId,
             ]
@@ -58,5 +59,25 @@ final class TerminalService extends ServiceAbstract
             );
 
         return new CardInfoResponseData($api_response->data['customer']);
+    }
+
+    /**
+     * @throws UnknownProperties
+     * @throws FidelyNetSessionException
+     * @throws FidelyNetServiceException
+     * @throws GuzzleException
+     */
+    public function getCategories($resultsOffset = 0, $maxResults = 1000)
+    {
+        $api_response = $this->callAction(ApiActions::TERM_GET_CATEGORIES, [
+            'initlimit' => $resultsOffset,
+            'rowcount'  => $maxResults,
+        ]);
+        $categories = $api_response->data['category'];
+
+        return array_map(
+            fn (array $category_attributes) => new CategoryData($category_attributes),
+            $categories
+        );
     }
 }

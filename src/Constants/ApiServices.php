@@ -18,7 +18,8 @@ final class ApiServices
 
     const SUPPORTED_ACTIONS = [
         self::TERMINAL => [
-            ApiActions::GET_CAMPAIGN,
+            ApiActions::TERM_GET_CAMPAIGN,
+            ApiActions::TERM_GET_CATEGORIES,
             ApiActions::TERM_CHECK_CARD,
         ],
         self::BACKOFFICE => [

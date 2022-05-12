@@ -11,9 +11,9 @@ final class CustomerInfoData extends DataTransferObject
      */
     public int $id;
     /**
-     * @var int
+     * @var int|null
      */
-    public int $campaignId;
+    public ?int $campaignId;
     /**
      * @var int
      */
@@ -27,31 +27,31 @@ final class CustomerInfoData extends DataTransferObject
      */
     public int $fidelyCode;
     /**
-     * @var int
+     * @var int|null
      */
-    public int $parentCustomerId;
+    public ?int $parentCustomerId;
     /**
-     * @var int
+     * @var int|null
      */
-    public int $mlmCustomerId;
+    public ?int $mlmCustomerId;
     /**
-     * @var int
+     * @var int|null
      */
-    public int $zoneId;
+    public ?int $zoneId;
     /**
-     * @var int
+     * @var int|null
      */
-    public int $zoneForeignId;
+    public ?int $zoneForeignId;
     /**
      * @var int
      */
     public int $customer_area_status;
     /**
-     * @var int
+     * @var int|null
      */
-    public int $totalExchangedPrizes;
+    public ?int $totalExchangedPrizes;
     /**
-     * @var PersonalInfoData
+     * @var PersonalInfoData|null
      */
-    public PersonalInfoData $personalInfo;
+    public ?PersonalInfoData $personalInfo;
 }
