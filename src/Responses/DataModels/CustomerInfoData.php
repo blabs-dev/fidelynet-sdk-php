@@ -43,9 +43,9 @@ final class CustomerInfoData extends DataTransferObject
      */
     public ?int $zoneForeignId;
     /**
-     * @var int
+     * @var int|null
      */
-    public int $customer_area_status;
+    public ?int $customer_area_status;
     /**
      * @var int|null
      */
