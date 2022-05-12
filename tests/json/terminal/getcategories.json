@@ -1,0 +1,117 @@
+{
+  "returncode": 0,
+  "data": {
+    "answerCode": 0,
+    "category": [
+      {
+        "id": 1703,
+        "shopId": 6093,
+        "weightPointValueMoney": 5,
+        "weightPointValuePoints": 5,
+        "weightChargeCreditMoney": 0,
+        "weightChargeCreditPoints": 0,
+        "weightChargePointMoney": 1,
+        "weightChargePointPoints": 0.05,
+        "weightDischargeCreditMoney": 0,
+        "weightDischargeCreditPoints": 0,
+        "weightExchangePrizePoints": 5,
+        "weightExchangePrizeMoney": 5,
+        "pointsInActivation": 0,
+        "initialCharge": 0,
+        "currencyId": 0,
+        "currencySymbol": "",
+        "minLimitDischargePoint": 0,
+        "weightPointValueMoneyCashBack": 0,
+        "weightPointValuePointsCashBack": 0,
+        "code": 205,
+        "campaign": 1302,
+        "name": "Italia va in rete - Virtual Card",
+        "flags": {
+          "flags": 2056,
+          "isGIFT": false,
+          "deliverPointsInChargeCredits": false,
+          "deliverPointsInDischargeCredits": false,
+          "deliverPointsInSale": true,
+          "deliverPointsInActivation": false,
+          "showPointsInActivationTicket": false,
+          "showMoney4PointsInTicket": false,
+          "useExpirationCard": false,
+          "customerOnlyAllowInActivationShop": false,
+          "registerActivationPointsInCampaign": false,
+          "onlyOneUse": false,
+          "sellerCategory": false,
+          "checkMinimalLimitDischargePoints": false,
+          "checkCanNotTransaction": false,
+          "dealerCategory": false,
+          "deliverPointsInCashback": false
+        },
+        "urlImage": ""
+      },
+      {
+        "id": 1702,
+        "shopId": 6093,
+        "weightPointValueMoney": 5,
+        "weightPointValuePoints": 5,
+        "weightChargeCreditMoney": 0,
+        "weightChargeCreditPoints": 0,
+        "weightChargePointMoney": 1,
+        "weightChargePointPoints": 0.05,
+        "weightDischargeCreditMoney": 0,
+        "weightDischargeCreditPoints": 0,
+        "weightExchangePrizePoints": 5,
+        "weightExchangePrizeMoney": 5,
+        "pointsInActivation": 0,
+        "initialCharge": 0,
+        "currencyId": 0,
+        "currencySymbol": "",
+        "minLimitDischargePoint": 0,
+        "weightPointValueMoneyCashBack": 0,
+        "weightPointValuePointsCashBack": 0,
+        "code": 204,
+        "campaign": 1302,
+        "name": "Italia va in rete Card",
+        "flags": {
+          "flags": 8,
+          "isGIFT": false,
+          "deliverPointsInChargeCredits": false,
+          "deliverPointsInDischargeCredits": false,
+          "deliverPointsInSale": true,
+          "deliverPointsInActivation": false,
+          "showPointsInActivationTicket": false,
+          "showMoney4PointsInTicket": false,
+          "useExpirationCard": false,
+          "customerOnlyAllowInActivationShop": false,
+          "registerActivationPointsInCampaign": false,
+          "onlyOneUse": false,
+          "sellerCategory": false,
+          "checkMinimalLimitDischargePoints": false,
+          "checkCanNotTransaction": false,
+          "dealerCategory": false,
+          "deliverPointsInCashback": false
+        },
+        "urlImage": ""
+      }
+    ],
+    "pagination": {
+      "initLimit": 0,
+      "rowCount": 1000,
+      "recordsTotal": 2,
+      "actualPage": 1,
+      "totalPages": 1
+    }
+  },
+  "data2": {
+    "sessionID": "a1a279a6-1dc1-4864-adfd-e64118a39930",
+    "pagination": {
+      "initLimit": "0",
+      "rowCount": "1000",
+      "orders": {
+        "criteria": "",
+        "columnName": ""
+      },
+      "recordsTotal": "",
+      "actualPage": "",
+      "totalPages": ""
+    }
+  }
+}

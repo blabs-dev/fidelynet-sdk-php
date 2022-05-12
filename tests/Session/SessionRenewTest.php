@@ -30,7 +30,7 @@ class SessionRenewTest extends ServiceTestCase
                 // Response di login per rinnovo sessione
                 new Response(200, [], $this->getFakeLoginResponse(ApiServices::TERMINAL)),
                 // Response corretta
-                new Response(200, [], $this->getFakeResponse(ApiServices::TERMINAL, ApiActions::GET_CAMPAIGN)),
+                new Response(200, [], $this->getFakeResponse(ApiServices::TERMINAL, ApiActions::TERM_GET_CAMPAIGN)),
             ]
         );
         $handlerStack = HandlerStack::create($mock);

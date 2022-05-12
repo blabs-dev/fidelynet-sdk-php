@@ -5,7 +5,6 @@ namespace Blabs\FidelyNet\Constants;
 final class ApiActions
 {
     const LOGIN = 'login';
-    const GET_CAMPAIGN = 'getcampaign';
     const GET_MOVEMENTS = 'getmovements';
 
     const SYNCHRO = 'synchro';
@@ -24,5 +23,7 @@ final class ApiActions
     const BO_GET_SHOP_CATEGORIES = 'getshopcategoriesbo';
     const BO_GET_SHOPS = 'getshopsbo';
 
+    const TERM_GET_CAMPAIGN = 'getcampaign';
+    const TERM_GET_CATEGORIES = 'getcategories';
     const TERM_CHECK_CARD = 'checkcard';
 }

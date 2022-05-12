@@ -8,6 +8,7 @@ use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Constants\FactoryOptions;
 use Blabs\FidelyNet\Constants\Messages;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
+use Blabs\FidelyNet\Responses\DataModels\CategoryData;
 use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
 use Blabs\FidelyNet\ServiceFactory;
 use Blabs\FidelyNet\Services\TerminalService;
@@ -32,7 +33,7 @@ class TerminalServiceTest extends ServiceTestCase
     {
         $response_bodies_queue = [
             $this->getFakeLoginResponse(ApiServices::TERMINAL),
-            $this->getFakeResponse(ApiServices::TERMINAL, ApiActions::GET_CAMPAIGN),
+            $this->getFakeResponse(ApiServices::TERMINAL, ApiActions::TERM_GET_CAMPAIGN),
         ];
 
         $demo_options = $this->getTerminalServiceDemoFactoryOptions();
@@ -66,5 +67,26 @@ class TerminalServiceTest extends ServiceTestCase
         $this->assertEquals(437948, $check_card->id);
         $this->assertEquals(53424185296134, $check_card->fidelyCode);
         $this->assertEquals('1', $check_card->card);
+    }
+
+    public function test_get_categories_action()
+    {
+        $this->mock_client_enabled = false;
+        $response_bodies_queue = [
+            $this->getFakeLoginResponse(ApiServices::TERMINAL),
+            $this->getFakeResponse(ApiServices::TERMINAL, ApiActions::TERM_GET_CATEGORIES),
+        ];
+        $demo_options = $this->getTerminalServiceDemoFactoryOptions();
+        $factory_options = $this->addClientMockToFactoryOptions($demo_options, $response_bodies_queue);
+        /** @var TerminalService $service */
+        $service = ServiceFactory::create(ApiServices::TERMINAL, $factory_options);
+
+        $categories = $service->getCategories();
+
+        $this->assertCount(2, $categories);
+        foreach ($categories as $category)
+        {
+            $this->assertEquals(CategoryData::class, get_class($category));
+        }
     }
 }
