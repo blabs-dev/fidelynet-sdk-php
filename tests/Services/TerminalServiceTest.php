@@ -18,6 +18,10 @@ class TerminalServiceTest extends ServiceTestCase
 {
     public function test_unsupported_action_call_throw_an_exception()
     {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
         $factory_options = $this->addLoginClientMockToFactoryOptions(
             $this->getTerminalServiceDemoFactoryOptions(),
             ApiServices::TERMINAL
@@ -31,6 +35,10 @@ class TerminalServiceTest extends ServiceTestCase
 
     public function test_get_campaign_action()
     {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
         $response_bodies_queue = [
             $this->getFakeLoginResponse(ApiServices::TERMINAL),
             $this->getFakeResponse(ApiServices::TERMINAL, ApiActions::TERM_GET_CAMPAIGN),
@@ -47,6 +55,10 @@ class TerminalServiceTest extends ServiceTestCase
 
     public function test_check_card_action()
     {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
         $response_bodies_queue = [
             $this->getFakeResponse(ApiServices::TERMINAL, ApiActions::TERM_CHECK_CARD),
         ];
@@ -71,7 +83,10 @@ class TerminalServiceTest extends ServiceTestCase
 
     public function test_get_categories_action()
     {
-        $this->mock_client_enabled = false;
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
         $response_bodies_queue = [
             $this->getFakeLoginResponse(ApiServices::TERMINAL),
             $this->getFakeResponse(ApiServices::TERMINAL, ApiActions::TERM_GET_CATEGORIES),
