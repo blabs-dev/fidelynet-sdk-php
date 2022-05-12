@@ -84,8 +84,7 @@ class TerminalServiceTest extends ServiceTestCase
         $categories = $service->getCategories();
 
         $this->assertCount(2, $categories);
-        foreach ($categories as $category)
-        {
+        foreach ($categories as $category) {
             $this->assertEquals(CategoryData::class, get_class($category));
         }
     }

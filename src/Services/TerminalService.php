@@ -71,12 +71,12 @@ final class TerminalService extends ServiceAbstract
     {
         $api_response = $this->callAction(ApiActions::TERM_GET_CATEGORIES, [
             'initlimit' => $resultsOffset,
-            'rowcount'  => $maxResults
+            'rowcount'  => $maxResults,
         ]);
         $categories = $api_response->data['category'];
 
         return array_map(
-            fn (array $category_attributes)  => new CategoryData($category_attributes),
+            fn (array $category_attributes) => new CategoryData($category_attributes),
             $categories
         );
     }
