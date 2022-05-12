@@ -6,6 +6,7 @@ use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiDemoData;
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Exceptions\CustomerNotFoundException;
+use Blabs\FidelyNet\Exceptions\UnauthorizedActionException;
 use Blabs\FidelyNet\Requests\ModifyCustomerRequestData;
 use Blabs\FidelyNet\Responses\DataModels\DynamicField;
 use Blabs\FidelyNet\Responses\DataModels\MovementBackOfficeData;
@@ -283,5 +284,51 @@ class BackofficeServiceTest extends ServiceTestCase
                 $responses
             )
         );
+    }
+
+    public function test_modify_pin_code_action_will_throw_unauthorized_action_exception_for_unauthorized_operator()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $responses = [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_MODIFY_PIN_CODE, 'unauthorized'),
+        ];
+        /** @var BackofficeService $backoffice_service */
+        $backoffice_service = ServiceFactory::create(
+            ApiServices::BACKOFFICE,
+            $this->addClientMockToFactoryOptions(
+                $this->getBackofficeServiceDemoFactoryOptions(),
+                $responses
+            )
+        );
+
+        $this->expectException(UnauthorizedActionException::class);
+        $backoffice_service->modifyPinCode('1', 1, '1234');
+    }
+
+    public function test_modify_pin_code_action_()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $responses = [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_MODIFY_PIN_CODE),
+        ];
+        /** @var BackofficeService $backoffice_service */
+        $backoffice_service = ServiceFactory::create(
+            ApiServices::BACKOFFICE,
+            $this->addClientMockToFactoryOptions(
+                $this->getBackofficeServiceDemoFactoryOptions(),
+                $responses
+            )
+        );
+
+        $customer_data = $backoffice_service->modifyPinCode('3', 15841, '1234');
+        $this->assertEquals(15841, $customer_data->id);
     }
 }

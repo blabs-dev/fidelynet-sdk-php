@@ -1,0 +1,15 @@
+{
+  "returncode": 79,
+  "data": {
+    "answerCode": 79
+  },
+  "data2": {
+    "sessionID": "e2be7d44-8505-4269-873e-6c82868224b4",
+    "card": "1",
+    "customerID": "1",
+    "email": "",
+    "mobile": "",
+    "identityCard": "",
+    "pincode": "1234"
+  }
+}
