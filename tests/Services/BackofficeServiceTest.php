@@ -331,4 +331,28 @@ class BackofficeServiceTest extends ServiceTestCase
         $customer_data = $backoffice_service->modifyPinCode('3', 15841, '1234');
         $this->assertEquals(15841, $customer_data->id);
     }
+
+    public function test_get_shops_action_()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $responses = [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_SHOPS),
+        ];
+        /** @var BackofficeService $backoffice_service */
+        $backoffice_service = ServiceFactory::create(
+            ApiServices::BACKOFFICE,
+            $this->addClientMockToFactoryOptions(
+                $this->getBackofficeServiceDemoFactoryOptions(),
+                $responses
+            )
+        );
+
+        $shops_data = $backoffice_service->getShops();
+        $this->assertCount(3, $shops_data->networks);
+        $this->assertCount(5, $shops_data->shops);
+    }
 }
