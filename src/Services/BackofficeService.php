@@ -9,6 +9,7 @@ use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Requests\ModifyCustomerRequestData;
 use Blabs\FidelyNet\Responses\DataModels\CustomerInfoData;
 use Blabs\FidelyNet\Responses\DataModels\DynamicField;
+use Blabs\FidelyNet\Responses\DataModels\ShopAndNetworksData;
 use Blabs\FidelyNet\Responses\DataModels\ShopCategoryData;
 use Blabs\FidelyNet\Responses\Lists\MovementListBackOffice;
 use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
@@ -125,5 +126,23 @@ final class BackofficeService extends ServiceAbstract
         ]);
 
         return new CustomerInfoData($response->data['customer']);
+    }
+
+    /**
+     * @throws UnknownProperties
+     * @throws FidelyNetSessionException
+     * @throws GuzzleException
+     * @throws FidelyNetServiceException
+     */
+    public function getShops(): ShopAndNetworksData
+    {
+        $response = $this->callAction(ApiActions::BO_GET_SHOPS,[]);
+
+        $netAndShops = $response->data['netsAndShops'];
+
+        return new ShopAndNetworksData([
+            'networks' => array_filter($netAndShops, fn($item) => $item['type'] === 'SUB_NET'),
+            'shops' => array_filter($netAndShops, fn($item) => $item['type'] === 'SHOP'),
+        ]);
     }
 }
