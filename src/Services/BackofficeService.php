@@ -136,13 +136,13 @@ final class BackofficeService extends ServiceAbstract
      */
     public function getShops(): ShopAndNetworksData
     {
-        $response = $this->callAction(ApiActions::BO_GET_SHOPS,[]);
+        $response = $this->callAction(ApiActions::BO_GET_SHOPS, []);
 
         $netAndShops = $response->data['netsAndShops'];
 
         return new ShopAndNetworksData([
-            'networks' => array_filter($netAndShops, fn($item) => $item['type'] === 'SUB_NET'),
-            'shops' => array_filter($netAndShops, fn($item) => $item['type'] === 'SHOP'),
+            'networks' => array_filter($netAndShops, fn ($item) => $item['type'] === 'SUB_NET'),
+            'shops'    => array_filter($netAndShops, fn ($item) => $item['type'] === 'SHOP'),
         ]);
     }
 }
