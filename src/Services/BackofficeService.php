@@ -116,7 +116,7 @@ final class BackofficeService extends ServiceAbstract
 
     public function modifyPinCode(string $cardNumber, int $customerId, string $newPinCode)
     {
-        $response = $this->callAction(ApiActions::BO_MODIFY_USERNAME_AND_PASSWORD, [
+        $response = $this->callAction(ApiActions::BO_MODIFY_PIN_CODE, [
             'customerid'    => $customerId,
             'card'          => $cardNumber,
             'pincode'       => $newPinCode,
