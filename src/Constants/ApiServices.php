@@ -25,6 +25,7 @@ final class ApiServices
         self::BACKOFFICE => [
             ApiActions::BO_MODIFY_CUSTOMER,
             ApiActions::BO_MODIFY_USERNAME_AND_PASSWORD,
+            ApiActions::BO_MODIFY_PIN_CODE,
             ApiActions::BO_GET_INFO_CARD,
             ApiActions::BO_GET_DYNAMIC_FIELDS,
             ApiActions::BO_GET_MOVEMENT_LIST,
