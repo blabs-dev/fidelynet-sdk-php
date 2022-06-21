@@ -13,7 +13,7 @@ final class ApiServices
         self::TERMINAL          => 'https://service.fidelynet.it/webpos/services/webposservice.php',
         self::BACKOFFICE        => 'https://service.fidelynet.it/webpos/services/webposservice.php',
         self::CUSTOMER          => 'https://service.fidelynet.it/webpos/services/customerservice.php',
-        self::TERMINAL_MOBILE   => 'https://service.fidelynet.it/webposfil/services/mobileservice.php',
+        self::TERMINAL_MOBILE   => 'https://service.fidelynet.it/webpos/services/mobileservice.php',
     ];
 
     const SUPPORTED_ACTIONS = [
