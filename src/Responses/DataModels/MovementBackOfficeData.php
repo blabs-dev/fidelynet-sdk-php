@@ -11,7 +11,7 @@ class MovementBackOfficeData extends DataTransferObject
     public int $terminal;
     public int $shopId;
     public int $card;
-    public int $cardOld;
+    public mixed $cardOld;
     public int $kind;
     public ?string $kindDescription;
     public int $customer;
