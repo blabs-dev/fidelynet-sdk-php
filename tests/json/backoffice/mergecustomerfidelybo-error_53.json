@@ -1,0 +1,11 @@
+{
+    "returncode": 53,
+    "data": {
+        "answerCode": 53
+    },
+    "data2": {
+        "sessionId": "8869bdc2-0510-4366-94af-6debddb97dbe",
+        "sourceCard": "610",
+        "destinationCard": "611"
+    }
+}

@@ -23,6 +23,7 @@ final class ApiActions
     const BO_GET_MOVEMENT_LIST = 'getmovementlistbo';
     const BO_GET_SHOP_CATEGORIES = 'getshopcategoriesbo';
     const BO_GET_SHOPS = 'getshopsbo';
+    const BO_MERGE_CARDS = 'mergecustomerfidelybo';
 
     const TERM_GET_CAMPAIGN = 'getcampaign';
     const TERM_GET_CATEGORIES = 'getcategories';

@@ -6,6 +6,7 @@ use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiDemoData;
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Exceptions\CustomerNotFoundException;
+use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\Exceptions\UnauthorizedActionException;
 use Blabs\FidelyNet\Requests\ModifyCustomerRequestData;
 use Blabs\FidelyNet\Responses\DataModels\DynamicField;
@@ -354,5 +355,54 @@ class BackofficeServiceTest extends ServiceTestCase
         $shops_data = $backoffice_service->getShops();
         $this->assertCount(3, $shops_data->networks);
         $this->assertCount(5, $shops_data->shops);
+    }
+
+    public function test_merge_cards_with_successful_result()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $responses = [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_MERGE_CARDS),
+        ];
+        /** @var BackofficeService $backoffice_service */
+        $backoffice_service = ServiceFactory::create(
+            ApiServices::BACKOFFICE,
+            $this->addClientMockToFactoryOptions(
+                $this->getBackofficeServiceDemoFactoryOptions(),
+                $responses
+            )
+        );
+
+        $result = $backoffice_service->mergeCards(612, 613);
+
+        $this->assertNotEmpty($result);
+        $this->assertEquals('612', $result->data2['sourceCard']);
+        $this->assertEquals('613', $result->data2['destinationCard']);
+    }
+
+    public function test_merge_cards_with_error_53_code()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $responses = [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_MERGE_CARDS, 'error_53'),
+        ];
+        /** @var BackofficeService $backoffice_service */
+        $backoffice_service = ServiceFactory::create(
+            ApiServices::BACKOFFICE,
+            $this->addClientMockToFactoryOptions(
+                $this->getBackofficeServiceDemoFactoryOptions(),
+                $responses
+            )
+        );
+
+        $this->expectException(FidelyNetServiceException::class);
+        $result = $backoffice_service->mergeCards(612, 613);
     }
 }
