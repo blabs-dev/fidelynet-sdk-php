@@ -379,11 +379,11 @@ final class Client
     protected function determineApiError($returnCode, string $responseBody = ''): Exception
     {
         return match ($returnCode) {
-            '9999'  => new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST, $responseBody),
+            '9999'  => new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST, $responseBody, 9999),
             50      => new CustomerNotFoundException(),
             240     => new MissingRequiredFieldsException(Messages::SERVICE_MISSING_REQUIRED_FIELDS),
             79      => new UnauthorizedActionException(Messages::UNAUTHORIZED_ACTION),
-            default => new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."$returnCode: ".ApiMessages::CODES[$returnCode], $responseBody)
+            default => new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."$returnCode: ".ApiMessages::CODES[$returnCode], $responseBody, $returnCode)
         };
     }
 
