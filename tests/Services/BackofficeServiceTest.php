@@ -379,8 +379,8 @@ class BackofficeServiceTest extends ServiceTestCase
         $result = $backoffice_service->mergeCards(612, 613);
 
         $this->assertNotEmpty($result);
-        $this->assertEquals("612", $result->data2['sourceCard']);
-        $this->assertEquals("613", $result->data2['destinationCard']);
+        $this->assertEquals('612', $result->data2['sourceCard']);
+        $this->assertEquals('613', $result->data2['destinationCard']);
     }
 
     public function test_merge_cards_with_error_53_code()
@@ -391,7 +391,7 @@ class BackofficeServiceTest extends ServiceTestCase
 
         $responses = [
             $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
-            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_MERGE_CARDS,'error_53'),
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_MERGE_CARDS, 'error_53'),
         ];
         /** @var BackofficeService $backoffice_service */
         $backoffice_service = ServiceFactory::create(
