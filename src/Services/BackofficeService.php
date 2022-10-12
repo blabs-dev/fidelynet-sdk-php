@@ -145,4 +145,14 @@ final class BackofficeService extends ServiceAbstract
             'shops'    => array_filter($netAndShops, fn ($item) => $item['type'] === 'SHOP'),
         ]);
     }
+
+    public function mergeCards(int $source, int $destination)
+    {
+        $response = $this->callAction(ApiActions::BO_MERGE_CARDS, [
+            'sourcecard' => $source,
+            'destinationcard' => $destination
+        ]);
+
+        return $response;
+    }
 }
