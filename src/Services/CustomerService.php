@@ -138,7 +138,7 @@ final class CustomerService extends ServiceAbstract
             $response->data3['customer']['personalInfo']
         );
         $attributes['registrationShopId'] = array_key_exists('registrationShopId', $response->data3['customer']) ?
-            $response->data3['registrationShopId'] : '';
+            $response->data3['customer']['registrationShopId'] : '';
 
         $customer_data = new CustomerData($attributes);
 
