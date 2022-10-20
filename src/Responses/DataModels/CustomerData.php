@@ -24,6 +24,9 @@ final class CustomerData extends DataTransferObject
     public ?string $category;
 
     /** @var string|null */
+    public ?string $registrationShopId;
+
+    /** @var string|null */
     public ?string $status;
 
     /** @var string */
