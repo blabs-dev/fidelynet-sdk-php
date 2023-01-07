@@ -143,14 +143,14 @@ class CustomerRequestData extends DataTransferObject
     public ?int $country;
 
     /**
-     * @var float|null
+     * @var mixed
      */
-    public ?float $geo_lat;
+    public mixed $geo_lat;
 
     /**
-     * @var float|null
+     * @var mixed
      */
-    public ?float $geo_long;
+    public mixed $geo_long;
 
     /**
      * @var int|null
