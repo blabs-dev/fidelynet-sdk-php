@@ -134,9 +134,9 @@ final class BackofficeService extends ServiceAbstract
      * @throws GuzzleException
      * @throws FidelyNetServiceException
      */
-    public function getShops(): ShopAndNetworksData
+    public function getShops($params = []): ShopAndNetworksData
     {
-        $response = $this->callAction(ApiActions::BO_GET_SHOPS, []);
+        $response = $this->callAction(ApiActions::BO_GET_SHOPS, $params);
 
         $netAndShops = $response->data['netsAndShops'];
 
