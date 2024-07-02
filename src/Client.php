@@ -10,6 +10,7 @@ use Blabs\FidelyNet\Contracts\SessionIdProviderContract;
 use Blabs\FidelyNet\Exceptions\BadRequestException;
 use Blabs\FidelyNet\Exceptions\CustomerNotFoundException;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
+use Blabs\FidelyNet\Exceptions\GeoLevelNotFoundException;
 use Blabs\FidelyNet\Exceptions\MissingRequiredFieldsException;
 use Blabs\FidelyNet\Exceptions\UnauthorizedActionException;
 use Blabs\FidelyNet\Responses\ApiResponse;
@@ -383,6 +384,7 @@ final class Client
             50      => new CustomerNotFoundException(),
             240     => new MissingRequiredFieldsException(Messages::SERVICE_MISSING_REQUIRED_FIELDS),
             79      => new UnauthorizedActionException(Messages::UNAUTHORIZED_ACTION),
+            110     => new GeoLevelNotFoundException(Messages::GEO_LEVEL_NOT_FOUND),
             default => new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."$returnCode: ".ApiMessages::CODES[$returnCode], $responseBody, $returnCode)
         };
     }

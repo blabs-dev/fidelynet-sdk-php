@@ -16,6 +16,7 @@ use Blabs\FidelyNet\Constants\ApiDemoData;
 use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Constants\Messages;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
+use Blabs\FidelyNet\Exceptions\GeoLevelNotFoundException;
 use Blabs\FidelyNet\Requests\CustomerRequestData;
 use Blabs\FidelyNet\Responses\Lists\MovementsList;
 use Blabs\FidelyNet\ServiceFactory;
@@ -279,5 +280,48 @@ class CustomerServiceTest extends ServiceTestCase
         $movement_list = $customer_service->getMovements(1, 10);
         $this->assertInstanceOf(MovementsList::class, $movement_list);
         $this->assertEmpty($movement_list->movements);
+    }
+
+    public function test_can_list_geo_levels()
+    {
+        $responses = [
+            $this->getFakeResponse(ApiServices::CUSTOMER, ApiActions::SYNCHRO),
+            $this->getFakeResponse(ApiServices::CUSTOMER, ApiActions::GET_GEO_LEVELS),
+        ];
+        /** @var CustomerService $customer_service */
+        $customer_service = ServiceFactory::create(
+            ApiServices::CUSTOMER,
+            $this->addClientMockToFactoryOptions(
+                $this->getCustomerServicePublicSessionFactoryOptions(),
+                $responses
+            )
+        );
+
+
+        $locations = $customer_service->getGeoLevels(4, 66870);
+        $this->assertCount(2, $locations);
+        $this->assertEquals([
+            ['id' => 55, 'name' => 'ALBANO LAZIALE'],
+            ['id' => 144096, 'name' => 'PAVONA'],
+        ], $locations);
+    }
+
+    public function test_geo_level_not_found_exception_is_thrown()
+    {
+        $responses = [
+            $this->getFakeResponse(ApiServices::CUSTOMER, ApiActions::SYNCHRO),
+            $this->getFakeResponse(ApiServices::CUSTOMER, ApiActions::GET_GEO_LEVELS, 'notfound'),
+        ];
+        /** @var CustomerService $customer_service */
+        $customer_service = ServiceFactory::create(
+            ApiServices::CUSTOMER,
+            $this->addClientMockToFactoryOptions(
+                $this->getCustomerServicePublicSessionFactoryOptions(),
+                $responses
+            )
+        );
+
+        $this->expectException(GeoLevelNotFoundException::class);
+        $customer_service->getGeoLevels(4, 668701);
     }
 }

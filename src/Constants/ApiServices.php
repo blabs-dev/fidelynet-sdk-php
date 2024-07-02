@@ -38,6 +38,7 @@ final class ApiServices
             ApiActions::REGISTER_WITH_CODE,
             ApiActions::REGISTER_WITHOUT_CODE,
             ApiActions::GET_MOVEMENTS,
+            ApiActions::GET_GEO_LEVELS,
         ],
     ];
 

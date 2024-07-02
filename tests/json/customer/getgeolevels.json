@@ -1,0 +1,27 @@
+{
+  "returncode": 0,
+  "data": {
+    "answerCode": 0,
+    "level": 4,
+    "fatherId": 66870,
+    "geoLevel": [
+      {
+        "id": 55,
+        "name": "ALBANO LAZIALE"
+      },
+      {
+        "id": 144096,
+        "name": "PAVONA"
+      }
+    ],
+    "pagination": {
+      "InitLimit": 0,
+      "rowCount": 1000,
+      "recordsTotal": 2,
+      "actualPage": 1,
+      "totalPages": 1,
+      "maxRowCount": 1300
+    }
+  },
+  "ambiente": "PROD"
+}
