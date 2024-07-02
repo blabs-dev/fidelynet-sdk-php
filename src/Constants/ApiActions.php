@@ -13,7 +13,7 @@ final class ApiActions
     const VERIFY_PHONE = 'verifyphone';
     const REGISTER_WITH_CODE = 'registrationvcwithverification';
     const REGISTER_WITHOUT_CODE = 'registrationvc';
-
+    const GET_GEO_LEVELS = 'getgeolevels';
     const BO_LOGIN = 'loginbo';
     const BO_MODIFY_CUSTOMER = 'modifycustomerbo';
     const BO_MODIFY_USERNAME_AND_PASSWORD = 'modifyusernameandpasswordbo';

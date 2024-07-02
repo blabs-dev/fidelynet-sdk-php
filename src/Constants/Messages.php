@@ -20,4 +20,5 @@ final class Messages
     const SERVICE_RETURNED_ERROR_CODE = 'FidelyNET web service returned an error code - ';
     const SERVICE_MISSING_REQUIRED_FIELDS = 'FidelyNET web service said that some required fields are missing from the request data';
     const UNAUTHORIZED_ACTION = 'Current not operator is not authorized to perform this action';
+    const GEO_LEVEL_NOT_FOUND = 'Geo Level not found';
 }

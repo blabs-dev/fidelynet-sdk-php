@@ -164,16 +164,42 @@ final class CustomerService extends ServiceAbstract
             throw new FidelyNetServiceException(Messages::UNSUPPORTED_ACTION_WITH_PUBLIC_SESSION);
         }
 
-        $startOffset = $pageNumber === 1 ? 0 : $pageNumber * $movementsPerPage;
-
-        $request_data = [
-            'initlimit' => $startOffset,
-            'rowcount'  => $movementsPerPage,
-        ];
+        $request_data = $this->buildPaginationParams($pageNumber, $movementsPerPage);
 
         $response = $this->callAction(ApiActions::GET_MOVEMENTS, $request_data);
         $movements = array_key_exists('movements', $response->data) ? $response->data['movements'] : [];
 
         return new MovementsList(['movements' => $movements, 'pagination' => $response->data['pagination']]);
+    }
+
+    public function getGeoLevels(int $level, int $fatherId, int $pageNumber = 1, int $rowsPerPages = 1000)
+    {
+        $response = $this->callAction(
+            ApiActions::GET_GEO_LEVELS,
+            array_merge(
+                $this->buildPaginationParams($pageNumber, $rowsPerPages),
+                [
+                    'level' => $level,
+                    'fatherid' => $fatherId
+                ]
+            )
+        );
+
+        return $response->data['geoLevel'];
+    }
+
+    /**
+     * @param int $pageNumber
+     * @param int $rowsPerPage
+     * @return array
+     */
+    private function buildPaginationParams(int $pageNumber, int $rowsPerPage): array
+    {
+        $startOffset = $pageNumber === 1 ? 0 : $pageNumber * $rowsPerPage;
+
+        return [
+            'initlimit' => $startOffset,
+            'rowcount' => $rowsPerPage,
+        ];
     }
 }
