@@ -7,6 +7,7 @@ use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Responses\DataModels\CategoryData;
+use Blabs\FidelyNet\Responses\DataModels\LoggedShopData;
 use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
 use Blabs\FidelyNet\Responses\ResponseData\GetCampaignResponseData;
 use GuzzleHttp\Exception\GuzzleException;
@@ -79,5 +80,16 @@ final class TerminalService extends ServiceAbstract
             fn (array $category_attributes) => new CategoryData($category_attributes),
             $categories
         );
+    }
+
+    public function getLoggedShopInfo()
+    {
+        $api_response = $this
+            ->callAction(
+                ApiActions::TERM_GET_LOGGED_SHOP_INFO,
+                []
+            );
+
+        return new LoggedShopData($api_response->data['shop']);
     }
 }
