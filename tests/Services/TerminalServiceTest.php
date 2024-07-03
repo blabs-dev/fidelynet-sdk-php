@@ -103,4 +103,25 @@ class TerminalServiceTest extends ServiceTestCase
             $this->assertEquals(CategoryData::class, get_class($category));
         }
     }
+
+    public function test_get_logged_shop_info()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $response_bodies_queue = [
+            $this->getFakeLoginResponse(ApiServices::TERMINAL),
+            $this->getFakeResponse(ApiServices::TERMINAL, ApiActions::TERM_GET_LOGGED_SHOP_INFO),
+        ];
+        $demo_options = $this->getTerminalServiceDemoFactoryOptions();
+        $factory_options = $this->addClientMockToFactoryOptions($demo_options, $response_bodies_queue);
+        /** @var TerminalService $service */
+        $service = ServiceFactory::create(ApiServices::TERMINAL, $factory_options);
+
+        $shop = $service->getLoggedShopInfo();
+
+        $this->assertEquals(61543, $shop->id);
+        $this->assertEquals("Aci", $shop->name);
+    }
 }
