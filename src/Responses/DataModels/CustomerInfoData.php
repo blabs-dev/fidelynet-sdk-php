@@ -19,9 +19,9 @@ final class CustomerInfoData extends DataTransferObject
      */
     public int $card;
     /**
-     * @var int
+     * @var int|null
      */
-    public int $status;
+    public ?int $status;
     /**
      * @var int
      */

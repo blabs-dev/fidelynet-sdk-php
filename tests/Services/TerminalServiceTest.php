@@ -124,4 +124,129 @@ class TerminalServiceTest extends ServiceTestCase
         $this->assertEquals(61543, $shop->id);
         $this->assertEquals("Aci", $shop->name);
     }
+
+    public function test_get_card_info()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $response_bodies_queue = [
+            $this->getFakeLoginResponse(ApiServices::TERMINAL),
+            $this->getFakeResponse(ApiServices::TERMINAL, ApiActions::TERM_GET_CARD_INFO),
+        ];
+        $demo_options = $this->getTerminalServiceDemoFactoryOptions();
+        $factory_options = $this->addClientMockToFactoryOptions($demo_options, $response_bodies_queue);
+        /** @var TerminalService $service */
+        $service = ServiceFactory::create(ApiServices::TERMINAL, $factory_options);
+
+        $card = $service->getCardInfo("3000170");
+
+        $this->assertEquals("3000170", $card->card);
+        $this->assertEquals(53424585278354, $card->fidelyCode);
+        $this->assertEquals(463943, $card->id);
+        $this->assertEquals(1302, $card->campaignId);
+
+    }
+    public function test_charge_points()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $response_bodies_queue = [
+            $this->getFakeLoginResponse(ApiServices::TERMINAL),
+            $this->getFakeResponse(ApiServices::TERMINAL, ApiActions::TERM_CHARGE_POINTS),
+        ];
+        $demo_options = $this->getTerminalServiceDemoFactoryOptions();
+        $factory_options = $this->addClientMockToFactoryOptions($demo_options, $response_bodies_queue);
+        /** @var TerminalService $service */
+        $service = ServiceFactory::create(ApiServices::TERMINAL, $factory_options);
+
+        $movementData = $service->chargePoints(
+            cardNumber: "3000170",
+            campaignId: 1302,
+            customerId: 463943,
+            mooneyAmount: 100,
+            cashbackAmount: 10
+        );
+
+        $this->assertEquals(1996782, $movementData->id);
+        $this->assertEquals(6857, $movementData->terminal);
+        $this->assertEquals(6218, $movementData->shopId);
+        $this->assertEquals("3000170", $movementData->card);
+        $this->assertEquals(463943, $movementData->customer);
+        $this->assertEquals(10, $movementData->chargedPoints);
+        $this->assertEquals(100, $movementData->totalMoney);
+        $this->assertEquals(1, $movementData->kindCharge);
+
+    }
+
+    public function test_discharge_points()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $response_bodies_queue = [
+            $this->getFakeLoginResponse(ApiServices::TERMINAL),
+            $this->getFakeResponse(ApiServices::TERMINAL, ApiActions::TERM_DISCHARGE_POINTS),
+        ];
+        $demo_options = $this->getTerminalServiceDemoFactoryOptions();
+        $factory_options = $this->addClientMockToFactoryOptions($demo_options, $response_bodies_queue);
+        /** @var TerminalService $service */
+        $service = ServiceFactory::create(ApiServices::TERMINAL, $factory_options);
+
+        $movementData = $service->disChargePoints(
+            cardNumber: "3000170",
+            campaignId: 1302,
+            customerId: 463943,
+            cashbackAmount: 10,
+            mooneyAmount: 10
+        );
+
+        $this->assertEquals(1996791, $movementData->id);
+        $this->assertEquals(6857, $movementData->terminal);
+        $this->assertEquals(6218, $movementData->shopId);
+        $this->assertEquals("3000170", $movementData->card);
+        $this->assertEquals(463943, $movementData->customer);
+        $this->assertEquals(0, $movementData->chargedPoints);
+        $this->assertEquals(5, $movementData->dischargedPoints);
+        $this->assertEquals(10, $movementData->totalMoney);
+        $this->assertEquals(0, $movementData->kindCharge);
+
+    }
+
+    public function test_sale_product()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $response_bodies_queue = [
+            $this->getFakeLoginResponse(ApiServices::TERMINAL),
+            $this->getFakeResponse(ApiServices::TERMINAL, ApiActions::TERM_SALE_PRODUCT ),
+        ];
+        $demo_options = $this->getTerminalServiceDemoFactoryOptions();
+        $factory_options = $this->addClientMockToFactoryOptions($demo_options, $response_bodies_queue);
+        /** @var TerminalService $service */
+        $service = ServiceFactory::create(ApiServices::TERMINAL, $factory_options);
+
+        $movementData = $service->saleMovement(
+            cardNumber: "3000170",
+            campaignId: 1302,
+            customerId: 463943,
+            mooneyAmount: 500,
+        );
+
+        $this->assertEquals(1996787, $movementData->id);
+        $this->assertEquals(6857, $movementData->terminal);
+        $this->assertEquals(6218, $movementData->shopId);
+        $this->assertEquals("3000170", $movementData->card);
+        $this->assertEquals(463943, $movementData->customer);
+        $this->assertEquals(5, $movementData->chargedPoints);
+        $this->assertEquals(500, $movementData->totalMoney);
+        $this->assertEquals(0, $movementData->kindCharge);
+
+    }
 }
