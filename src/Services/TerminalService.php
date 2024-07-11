@@ -101,7 +101,9 @@ final class TerminalService extends ServiceAbstract
         $api_response = $this
             ->callAction(
                 ApiActions::TERM_GET_CARD_INFO,
-                []
+                [
+                    'card' => $card
+                ]
             );
 
         return new CustomerInfoData($api_response->data['customer']);
