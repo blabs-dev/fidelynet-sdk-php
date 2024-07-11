@@ -7,7 +7,10 @@ use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Responses\DataModels\CategoryData;
+use Blabs\FidelyNet\Responses\DataModels\CustomerData;
+use Blabs\FidelyNet\Responses\DataModels\CustomerInfoData;
 use Blabs\FidelyNet\Responses\DataModels\LoggedShopData;
+use Blabs\FidelyNet\Responses\DataModels\MovementData;
 use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
 use Blabs\FidelyNet\Responses\ResponseData\GetCampaignResponseData;
 use GuzzleHttp\Exception\GuzzleException;
@@ -91,5 +94,85 @@ final class TerminalService extends ServiceAbstract
             );
 
         return new LoggedShopData($api_response->data['shop']);
+    }
+
+    public function getCardInfo(string $card): CustomerInfoData
+    {
+        $api_response = $this
+            ->callAction(
+                ApiActions::TERM_GET_CARD_INFO,
+                []
+            );
+
+        return new CustomerInfoData($api_response->data['customer']);
+    }
+
+    public function chargePoints(
+        string $cardNumber,
+        string $campaignId,
+        string $customerId,
+        int $mooneyAmount,
+        int $cashbackAmount,
+    ): MovementData
+    {
+        $api_response = $this
+            ->callAction(
+                ApiActions::TERM_CHARGE_POINTS,
+                [
+                    'campaignid'    => $campaignId,
+                    'customerid'    => $customerId,
+                    'card'          => $cardNumber,
+                    'kindcharge'    => 1,
+                    'chargedpoints' => $cashbackAmount,
+                    'totalmoney'    => $mooneyAmount,
+                ]
+            );
+
+        return new MovementData($api_response->data['movement']);
+    }
+
+    public function saleMovement(
+        string $cardNumber,
+        string $campaignId,
+        string $customerId,
+        int $mooneyAmount,
+    ): MovementData
+    {
+        $api_response = $this
+            ->callAction(
+                ApiActions::TERM_SALE_PRODUCT,
+                [
+                    'campaignid'    => $campaignId,
+                    'customerid'    => $customerId,
+                    'card'          => $cardNumber,
+                    'totalmoney'    => $mooneyAmount,
+                ]
+            );
+
+        return new MovementData($api_response->data['movement']);
+    }
+
+    public function disChargePoints(
+        string $cardNumber,
+        string $campaignId,
+        string $customerId,
+        int $cashbackAmount,
+        int $mooneyAmount,
+    ): MovementData
+    {
+        $api_response = $this
+            ->callAction(
+                ApiActions::TERM_CHARGE_POINTS,
+                [
+                    'campaignid'    => $campaignId,
+                    'customerid'    => $customerId,
+                    'card'          => $cardNumber,
+                    'kindcharge'    => 1,
+                    'dischargedpoints' => $cashbackAmount,
+                    'totalmoney'    => $mooneyAmount,
+                ]
+            );
+
+        return new MovementData($api_response->data['movement']);
     }
 }

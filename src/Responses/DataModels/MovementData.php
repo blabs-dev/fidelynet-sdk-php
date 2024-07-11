@@ -18,8 +18,8 @@ final class MovementData extends DataTransferObject
     /** @var int */
     public int $card;
 
-    /** @var int */
-    public int $cardOld;
+    /** @var mixed */
+    public mixed $cardOld;
 
     /** @var int */
     public int $kind;
@@ -27,8 +27,8 @@ final class MovementData extends DataTransferObject
     /** @var int */
     public int $customer;
 
-    /** @var int */
-    public int $operator;
+    /** @var int|null */
+    public ?int $operator;
 
     /** @var string */
     public string $dateTime;
@@ -60,11 +60,11 @@ final class MovementData extends DataTransferObject
     /** @var int */
     public int $dischargedPointsStatus;
 
-    /** @var int */
-    public int $currencyConversion;
+    /** @var int|null */
+    public ?int $currencyConversion;
 
-    /** @var int */
-    public int $profitMoneyLocal;
+    /** @var int|null */
+    public ?int $profitMoneyLocal;
 
     /** @var int */
     public int $totalMoney;
@@ -75,8 +75,8 @@ final class MovementData extends DataTransferObject
     /** @var int */
     public int $discount;
 
-    /** @var mixed */
-    public MovementShopData $shop;
+    /** @var MovementShopData|null */
+    public ?MovementShopData $shop;
 
     /** @var int */
     public int $shopId;

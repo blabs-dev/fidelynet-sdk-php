@@ -22,6 +22,10 @@ final class ApiServices
             ApiActions::TERM_GET_CATEGORIES,
             ApiActions::TERM_CHECK_CARD,
             ApiActions::TERM_GET_LOGGED_SHOP_INFO,
+            ApiActions::TERM_GET_CARD_INFO,
+            ApiActions::TERM_CHARGE_POINTS,
+            ApiActions::TERM_DISCHARGE_POINTS,
+            ApiActions::TERM_SALE_PRODUCT,
         ],
         self::BACKOFFICE => [
             ApiActions::BO_MODIFY_CUSTOMER,

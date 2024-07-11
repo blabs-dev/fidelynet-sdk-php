@@ -29,4 +29,8 @@ final class ApiActions
     const TERM_GET_CATEGORIES = 'getcategories';
     const TERM_CHECK_CARD = 'checkcard';
     const TERM_GET_LOGGED_SHOP_INFO = 'getinfoshop';
+    const TERM_GET_CARD_INFO = 'getinfo';
+    const TERM_CHARGE_POINTS = 'chargepoints';
+    const TERM_DISCHARGE_POINTS = 'dischargepoints';
+    const TERM_SALE_PRODUCT = 'saleproduct';
 }
