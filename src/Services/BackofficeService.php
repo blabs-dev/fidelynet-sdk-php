@@ -155,4 +155,24 @@ final class BackofficeService extends ServiceAbstract
 
         return $response;
     }
+
+    public function getAllMovements(DateTime $initDate = null, DateTime $endDate = null, int $page = 1, $count = 100): MovementListBackOffice
+    {
+        $response = $this->callAction(ApiActions::BO_GET_ALL_MOVEMENTS, [
+            'initialDate' => $initDate->format('Y-m-d'),
+            'finalDate'   => $endDate->format('Y-m-d'),
+            'rowCount'    => $count,
+            'initlimit'   => $page * $count,
+        ]);
+
+        return  MovementListBackOffice::createFullListFromApiResponse($response);
+    }
+
+    public function getAllCustomers(int $page = 0): MovementListBackOffice
+    {
+        $response = $this->callAction(ApiActions::BO_GET_MOVEMENT_LIST, [
+        ]);
+
+        return  MovementListBackOffice::createFromApiResponse($response);
+    }
 }

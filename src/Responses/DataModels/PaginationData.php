@@ -7,7 +7,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 final class PaginationData extends DataTransferObject
 {
     /** @var int */
-    public int $InitLimit;
+    public ?int $InitLimit;
 
     /** @var int */
     public int $rowCount;
