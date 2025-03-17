@@ -54,4 +54,8 @@ final class CustomerInfoData extends DataTransferObject
      * @var PersonalInfoData|null
      */
     public ?PersonalInfoData $personalInfo;
+    /**
+     * @var BalanceData|null
+     */
+    public ?BalanceData $balanceData;
 }

@@ -11,9 +11,11 @@ use Blabs\FidelyNet\Responses\DataModels\CustomerInfoData;
 use Blabs\FidelyNet\Responses\DataModels\DynamicField;
 use Blabs\FidelyNet\Responses\DataModels\ShopAndNetworksData;
 use Blabs\FidelyNet\Responses\DataModels\ShopCategoryData;
+use Blabs\FidelyNet\Responses\Lists\CustomerListBackoffice;
 use Blabs\FidelyNet\Responses\Lists\MovementListBackOffice;
 use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
 use Blabs\FidelyNet\Responses\ResponseData\GetDynamicFieldsResponseData;
+use DateInterval;
 use DateTime;
 use GuzzleHttp\Exception\GuzzleException;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
@@ -158,21 +160,27 @@ final class BackofficeService extends ServiceAbstract
 
     public function getAllMovements(DateTime $initDate = null, DateTime $endDate = null, int $page = 1, $count = 100): MovementListBackOffice
     {
+        $endDate = $endDate ?? new DateTime();
+        $initDate = $initDate ?? $endDate->sub(new DateInterval('P1M'));
+        $initialOffset = $page === 1 ? 0 : $page * $count;
         $response = $this->callAction(ApiActions::BO_GET_ALL_MOVEMENTS, [
             'initialDate' => $initDate->format('Y-m-d'),
             'finalDate'   => $endDate->format('Y-m-d'),
             'rowCount'    => $count,
-            'initlimit'   => $page * $count,
+            'initlimit'   => $initialOffset,
         ]);
 
         return  MovementListBackOffice::createFullListFromApiResponse($response);
     }
 
-    public function getAllCustomers(int $page = 0): MovementListBackOffice
+    public function getAllCustomers(int $page = 1, int $count = 100): CustomerListBackoffice
     {
-        $response = $this->callAction(ApiActions::BO_GET_MOVEMENT_LIST, [
+        $initialOffset = $page === 1 ? 0 : $page * $count;
+        $response = $this->callAction(ApiActions::BO_GET_ALL_CUSTOMERS, [
+            'rowCount'    => $count,
+            'initlimit'   => $initialOffset,
         ]);
 
-        return  MovementListBackOffice::createFromApiResponse($response);
+        return  CustomerListBackoffice::createFromApiResponse($response);
     }
 }
