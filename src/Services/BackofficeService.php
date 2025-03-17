@@ -170,7 +170,7 @@ final class BackofficeService extends ServiceAbstract
             'initlimit' => $initialOffset,
         ];
         if (!empty($netId)) {
-            $params['netId'] = $netId;
+            $params['netid'] = $netId;
         }
 
         $response = $this->callAction(ApiActions::BO_GET_ALL_MOVEMENTS, $params);
@@ -187,7 +187,7 @@ final class BackofficeService extends ServiceAbstract
         ];
 
         if (!empty($netId)) {
-            $params['netId'] = $netId;
+            $params['netid'] = $netId;
         }
         $response = $this->callAction(ApiActions::BO_GET_ALL_CUSTOMERS, $params);
 
