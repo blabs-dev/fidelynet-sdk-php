@@ -14,6 +14,7 @@ use Blabs\FidelyNet\Responses\DataModels\ShopCategoryData;
 use Blabs\FidelyNet\Responses\Lists\MovementListBackOffice;
 use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
 use Blabs\FidelyNet\Responses\ResponseData\GetDynamicFieldsResponseData;
+use DateInterval;
 use DateTime;
 use GuzzleHttp\Exception\GuzzleException;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
@@ -158,6 +159,8 @@ final class BackofficeService extends ServiceAbstract
 
     public function getAllMovements(DateTime $initDate = null, DateTime $endDate = null, int $page = 1, $count = 100): MovementListBackOffice
     {
+        $endDate = $endDate ?? new DateTime();
+        $initDate = $initDate ?? $endDate->sub(new DateInterval('P1M'));
         $response = $this->callAction(ApiActions::BO_GET_ALL_MOVEMENTS, [
             'initialDate' => $initDate->format('Y-m-d'),
             'finalDate'   => $endDate->format('Y-m-d'),
