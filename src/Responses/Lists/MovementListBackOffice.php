@@ -39,7 +39,7 @@ class MovementListBackOffice extends \Spatie\DataTransferObject\DataTransferObje
     {
         $data = $response->data;
         $report = new MovementReport($data['movementTotal']);
-        $movements = $data['movements'];
+        $movements = array_key_exists('movements', $data) ? $data['movements'] : [];
         $pagination = new PaginationData($data['pagination']);
 
         return new self([
