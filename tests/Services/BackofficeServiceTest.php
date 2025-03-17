@@ -9,9 +9,12 @@ use Blabs\FidelyNet\Exceptions\CustomerNotFoundException;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\Exceptions\UnauthorizedActionException;
 use Blabs\FidelyNet\Requests\ModifyCustomerRequestData;
+use Blabs\FidelyNet\Responses\DataModels\CustomerData;
+use Blabs\FidelyNet\Responses\DataModels\CustomerInfoData;
 use Blabs\FidelyNet\Responses\DataModels\DynamicField;
 use Blabs\FidelyNet\Responses\DataModels\MovementBackOfficeData;
 use Blabs\FidelyNet\Responses\DataModels\ShopCategoryData;
+use Blabs\FidelyNet\Responses\Lists\CustomerListBackoffice;
 use Blabs\FidelyNet\Responses\Lists\MovementListBackOffice;
 use Blabs\FidelyNet\ServiceFactory;
 use Blabs\FidelyNet\Services\BackofficeService;
@@ -434,5 +437,35 @@ class BackofficeServiceTest extends ServiceTestCase
         $this->assertIsArray($list->movements);
         $first_item = $list->movements[0];
         $this->assertInstanceOf(MovementBackOfficeData::class, $first_item);
+    }
+
+
+
+    public function test_get_all_customers()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $responses = [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN),
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_ALL_CUSTOMERS),
+        ];
+        /** @var BackofficeService $backoffice_service */
+        $backoffice_service = ServiceFactory::create(
+            ApiServices::BACKOFFICE,
+            $this->addClientMockToFactoryOptions(
+                $this->getBackofficeServiceDemoFactoryOptions(),
+                $responses
+            )
+        );
+
+        $response = $backoffice_service->getAllCustomers();
+
+        $this->assertInstanceOf(CustomerListBackoffice::class, $response);
+        $this->assertIsArray($response->customers);
+        $this->assertCount(100, $response->customers);
+        $first_item = $response->customers[0];
+        $this->assertInstanceOf(CustomerInfoData::class, $first_item);
     }
 }

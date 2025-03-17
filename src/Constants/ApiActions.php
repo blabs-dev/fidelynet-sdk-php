@@ -21,8 +21,8 @@ final class ApiActions
     const BO_GET_INFO_CARD = 'getinfocardbo2';
     const BO_GET_DYNAMIC_FIELDS = 'getdynamicfieldsbo';
     const BO_GET_MOVEMENT_LIST = 'getmovementlistbo';
-
     const BO_GET_ALL_MOVEMENTS = 'getmovementlistbofull';
+    const BO_GET_ALL_CUSTOMERS = 'getcustomerstlistbo';
     const BO_GET_SHOP_CATEGORIES = 'getshopcategoriesbo';
     const BO_GET_SHOPS = 'getshopsbo';
     const BO_MERGE_CARDS = 'mergecustomerfidelybo';
