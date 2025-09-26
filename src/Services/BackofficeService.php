@@ -97,12 +97,29 @@ final class BackofficeService extends ServiceAbstract
 
     public function getShopCategories(int $parentId = 0): array
     {
-        $response = $this->callAction(ApiActions::BO_GET_SHOP_CATEGORIES, ['languageid' => 1, 'fatherid' => $parentId]);
+        $response = $this->callAction(ApiActions::BO_GET_SHOP_CATEGORIES, [
+            'languageid' => 1,
+            'fatherid'   => $parentId,
+        ]);
 
-        return array_map(
-            fn ($item) => ShopCategoryData::fromAttributes($item['id'], $item['fatherId'], $item['description']),
-            $response->data['shopCategories']
-        );
+        $mapper = function (array $item): ?ShopCategoryData {
+            // Se manca la descrizione scartiamo
+            if (!array_key_exists('description', $item)) {
+                return null;
+            }
+
+            return ShopCategoryData::fromAttributes(
+                $item['id'] ?? null,
+                $item['fatherId'] ?? null,
+                $item['description']
+            );
+        };
+
+        // Applichiamo il mapper e poi filtriamo i null
+        return array_values(array_filter(
+            array_map($mapper, $response->data['shopCategories'] ?? []),
+            fn ($category) => !is_null($category)
+        ));
     }
 
     public function modifyUsernameAndPassword(mixed $customerId, string $username, string $password): CardInfoResponseData
