@@ -58,4 +58,19 @@ final class CustomerInfoData extends DataTransferObject
      * @var BalanceData|null
      */
     public ?BalanceData $balanceData;
+
+    /**
+     * @var string|null
+     */
+    public ?string $lastMovement;
+
+    /**
+     * @var string|null
+     */
+    public ?string $issuedDate;
+
+    /**
+     * @var string|null
+     */
+    public ?string $registration_shop_id;
 }
