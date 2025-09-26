@@ -158,6 +158,42 @@ final class BackofficeService extends ServiceAbstract
         return $response;
     }
 
+    public function getAllMovements(DateTime $initDate = null, DateTime $endDate = null, int $page = 1, $count = 100, string $netId = null): MovementListBackOffice
+    {
+        $endDate = $endDate ?? new DateTime();
+        $initDate = $initDate ?? $endDate->sub(new DateInterval('P1M'));
+        $initialOffset = $page === 1 ? 0 : $page * $count;
+        $params = [
+            'initialDate' => $initDate->format('Y-m-d'),
+            'finalDate' => $endDate->format('Y-m-d'),
+            'rowCount' => $count,
+            'initlimit' => $initialOffset,
+        ];
+        if (!empty($netId)) {
+            $params['netid'] = $netId;
+        }
+
+        $response = $this->callAction(ApiActions::BO_GET_ALL_MOVEMENTS, $params);
+
+        return  MovementListBackOffice::createFullListFromApiResponse($response);
+    }
+
+    public function getAllCustomers(int $page = 1, int $count = 100, string $netId = null): CustomerListBackoffice
+    {
+        $initialOffset = $page === 1 ? 0 : $page * $count;
+        $params = [
+            'rowCount' => $count,
+            'initlimit' => $initialOffset,
+        ];
+
+        if (!empty($netId)) {
+            $params['netid'] = $netId;
+        }
+        $response = $this->callAction(ApiActions::BO_GET_ALL_CUSTOMERS, $params);
+
+        return  CustomerListBackoffice::createFromApiResponse($response);
+    }
+
     public function getAllMovements(DateTime $initDate = null, DateTime $endDate = null, int $page = 1, $count = 100): MovementListBackOffice
     {
         $endDate = $endDate ?? new DateTime();

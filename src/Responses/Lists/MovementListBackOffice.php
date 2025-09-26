@@ -57,4 +57,27 @@ class MovementListBackOffice extends \Spatie\DataTransferObject\DataTransferObje
             'pagination' => $pagination,
         ]);
     }
+
+    public static function createFullListFromApiResponse(ApiResponse $response)
+    {
+        $data = $response->data;
+        $report = new MovementReport($data['movementTotal']);
+        $movements = array_key_exists('movements', $data) ? $data['movements'] : [];
+        $pagination = new PaginationData($data['pagination']);
+
+        return new self([
+            'count'     => $report->movementCount ?? 0,
+            'report'    => $report,
+            'movements' => array_map(
+                function ($movement) {
+                    $movementData = new MovementBackOfficeData($movement['movement']);
+                    $movementData->kindDescription = CardMovementConstants::KIND_IDS_MAP[$movementData->kind];
+
+                    return $movementData;
+                },
+                $movements
+            ),
+            'pagination' => $pagination,
+        ]);
+    }
 }
