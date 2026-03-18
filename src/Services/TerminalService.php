@@ -164,7 +164,7 @@ final class TerminalService extends ServiceAbstract
     {
         $api_response = $this
             ->callAction(
-                ApiActions::TERM_CHARGE_POINTS,
+                ApiActions::TERM_DISCHARGE_POINTS,
                 [
                     'campaignid'    => $campaignId,
                     'customerid'    => $customerId,
