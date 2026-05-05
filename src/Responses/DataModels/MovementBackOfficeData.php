@@ -15,8 +15,8 @@ class MovementBackOfficeData extends DataTransferObject
     public int $kind;
     public ?string $kindDescription;
     public int $customer;
-    public string $customerName;
-    public string $customerSurname;
+    public ?string $customerName;
+    public ?string $customerSurname;
     public int $operatorId;
     public string $dateTime;
     public string $localTime;
