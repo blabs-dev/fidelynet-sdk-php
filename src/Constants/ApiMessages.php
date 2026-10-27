@@ -441,6 +441,8 @@ final class ApiMessages
         997 => self::ERROR_UNKNOWN,
         998 => self::SESSION_CLOSE,
         999 => self::ERROR_SQL,
+        995 => self::CARD_PREVIOUSLY_ACTIVATED,
+        1004 => self::MISSING_AUTHORIZATIONS,
     ];
 
     const OK = 'OK';
@@ -879,4 +881,6 @@ final class ApiMessages
     const ERROR_UNKNOWN = 'ERROR_UNKNOWN';
     const SESSION_CLOSE = 'SESSION_CLOSE';
     const ERROR_SQL = 'ERROR_SQL';
+    const CARD_PREVIOUSLY_ACTIVATED = 'CARD_PREVIOUSLY_ACTIVATED';
+    const MISSING_AUTHORIZATIONS = 'MISSING_AUTHORIZATIONS';
 }

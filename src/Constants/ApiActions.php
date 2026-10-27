@@ -35,4 +35,9 @@ final class ApiActions
     const TERM_CHARGE_POINTS = 'chargepoints';
     const TERM_DISCHARGE_POINTS = 'dischargepoints';
     const TERM_SALE_PRODUCT = 'saleproduct';
+    const TERM_GET_CARD_FROM_BARCODE = 'getcardfrombarcode';
+    const TERM_GET_INFO_BY_CARD = 'getinfobycard';
+    const TERM_NEW_CARD = 'newcard';
+    const TERM_CANCEL_LAST_TRANSACTION = 'cancellasttransaction';
+    const TERM_GET_LAST_MOVEMENTS = 'getlastmovements';
 }

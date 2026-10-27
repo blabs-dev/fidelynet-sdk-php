@@ -66,6 +66,21 @@ Each service needs some specific parameters in the config array in order to be i
   * `password`
   * `campaign_id`
 
+## Terminal WEB POS actions
+`TerminalService` also wraps the actions used by the Fidelynet WEB POS:
+
+```php
+$barcode = $terminal_service->getCardFromBarcode('53164182296336');           // BarcodeCardData
+$info = $terminal_service->getCardInfoByCard($barcode->card, $barcode->campaignCode);
+if ($info->dormant) {                                                          // returncode 53: not an error
+    $activation = $terminal_service->activateCard($info->customer->campaignId, $barcode->card, $barcode->barcode);
+}
+$last = $terminal_service->getLastMovements($campaignId, $customerId, 0, 1);  // movements is always a list
+$terminal_service->cancelLastTransaction($customerId, 'notes');               // cancels the LAST movement, whatever it is
+```
+
+Return codes are exposed through `FidelyNetServiceException::getServiceErrorCode()` (e.g. 58, 995, 56, 57, 1004 on activation; 126, 133, 150 on cancellation). Amounts and balances of the new models are floats.
+
 ## Session Persistence
 FidelyNET APIs provides an authentication system that requires to open a session on the service before starting to make actual requests.
 

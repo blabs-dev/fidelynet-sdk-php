@@ -1,0 +1,13 @@
+{
+  "returncode": "53",
+  "data": {
+    "answerCode": 53,
+    "customer": {
+      "id": 0,
+      "campaignId": 2345,
+      "card": "40000",
+      "fidelyCode": 0,
+      "status": 0
+    }
+  }
+}

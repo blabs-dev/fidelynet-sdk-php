@@ -40,6 +40,8 @@ abstract class ServiceAbstract
      *
      * @param string $action
      * @param array  $parameters
+     * @param string $entryPointOverride
+     * @param int[]  $acceptedReturnCodes Non-zero return codes that must be returned instead of thrown
      *
      * @throws FidelyNetServiceException
      * @throws FidelyNetSessionException
@@ -48,15 +50,18 @@ abstract class ServiceAbstract
      *
      * @return ApiResponse
      */
-    public function callAction(string $action, array $parameters, string $entryPointOverride = ''): ApiResponse
+    public function callAction(
+        string $action,
+        array $parameters,
+        string $entryPointOverride = '',
+        array $acceptedReturnCodes = []
+    ): ApiResponse
     {
         if (!in_array($action, ApiServices::SUPPORTED_ACTIONS[$this->service_type])) {
             throw new FidelyNetServiceException(Messages::UNSUPPORTED_ACTION);
         }
 
-        return empty($entryPointOverride) ?
-            $this->client->actionRequest($action, $parameters)
-            : $this->client->actionRequest($action, $parameters, $entryPointOverride);
+        return $this->client->actionRequest($action, $parameters, $entryPointOverride, $acceptedReturnCodes);
     }
 
     /**

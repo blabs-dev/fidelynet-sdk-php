@@ -28,6 +28,11 @@ final class ApiServices
             ApiActions::TERM_CHARGE_POINTS,
             ApiActions::TERM_DISCHARGE_POINTS,
             ApiActions::TERM_SALE_PRODUCT,
+            ApiActions::TERM_GET_CARD_FROM_BARCODE,
+            ApiActions::TERM_GET_INFO_BY_CARD,
+            ApiActions::TERM_NEW_CARD,
+            ApiActions::TERM_CANCEL_LAST_TRANSACTION,
+            ApiActions::TERM_GET_LAST_MOVEMENTS,
         ],
         self::BACKOFFICE => [
             ApiActions::BO_MODIFY_CUSTOMER,

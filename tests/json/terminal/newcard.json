@@ -1,0 +1,20 @@
+{
+  "returncode": 0,
+  "data": {
+    "customer": {
+      "id": 7250207,
+      "campaignId": 2345,
+      "campaignName": "Carta Rido",
+      "card": "40000",
+      "fidelyCode": 53164182296336,
+      "status": 1,
+      "issuedDate": "2026-10-27+01:00",
+      "invitor_code": "ABCDEF",
+      "personalInfo": {"name": "*", "surname": "*", "gender": "N"},
+      "balanceData": {"category": 4550, "status": 1, "balance_points": 0, "balance_credits": 0, "balance_gift_credits": 0}
+    },
+    "movement": {"id": 75810666, "kind": 1, "shopId": 65845, "netId": 64324, "terminal": 57383, "card": 40000, "customer": 7250207, "dateTime": "2026-10-27T10:00:00.000+01:00"},
+    "shop": {"id": 65845, "name": "Bar Centrale"}
+  },
+  "data5": "card 40000"
+}

@@ -1,0 +1,15 @@
+{
+  "returncode": 0,
+  "data": {
+    "customer": {
+      "id": 7250207,
+      "campaignId": 2345,
+      "card": "40000",
+      "fidelyCode": 53164182296336,
+      "status": 1,
+      "balanceData": {"category": 4550, "status": 1, "balance_points": 0, "balance_credits": 0, "balance_gift_credits": 0}
+    },
+    "movement": {"id": 75810694, "kind": 13, "totalMoney": 1, "chargedPoints": 0.05, "shopId": 65845, "terminal": 57383, "card": 40000, "customer": 7250207, "dateTime": "2026-10-27T10:05:00.000+01:00"},
+    "shop": {"id": 65845, "name": "Bar Centrale"}
+  }
+}
