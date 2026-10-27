@@ -305,6 +305,8 @@ final class Client
      *
      * @param string $action
      * @param array  $parameters
+     * @param string $overrideEntrypoint
+     * @param int[]  $acceptedReturnCodes Non-zero return codes that are valid states for the caller and must not throw
      *
      * @throws Exceptions\FidelyNetSessionException
      * @throws GuzzleException
@@ -312,7 +314,12 @@ final class Client
      *
      * @return ApiResponse
      */
-    public function actionRequest(string $action, array $parameters, string $overrideEntrypoint = ''): ApiResponse
+    public function actionRequest(
+        string $action,
+        array $parameters,
+        string $overrideEntrypoint = '',
+        array $acceptedReturnCodes = []
+    ): ApiResponse
     {
         $this->requestCount++;
 
@@ -339,14 +346,19 @@ final class Client
             throw new FidelyNetServiceException(Messages::UNKNOWN_ERROR, $response_content);
         }
 
+        // The service sends the return code sometimes as string, sometimes as int
+        if (is_string($response_data->returncode) && is_numeric($response_data->returncode)) {
+            $response_data->returncode = (int) $response_data->returncode;
+        }
+
         // If service returns an expired session error, session is renewed and request is performed again
         if ($response_data->returncode == 998) {
             $this->sessionManager->renewSession();
 
-            return $this->actionRequest($action, $parameters);
+            return $this->actionRequest($action, $parameters, '', $acceptedReturnCodes);
         }
 
-        if ($response_data->returncode !== 0) {
+        if ($response_data->returncode !== 0 && !in_array($response_data->returncode, $acceptedReturnCodes, true)) {
             throw $this->determineApiError($response_data->returncode);
         }
 
@@ -380,12 +392,12 @@ final class Client
     protected function determineApiError($returnCode, string $responseBody = ''): Exception
     {
         return match ($returnCode) {
-            '9999'  => new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST, $responseBody, 9999),
+            9999, '9999' => new FidelyNetServiceException(Messages::SERVICE_BAD_REQUEST, $responseBody, 9999),
             50      => new CustomerNotFoundException(),
             240     => new MissingRequiredFieldsException(Messages::SERVICE_MISSING_REQUIRED_FIELDS),
             79      => new UnauthorizedActionException(Messages::UNAUTHORIZED_ACTION),
             110     => new GeoLevelNotFoundException(Messages::GEO_LEVEL_NOT_FOUND),
-            default => new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."$returnCode: ".ApiMessages::CODES[$returnCode], $responseBody, $returnCode)
+            default => new FidelyNetServiceException(Messages::SERVICE_RETURNED_ERROR_CODE."$returnCode: ".(ApiMessages::CODES[$returnCode] ?? ApiMessages::ERROR_UNKNOWN), $responseBody, $returnCode)
         };
     }
 

@@ -1,0 +1,10 @@
+{
+  "returncode": 0,
+  "data": {
+    "customer": {"id": 7250207, "campaignId": 2345, "card": "40000", "fidelyCode": 53164182296336, "status": 1},
+    "movements": [
+      {"id": 75810694, "kind": 2, "totalMoney": 1.5, "chargedPoints": 0.05, "dischargedPoints": 0, "shopId": 65845, "terminal": 57383, "dateTime": "2026-10-27T10:05:00.000+01:00"},
+      {"id": 75810666, "kind": 1, "shopId": 65845, "netId": 64324, "terminal": 57383, "card": 40000, "customer": 7250207, "dateTime": "2026-10-27T10:00:00.000+01:00"}
+    ]
+  }
+}

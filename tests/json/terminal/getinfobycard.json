@@ -1,0 +1,19 @@
+{
+  "returncode": "0",
+  "data": {
+    "answerCode": 0,
+    "customer": {
+      "id": 463943,
+      "campaignId": 2345,
+      "campaignName": "Carta Rido",
+      "card": "40000",
+      "fidelyCode": 53164182296336,
+      "status": 1,
+      "issuedDate": "2026-10-27+01:00",
+      "registration_shop_id": 65845,
+      "registration_net_id": 64324,
+      "personalInfo": {"name": "*", "surname": "*", "gender": "N"},
+      "balanceData": {"category": 4550, "status": 1, "balance_points": 12.5, "balance_credits": 3.75, "balance_gift_credits": 0}
+    }
+  }
+}
