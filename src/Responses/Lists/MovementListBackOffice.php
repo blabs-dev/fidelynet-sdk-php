@@ -19,6 +19,9 @@ class MovementListBackOffice extends \Spatie\DataTransferObject\DataTransferObje
 
     public ?MovementReport $report;
 
+    /** Entries of the current page discarded because they carry no `movement` payload. */
+    public int $skippedEntries = 0;
+
     public static function createFromApiResponse(ApiResponse $response)
     {
         return new self([
@@ -39,7 +42,9 @@ class MovementListBackOffice extends \Spatie\DataTransferObject\DataTransferObje
     {
         $data = $response->data;
         $report = new MovementReport($data['movementTotal']);
-        $movements = array_key_exists('movements', $data) ? $data['movements'] : [];
+        $entries = array_key_exists('movements', $data) ? $data['movements'] : [];
+        // The service can return entries without a `movement` payload: one of them must not abort the whole page.
+        $movements = array_values(array_filter($entries, fn ($entry) => is_array($entry['movement'] ?? null)));
         $pagination = new PaginationData($data['pagination']);
 
         return new self([
@@ -55,6 +60,7 @@ class MovementListBackOffice extends \Spatie\DataTransferObject\DataTransferObje
                 $movements
             ),
             'pagination' => $pagination,
+            'skippedEntries' => count($entries) - count($movements),
         ]);
     }
 }

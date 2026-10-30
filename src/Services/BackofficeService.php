@@ -179,7 +179,7 @@ final class BackofficeService extends ServiceAbstract
     {
         $endDate = $endDate ?? new DateTime();
         $initDate = $initDate ?? $endDate->sub(new DateInterval('P1M'));
-        $initialOffset = $page === 1 ? 0 : $page * $count;
+        $initialOffset = $this->pageToOffset($page, $count);
         $params = [
             'initialDate' => $initDate->format('Y-m-d'),
             'finalDate' => $endDate->format('Y-m-d'),
@@ -197,7 +197,7 @@ final class BackofficeService extends ServiceAbstract
 
     public function getAllCustomers(int $page = 1, int $count = 100, string $netId = null): CustomerListBackoffice
     {
-        $initialOffset = $page === 1 ? 0 : $page * $count;
+        $initialOffset = $this->pageToOffset($page, $count);
         $params = [
             'rowCount' => $count,
             'initlimit' => $initialOffset,
@@ -209,5 +209,14 @@ final class BackofficeService extends ServiceAbstract
         $response = $this->callAction(ApiActions::BO_GET_ALL_CUSTOMERS, $params);
 
         return  CustomerListBackoffice::createFromApiResponse($response);
+    }
+
+    /**
+     * Converts a 1-based page number to the `initlimit` offset of the service
+     * (initlimit 0 is `actualPage` 1). Page 0 is tolerated and read as the first page.
+     */
+    private function pageToOffset(int $page, int $count): int
+    {
+        return max($page - 1, 0) * $count;
     }
 }
