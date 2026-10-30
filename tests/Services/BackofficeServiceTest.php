@@ -5,6 +5,7 @@ namespace Blabs\FidelyNet\Test\Services;
 use Blabs\FidelyNet\Constants\ApiActions;
 use Blabs\FidelyNet\Constants\ApiDemoData;
 use Blabs\FidelyNet\Constants\ApiServices;
+use Blabs\FidelyNet\Constants\FactoryOptions;
 use Blabs\FidelyNet\Exceptions\CustomerNotFoundException;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\Exceptions\UnauthorizedActionException;
@@ -19,6 +20,11 @@ use Blabs\FidelyNet\Responses\Lists\MovementListBackOffice;
 use Blabs\FidelyNet\ServiceFactory;
 use Blabs\FidelyNet\Services\BackofficeService;
 use Blabs\FidelyNet\Test\ServiceTestCase;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
+use GuzzleHttp\Psr7\Response;
 
 class BackofficeServiceTest extends ServiceTestCase
 {
@@ -467,5 +473,109 @@ class BackofficeServiceTest extends ServiceTestCase
         $this->assertCount(100, $response->customers);
         $first_item = $response->customers[0];
         $this->assertInstanceOf(CustomerInfoData::class, $first_item);
+    }
+
+    /**
+     * @dataProvider pageOffsets
+     */
+    public function test_get_all_movements_converts_page_to_offset(int $page, int $expectedOffset)
+    {
+        $history = [];
+        $service = $this->backofficeServiceWithHistory($history, [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_ALL_MOVEMENTS),
+        ]);
+
+        $service->getAllMovements(new \DateTime(), new \DateTime(), $page, 100);
+
+        $this->assertSame([$expectedOffset], $this->sentOffsets($history, ApiActions::BO_GET_ALL_MOVEMENTS));
+    }
+
+    public function pageOffsets(): array
+    {
+        return [
+            'tolerated page 0' => [0, 0],
+            'first page'       => [1, 0],
+            'second page'      => [2, 100],
+            'third page'       => [3, 200],
+            'last of fixture'  => [343, 34200],
+        ];
+    }
+
+    public function test_walking_all_pages_covers_every_row_without_gaps()
+    {
+        $history = [];
+        $page_response = $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_ALL_MOVEMENTS);
+        $service = $this->backofficeServiceWithHistory($history, array_fill(0, 3, $page_response));
+
+        // Same loop as the consumers: pages from 1 to `totalPages`, here 250 rows in 3 pages.
+        foreach ([1, 2, 3] as $page) {
+            $service->getAllMovements(new \DateTime(), new \DateTime(), $page, 100);
+        }
+
+        $this->assertSame([0, 100, 200], $this->sentOffsets($history, ApiActions::BO_GET_ALL_MOVEMENTS));
+    }
+
+    public function test_get_all_customers_converts_page_to_offset()
+    {
+        $history = [];
+        $service = $this->backofficeServiceWithHistory($history, [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_ALL_CUSTOMERS),
+        ]);
+
+        $service->getAllCustomers(2, 100);
+
+        $this->assertSame([100], $this->sentOffsets($history, ApiActions::BO_GET_ALL_CUSTOMERS));
+    }
+
+    public function test_get_all_movements_skips_entries_without_movement()
+    {
+        $payload = json_decode($this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_ALL_MOVEMENTS), true);
+        $payload['data']['movements'][1] = ['id' => 123];
+        $payload['data']['movements'][2] = ['movement' => null];
+
+        $history = [];
+        $service = $this->backofficeServiceWithHistory($history, [json_encode($payload)]);
+
+        $list = $service->getAllMovements(new \DateTime(), new \DateTime());
+
+        $this->assertCount(98, $list->movements);
+        $this->assertSame(2, $list->skippedEntries);
+        $this->assertSame(range(0, 97), array_keys($list->movements));
+        $this->assertInstanceOf(MovementBackOfficeData::class, $list->movements[1]);
+    }
+
+    /**
+     * Builds a backoffice service on a mock client, recording every request in $history.
+     */
+    private function backofficeServiceWithHistory(array &$history, array $bodies): BackofficeService
+    {
+        $responses = array_map(
+            fn (string $body) => new Response(200, [], $body),
+            array_merge([$this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_LOGIN)], $bodies)
+        );
+        $stack = HandlerStack::create(new MockHandler($responses));
+        $stack->push(Middleware::history($history));
+
+        return ServiceFactory::create(ApiServices::BACKOFFICE, array_merge(
+            $this->getBackofficeServiceDemoFactoryOptions(),
+            [FactoryOptions::HTTP_CLIENT => new Client(['handler' => $stack])]
+        ));
+    }
+
+    /**
+     * Reads the `initlimit` of each request sent for the given action.
+     */
+    private function sentOffsets(array $history, string $action): array
+    {
+        $offsets = [];
+        foreach ($history as $transaction) {
+            $body = (string) $transaction['request']->getBody();
+            if (preg_match('/name="az".*?\r\n\r\n'.preg_quote($action, '/').'\r\n/s', $body)
+                && preg_match('/name="initlimit".*?\r\n\r\n(\d+)\r\n/s', $body, $matches)) {
+                $offsets[] = (int) $matches[1];
+            }
+        }
+
+        return $offsets;
     }
 }
