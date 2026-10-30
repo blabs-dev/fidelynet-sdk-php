@@ -19,6 +19,9 @@ class MovementListBackOffice extends \Spatie\DataTransferObject\DataTransferObje
 
     public ?MovementReport $report;
 
+    /** Entries of the current page discarded because they carry no `movement` payload. */
+    public int $skippedEntries = 0;
+
     public static function createFromApiResponse(ApiResponse $response)
     {
         return new self([
@@ -39,7 +42,13 @@ class MovementListBackOffice extends \Spatie\DataTransferObject\DataTransferObje
     {
         $data = $response->data;
         $report = new MovementReport($data['movementTotal']);
-        $movements = $data['movements'];
+        $entries = array_key_exists('movements', $data) ? $data['movements'] : [];
+        // With a single row the service drops the list level: `movements` is the entry itself.
+        if (array_key_exists('movement', $entries)) {
+            $entries = [$entries];
+        }
+        // An entry without a `movement` payload must not abort the whole page: it is counted in $skippedEntries.
+        $movements = array_values(array_filter($entries, fn ($entry) => is_array($entry['movement'] ?? null)));
         $pagination = new PaginationData($data['pagination']);
 
         return new self([
@@ -55,29 +64,7 @@ class MovementListBackOffice extends \Spatie\DataTransferObject\DataTransferObje
                 $movements
             ),
             'pagination' => $pagination,
-        ]);
-    }
-
-    public static function createFullListFromApiResponse(ApiResponse $response)
-    {
-        $data = $response->data;
-        $report = new MovementReport($data['movementTotal']);
-        $movements = array_key_exists('movements', $data) ? $data['movements'] : [];
-        $pagination = new PaginationData($data['pagination']);
-
-        return new self([
-            'count'     => $report->movementCount ?? 0,
-            'report'    => $report,
-            'movements' => array_map(
-                function ($movement) {
-                    $movementData = new MovementBackOfficeData($movement['movement']);
-                    $movementData->kindDescription = CardMovementConstants::KIND_IDS_MAP[$movementData->kind];
-
-                    return $movementData;
-                },
-                $movements
-            ),
-            'pagination' => $pagination,
+            'skippedEntries' => count($entries) - count($movements),
         ]);
     }
 }

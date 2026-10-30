@@ -7,6 +7,7 @@ use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Requests\ModifyCustomerRequestData;
+use Blabs\FidelyNet\Responses\ApiResponse;
 use Blabs\FidelyNet\Responses\DataModels\CustomerInfoData;
 use Blabs\FidelyNet\Responses\DataModels\DynamicField;
 use Blabs\FidelyNet\Responses\DataModels\ShopAndNetworksData;
@@ -22,6 +23,10 @@ use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 final class BackofficeService extends ServiceAbstract
 {
+    private const GATEWAY_TIMEOUT_BODY = 'Error Fetching http headers';
+
+    private const GATEWAY_TIMEOUT_MAX_ATTEMPTS = 3;
+
     /**
      * @inheritdoc
      */
@@ -179,7 +184,7 @@ final class BackofficeService extends ServiceAbstract
     {
         $endDate = $endDate ?? new DateTime();
         $initDate = $initDate ?? $endDate->sub(new DateInterval('P1M'));
-        $initialOffset = $page === 1 ? 0 : $page * $count;
+        $initialOffset = $this->pageToOffset($page, $count);
         $params = [
             'initialDate' => $initDate->format('Y-m-d'),
             'finalDate' => $endDate->format('Y-m-d'),
@@ -190,14 +195,14 @@ final class BackofficeService extends ServiceAbstract
             $params['netid'] = $netId;
         }
 
-        $response = $this->callAction(ApiActions::BO_GET_ALL_MOVEMENTS, $params);
+        $response = $this->callReadAction(ApiActions::BO_GET_ALL_MOVEMENTS, $params);
 
         return  MovementListBackOffice::createFullListFromApiResponse($response);
     }
 
     public function getAllCustomers(int $page = 1, int $count = 100, string $netId = null): CustomerListBackoffice
     {
-        $initialOffset = $page === 1 ? 0 : $page * $count;
+        $initialOffset = $this->pageToOffset($page, $count);
         $params = [
             'rowCount' => $count,
             'initlimit' => $initialOffset,
@@ -209,5 +214,34 @@ final class BackofficeService extends ServiceAbstract
         $response = $this->callAction(ApiActions::BO_GET_ALL_CUSTOMERS, $params);
 
         return  CustomerListBackoffice::createFromApiResponse($response);
+    }
+
+    /**
+     * Performs a read that the service can fail with its own 60 seconds gateway timeout
+     * (HTTP 200, no returncode, `{"data2":"Error Fetching http headers"}`): the same request
+     * usually succeeds when repeated. Only for reads: a write may have been applied anyway.
+     */
+    private function callReadAction(string $action, array $params): ApiResponse
+    {
+        for ($attempt = 1; ; $attempt++) {
+            try {
+                return $this->callAction($action, $params);
+            } catch (FidelyNetServiceException $exception) {
+                $timedOut = str_contains($exception->getResponseBody(), self::GATEWAY_TIMEOUT_BODY);
+                if (!$timedOut || $attempt >= self::GATEWAY_TIMEOUT_MAX_ATTEMPTS) {
+                    throw $exception;
+                }
+                sleep($attempt);
+            }
+        }
+    }
+
+    /**
+     * Converts a 1-based page number to the `initlimit` offset of the service
+     * (initlimit 0 is `actualPage` 1). Page 0 is tolerated and read as the first page.
+     */
+    private function pageToOffset(int $page, int $count): int
+    {
+        return max($page - 1, 0) * $count;
     }
 }

@@ -23,6 +23,7 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\ServerException;
 use JetBrains\PhpStorm\ArrayShape;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
@@ -316,6 +317,8 @@ final class Client
     {
         $this->requestCount++;
 
+        // Kept aside so a retry after a session renewal rebuilds the request with the new session id.
+        $originalParameters = $parameters;
         $parameters = $this->prepareRequest($action, $parameters);
 
         if (!empty($overrideEntrypoint)) {
@@ -336,14 +339,17 @@ final class Client
         $response_data = $this->parseResponse($response_content);
 
         if ($response_data->returncode === null) {
-            throw new FidelyNetServiceException(Messages::UNKNOWN_ERROR, $response_content);
+            throw new FidelyNetServiceException(Messages::UNKNOWN_ERROR.' - HTTP '.$response->getStatusCode(), $response_content);
         }
 
         // If service returns an expired session error, session is renewed and request is performed again
         if ($response_data->returncode == 998) {
             $this->sessionManager->renewSession();
 
-            return $this->actionRequest($action, $parameters);
+            $response = $this->actionRequest($action, $originalParameters, $overrideEntrypoint);
+            $this->sessionManager->sessionRecovered();
+
+            return $response;
         }
 
         if ($response_data->returncode !== 0) {
@@ -406,6 +412,15 @@ final class Client
 
         if ($exception instanceof ConnectException) {
             return new FidelyNetServiceException(Constants\Messages::SERVICE_UNREACHABLE);
+        }
+
+        if ($exception instanceof ServerException) {
+            $response = $exception->getResponse();
+
+            return new FidelyNetServiceException(
+                Constants\Messages::SERVICE_REPLIED_WITH_HTTP_ERROR_CODE.$response->getStatusCode(),
+                (string) $response->getBody()
+            );
         }
 
         // @codeCoverageIgnoreStart
