@@ -7,6 +7,7 @@ use Blabs\FidelyNet\Constants\ApiServices;
 use Blabs\FidelyNet\Exceptions\FidelyNetServiceException;
 use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
 use Blabs\FidelyNet\Requests\ModifyCustomerRequestData;
+use Blabs\FidelyNet\Responses\ApiResponse;
 use Blabs\FidelyNet\Responses\DataModels\CustomerInfoData;
 use Blabs\FidelyNet\Responses\DataModels\DynamicField;
 use Blabs\FidelyNet\Responses\DataModels\ShopAndNetworksData;
@@ -22,6 +23,10 @@ use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
 final class BackofficeService extends ServiceAbstract
 {
+    private const GATEWAY_TIMEOUT_BODY = 'Error Fetching http headers';
+
+    private const GATEWAY_TIMEOUT_MAX_ATTEMPTS = 3;
+
     /**
      * @inheritdoc
      */
@@ -190,7 +195,7 @@ final class BackofficeService extends ServiceAbstract
             $params['netid'] = $netId;
         }
 
-        $response = $this->callAction(ApiActions::BO_GET_ALL_MOVEMENTS, $params);
+        $response = $this->callReadAction(ApiActions::BO_GET_ALL_MOVEMENTS, $params);
 
         return  MovementListBackOffice::createFullListFromApiResponse($response);
     }
@@ -209,6 +214,26 @@ final class BackofficeService extends ServiceAbstract
         $response = $this->callAction(ApiActions::BO_GET_ALL_CUSTOMERS, $params);
 
         return  CustomerListBackoffice::createFromApiResponse($response);
+    }
+
+    /**
+     * Performs a read that the service can fail with its own 60 seconds gateway timeout
+     * (HTTP 200, no returncode, `{"data2":"Error Fetching http headers"}`): the same request
+     * usually succeeds when repeated. Only for reads: a write may have been applied anyway.
+     */
+    private function callReadAction(string $action, array $params): ApiResponse
+    {
+        for ($attempt = 1; ; $attempt++) {
+            try {
+                return $this->callAction($action, $params);
+            } catch (FidelyNetServiceException $exception) {
+                $timedOut = str_contains($exception->getResponseBody(), self::GATEWAY_TIMEOUT_BODY);
+                if (!$timedOut || $attempt >= self::GATEWAY_TIMEOUT_MAX_ATTEMPTS) {
+                    throw $exception;
+                }
+                sleep($attempt);
+            }
+        }
     }
 
     /**

@@ -559,6 +559,36 @@ class BackofficeServiceTest extends ServiceTestCase
         $this->assertInstanceOf(MovementBackOfficeData::class, $list->movements[0]);
     }
 
+    public function test_get_all_movements_repeats_the_read_after_a_gateway_timeout()
+    {
+        $history = [];
+        $service = $this->backofficeServiceWithHistory($history, [
+            '{"data2":"Error Fetching http headers"}',
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_ALL_MOVEMENTS),
+        ]);
+
+        $list = $service->getAllMovements(new \DateTime(), new \DateTime());
+
+        $this->assertNotEmpty($list->movements);
+        $this->assertCount(2, $this->sentOffsets($history, ApiActions::BO_GET_ALL_MOVEMENTS));
+    }
+
+    public function test_get_all_movements_gives_up_after_repeated_gateway_timeouts()
+    {
+        $timeout = '{"data2":"Error Fetching http headers"}';
+        $history = [];
+        $service = $this->backofficeServiceWithHistory($history, [$timeout, $timeout, $timeout]);
+
+        try {
+            $service->getAllMovements(new \DateTime(), new \DateTime());
+            $this->fail('Expected a service exception');
+        } catch (\Blabs\FidelyNet\Exceptions\FidelyNetServiceException $exception) {
+            $this->assertStringContainsString('Error Fetching http headers', $exception->getResponseBody());
+        }
+
+        $this->assertCount(3, $this->sentOffsets($history, ApiActions::BO_GET_ALL_MOVEMENTS));
+    }
+
     /**
      * Builds a backoffice service on a mock client, recording every request in $history.
      */
