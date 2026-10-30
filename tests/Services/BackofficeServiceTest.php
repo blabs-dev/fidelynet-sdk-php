@@ -544,6 +544,21 @@ class BackofficeServiceTest extends ServiceTestCase
         $this->assertInstanceOf(MovementBackOfficeData::class, $list->movements[1]);
     }
 
+    public function test_get_all_movements_keeps_the_single_row_the_service_returns_without_list_level()
+    {
+        $payload = json_decode($this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_ALL_MOVEMENTS), true);
+        $payload['data']['movements'] = $payload['data']['movements'][0];
+
+        $history = [];
+        $service = $this->backofficeServiceWithHistory($history, [json_encode($payload)]);
+
+        $list = $service->getAllMovements(new \DateTime(), new \DateTime());
+
+        $this->assertCount(1, $list->movements);
+        $this->assertSame(0, $list->skippedEntries);
+        $this->assertInstanceOf(MovementBackOfficeData::class, $list->movements[0]);
+    }
+
     /**
      * Builds a backoffice service on a mock client, recording every request in $history.
      */

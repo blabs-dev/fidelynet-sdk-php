@@ -28,6 +28,14 @@ final class SessionManager
     protected int $sessionRenews = 0;
 
     /**
+     * Renewals since the last request that succeeded with a fresh session:
+     * this is what the MAX_SESSION_RENEW_TRIES limit applies to.
+     *
+     * @var int
+     */
+    protected int $consecutiveRenews = 0;
+
+    /**
      * Session ID provider class (sets and gets the session id for every request).
      *
      * @var SessionIdProviderContract
@@ -99,10 +107,19 @@ final class SessionManager
     public function renewSession(): void
     {
         $this->sessionRenews++;
-        if ($this->sessionRenews == self::MAX_SESSION_RENEW_TRIES) {
+        $this->consecutiveRenews++;
+        if ($this->consecutiveRenews == self::MAX_SESSION_RENEW_TRIES) {
             throw new FidelyNetSessionException(Messages::MAX_SESSION_RENEWS);
         }
         $this->initSession();
+    }
+
+    /**
+     * A request succeeded after a renewal: long running clients may renew again later on.
+     */
+    public function sessionRecovered(): void
+    {
+        $this->consecutiveRenews = 0;
     }
 
     /**

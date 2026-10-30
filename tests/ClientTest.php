@@ -92,4 +92,25 @@ class ClientTest extends ServiceTestCase
             )
         );
     }
+
+    public function test_http_500_is_reported_with_status_and_body()
+    {
+        $stack = \GuzzleHttp\HandlerStack::create(new \GuzzleHttp\Handler\MockHandler([
+            new \GuzzleHttp\Psr7\Response(500, [], 'gateway exploded'),
+        ]));
+
+        try {
+            ServiceFactory::create(ApiServices::BACKOFFICE, [
+                \Blabs\FidelyNet\Constants\FactoryOptions::HTTP_CLIENT => new \GuzzleHttp\Client(['handler' => $stack]),
+                \Blabs\FidelyNet\Constants\FactoryOptions::DEMO_MODE   => true,
+                \Blabs\FidelyNet\Constants\FactoryOptions::SESSION_PERSISTS => false,
+                \Blabs\FidelyNet\Constants\FactoryOptions::USERNAME    => 'operator',
+                \Blabs\FidelyNet\Constants\FactoryOptions::PASSWORD    => 'secret',
+            ]);
+            $this->fail('Expected a service exception');
+        } catch (FidelyNetServiceException $exception) {
+            $this->assertStringContainsString('500', $exception->getMessage());
+            $this->assertSame('gateway exploded', $exception->getResponseBody());
+        }
+    }
 }
