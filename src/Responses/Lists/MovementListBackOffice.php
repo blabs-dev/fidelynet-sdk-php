@@ -43,7 +43,11 @@ class MovementListBackOffice extends \Spatie\DataTransferObject\DataTransferObje
         $data = $response->data;
         $report = new MovementReport($data['movementTotal']);
         $entries = array_key_exists('movements', $data) ? $data['movements'] : [];
-        // The service can return entries without a `movement` payload: one of them must not abort the whole page.
+        // With a single row the service drops the list level: `movements` is the entry itself.
+        if (array_key_exists('movement', $entries)) {
+            $entries = [$entries];
+        }
+        // An entry without a `movement` payload must not abort the whole page: it is counted in $skippedEntries.
         $movements = array_values(array_filter($entries, fn ($entry) => is_array($entry['movement'] ?? null)));
         $pagination = new PaginationData($data['pagination']);
 
