@@ -16,6 +16,7 @@ use Blabs\FidelyNet\Responses\Lists\CustomerListBackoffice;
 use Blabs\FidelyNet\Responses\Lists\MovementListBackOffice;
 use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
 use Blabs\FidelyNet\Responses\ResponseData\GetDynamicFieldsResponseData;
+use Blabs\FidelyNet\Support\Arr;
 use DateInterval;
 use DateTime;
 use GuzzleHttp\Exception\GuzzleException;
@@ -122,7 +123,7 @@ final class BackofficeService extends ServiceAbstract
 
         // Applichiamo il mapper e poi filtriamo i null
         return array_values(array_filter(
-            array_map($mapper, $response->data['shopCategories'] ?? []),
+            array_map($mapper, Arr::wrapList($response->data['shopCategories'] ?? null)),
             fn ($category) => !is_null($category)
         ));
     }

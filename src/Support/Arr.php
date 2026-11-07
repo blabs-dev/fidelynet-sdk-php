@@ -23,4 +23,22 @@ final class Arr
 
         return $missing_options;
     }
+
+    /**
+     * Normalizes a list returned by FidelyNET. When a list holds a single element the service
+     * drops the list level and returns the element itself (an associative array): it is wrapped
+     * back in a list. A missing or empty value becomes an empty list, a list is left untouched.
+     *
+     * @param mixed $value
+     *
+     * @return array
+     */
+    public static function wrapList($value): array
+    {
+        if (!is_array($value) || $value === []) {
+            return [];
+        }
+
+        return array_keys($value) === range(0, count($value) - 1) ? $value : [$value];
+    }
 }

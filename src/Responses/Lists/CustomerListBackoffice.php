@@ -9,6 +9,7 @@ use Blabs\FidelyNet\Responses\DataModels\CustomerInfoData;
 use Blabs\FidelyNet\Responses\DataModels\MovementBackOfficeData;
 use Blabs\FidelyNet\Responses\DataModels\MovementReport;
 use Blabs\FidelyNet\Responses\DataModels\PaginationData;
+use Blabs\FidelyNet\Support\Arr;
 use Spatie\DataTransferObject\DataTransferObject;
 
 class CustomerListBackoffice extends DataTransferObject
@@ -21,7 +22,7 @@ class CustomerListBackoffice extends DataTransferObject
     public static function createFromApiResponse(ApiResponse $response)
     {
         $data = $response->data;
-        $customers = $data['customers'];
+        $customers = Arr::wrapList($data['customers'] ?? null);
         $pagination = new PaginationData($data['pagination']);
         return new self([
             'customers' => array_map(fn ($customer )=> new CustomerInfoData($customer), $customers),

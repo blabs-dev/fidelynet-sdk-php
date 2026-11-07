@@ -53,4 +53,30 @@ class ArrTest extends TestCase
             ],
         ];
     }
+
+    /**
+     * @dataProvider wrapListProvider
+     *
+     * @param array $expected
+     * @param mixed $value
+     */
+    public function test_wrap_list_normalizes_service_lists(array $expected, $value)
+    {
+        $this->assertSame($expected, Arr::wrapList($value));
+    }
+
+    public function wrapListProvider(): array
+    {
+        $first = ['id' => 1, 'fatherId' => 0, 'description' => 'first'];
+        $second = ['id' => 2, 'fatherId' => 0, 'description' => 'second'];
+
+        return [
+            'list of many elements' => [[$first, $second], [$first, $second]],
+            'list of one element'   => [[$first], [$first]],
+            'single object'         => [[$first], $first],
+            'empty list'            => [[], []],
+            'missing value'         => [[], null],
+            'scalar value'          => [[], ''],
+        ];
+    }
 }

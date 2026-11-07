@@ -1,0 +1,11 @@
+{
+  "returncode": 0,
+  "data": {
+    "answerCode": 0,
+    "pagination": {
+      "totalRecords": "",
+      "actualPage": "",
+      "totalPages": ""
+    }
+  }
+}
