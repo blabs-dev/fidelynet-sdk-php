@@ -104,6 +104,29 @@ class TerminalServiceTest extends ServiceTestCase
         }
     }
 
+    public function test_get_categories_wraps_the_single_category_returned_without_list_level()
+    {
+        if (!$this->mock_client_enabled) {
+            $this->markTestSkipped('This test can be performed only with a mock client');
+        }
+
+        $payload = json_decode($this->getFakeResponse(ApiServices::TERMINAL, ApiActions::TERM_GET_CATEGORIES), true);
+        $payload['data']['category'] = $payload['data']['category'][0];
+
+        $response_bodies_queue = [
+            $this->getFakeLoginResponse(ApiServices::TERMINAL),
+            json_encode($payload),
+        ];
+        $factory_options = $this->addClientMockToFactoryOptions($this->getTerminalServiceDemoFactoryOptions(), $response_bodies_queue);
+        /** @var TerminalService $service */
+        $service = ServiceFactory::create(ApiServices::TERMINAL, $factory_options);
+
+        $categories = $service->getCategories();
+
+        $this->assertCount(1, $categories);
+        $this->assertInstanceOf(CategoryData::class, $categories[0]);
+    }
+
     public function test_get_logged_shop_info()
     {
         if (!$this->mock_client_enabled) {

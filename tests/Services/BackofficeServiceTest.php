@@ -276,6 +276,57 @@ class BackofficeServiceTest extends ServiceTestCase
         $this->assertEquals(1292, $firstChild->fatherId);
     }
 
+    public function test_get_child_categories_wraps_the_single_child_returned_without_list_level()
+    {
+        $history = [];
+        $service = $this->backofficeServiceWithHistory($history, [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_SHOP_CATEGORIES, 'single-child'),
+        ]);
+
+        $childCategories = $service->getShopCategories(68);
+
+        $this->assertCount(1, $childCategories);
+        $this->assertInstanceOf(ShopCategoryData::class, $childCategories[0]);
+        $this->assertEquals(69, $childCategories[0]->id);
+        $this->assertEquals(68, $childCategories[0]->fatherId);
+        $this->assertSame('Ottica', $childCategories[0]->description);
+    }
+
+    public function test_get_child_categories_without_children_returns_an_empty_list()
+    {
+        $history = [];
+        $service = $this->backofficeServiceWithHistory($history, [
+            $this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_SHOP_CATEGORIES, 'no-children'),
+        ]);
+
+        $this->assertSame([], $service->getShopCategories(69));
+    }
+
+    public function test_get_child_categories_with_an_empty_list_returns_an_empty_list()
+    {
+        $payload = json_decode($this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_SHOP_CATEGORIES, 'no-children'), true);
+        $payload['data']['shopCategories'] = [];
+
+        $history = [];
+        $service = $this->backofficeServiceWithHistory($history, [json_encode($payload)]);
+
+        $this->assertSame([], $service->getShopCategories(69));
+    }
+
+    public function test_get_all_customers_wraps_the_single_customer_returned_without_list_level()
+    {
+        $payload = json_decode($this->getFakeResponse(ApiServices::BACKOFFICE, ApiActions::BO_GET_ALL_CUSTOMERS), true);
+        $payload['data']['customers'] = $payload['data']['customers'][0];
+
+        $history = [];
+        $service = $this->backofficeServiceWithHistory($history, [json_encode($payload)]);
+
+        $list = $service->getAllCustomers();
+
+        $this->assertCount(1, $list->customers);
+        $this->assertInstanceOf(CustomerInfoData::class, $list->customers[0]);
+    }
+
     public function test_get_shops_and_networks()/**/
     {
         $this->markTestSkipped('to do');

@@ -7,6 +7,7 @@ use Blabs\FidelyNet\Responses\ApiResponse;
 use Blabs\FidelyNet\Responses\DataModels\MovementBackOfficeData;
 use Blabs\FidelyNet\Responses\DataModels\MovementReport;
 use Blabs\FidelyNet\Responses\DataModels\PaginationData;
+use Blabs\FidelyNet\Support\Arr;
 
 class MovementListBackOffice extends \Spatie\DataTransferObject\DataTransferObject
 {
@@ -42,11 +43,8 @@ class MovementListBackOffice extends \Spatie\DataTransferObject\DataTransferObje
     {
         $data = $response->data;
         $report = new MovementReport($data['movementTotal']);
-        $entries = array_key_exists('movements', $data) ? $data['movements'] : [];
         // With a single row the service drops the list level: `movements` is the entry itself.
-        if (array_key_exists('movement', $entries)) {
-            $entries = [$entries];
-        }
+        $entries = Arr::wrapList($data['movements'] ?? null);
         // An entry without a `movement` payload must not abort the whole page: it is counted in $skippedEntries.
         $movements = array_values(array_filter($entries, fn ($entry) => is_array($entry['movement'] ?? null)));
         $pagination = new PaginationData($data['pagination']);

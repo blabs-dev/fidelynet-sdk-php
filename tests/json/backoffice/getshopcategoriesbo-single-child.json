@@ -1,0 +1,16 @@
+{
+  "returncode": 0,
+  "data": {
+    "answerCode": 0,
+    "shopCategories": {
+      "id": 69,
+      "fatherId": 68,
+      "description": "Ottica"
+    },
+    "pagination": {
+      "totalRecords": "",
+      "actualPage": "",
+      "totalPages": ""
+    }
+  }
+}

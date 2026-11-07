@@ -13,6 +13,7 @@ use Blabs\FidelyNet\Responses\DataModels\LoggedShopData;
 use Blabs\FidelyNet\Responses\DataModels\MovementData;
 use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
 use Blabs\FidelyNet\Responses\ResponseData\GetCampaignResponseData;
+use Blabs\FidelyNet\Support\Arr;
 use GuzzleHttp\Exception\GuzzleException;
 use Spatie\DataTransferObject\Exceptions\UnknownProperties;
 
@@ -77,7 +78,7 @@ final class TerminalService extends ServiceAbstract
             'initlimit' => $resultsOffset,
             'rowcount'  => $maxResults,
         ]);
-        $categories = $api_response->data['category'];
+        $categories = Arr::wrapList($api_response->data['category'] ?? null);
 
         return array_map(
             fn (array $category_attributes) => new CategoryData($category_attributes),
