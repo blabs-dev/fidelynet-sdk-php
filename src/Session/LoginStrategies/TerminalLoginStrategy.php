@@ -37,6 +37,7 @@ final class TerminalLoginStrategy extends LoginStrategyAbstract
     protected function extractSessionId(ApiResponse $response): string
     {
         $response_data = new LoginResponseData($response->data);
+        $this->loginResponse = $response_data;
 
         return $response_data->sessionID;
     }

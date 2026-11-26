@@ -40,4 +40,15 @@ final class OperatorData extends DataTransferObject
      * @var mixed
      */
     public mixed $profile;
+
+    /**
+     * The operator's permissions (`profile`) as a typed object, null when the
+     * login reply carried none.
+     *
+     * @return OperatorProfileData|null
+     */
+    public function profileData(): ?OperatorProfileData
+    {
+        return OperatorProfileData::fromLoginProfile($this->profile);
+    }
 }

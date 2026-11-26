@@ -4,6 +4,7 @@ namespace Blabs\FidelyNet\Session\LoginStrategies;
 
 use Blabs\FidelyNet\Client;
 use Blabs\FidelyNet\Responses\ApiResponse;
+use Blabs\FidelyNet\Responses\ResponseData\LoginResponseData;
 
 abstract class LoginStrategyAbstract
 {
@@ -13,6 +14,14 @@ abstract class LoginStrategyAbstract
      * @var Client
      */
     public Client $client;
+
+    /**
+     * The parsed reply of the last login, for strategies whose login returns
+     * more than a session id (the terminal one: operator and profile).
+     *
+     * @var LoginResponseData|null
+     */
+    protected ?LoginResponseData $loginResponse = null;
 
     /**
      * LoginStrategyContract constructor.
@@ -41,4 +50,14 @@ abstract class LoginStrategyAbstract
      * @return string
      */
     abstract protected function extractSessionId(ApiResponse $response): string;
+
+    /**
+     * The parsed reply of the last login made by this strategy, if any.
+     *
+     * @return LoginResponseData|null
+     */
+    public function getLoginResponse(): ?LoginResponseData
+    {
+        return $this->loginResponse;
+    }
 }

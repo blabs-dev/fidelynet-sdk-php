@@ -149,6 +149,17 @@ final class Client
     }
 
     /**
+     * Parsed reply of the last login made by this instance, null when the
+     * session was resumed from a stored id or the service returns no data.
+     *
+     * @return Responses\ResponseData\LoginResponseData|null
+     */
+    public function getLastLoginResponse(): ?Responses\ResponseData\LoginResponseData
+    {
+        return $this->sessionManager->getLastLoginResponse();
+    }
+
+    /**
      * Returns service type of current instance.
      *
      * @return string

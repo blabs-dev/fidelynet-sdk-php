@@ -11,6 +11,8 @@ use Blabs\FidelyNet\Responses\DataModels\CustomerData;
 use Blabs\FidelyNet\Responses\DataModels\CustomerInfoData;
 use Blabs\FidelyNet\Responses\DataModels\LoggedShopData;
 use Blabs\FidelyNet\Responses\DataModels\MovementData;
+use Blabs\FidelyNet\Responses\DataModels\OperatorData;
+use Blabs\FidelyNet\Responses\DataModels\OperatorProfileData;
 use Blabs\FidelyNet\Responses\ResponseData\CardInfoResponseData;
 use Blabs\FidelyNet\Responses\ResponseData\GetCampaignResponseData;
 use GuzzleHttp\Exception\GuzzleException;
@@ -22,6 +24,29 @@ final class TerminalService extends ServiceAbstract
      * @inheritdoc
      */
     public string $service_type = ApiServices::TERMINAL;
+
+    /**
+     * The operator the terminal login returned (`operator`), null when this
+     * instance resumed a stored session id and made no login.
+     *
+     * @return OperatorData|null
+     */
+    public function getLoggedOperator(): ?OperatorData
+    {
+        return $this->client->getLastLoginResponse()?->operator;
+    }
+
+    /**
+     * The logged operator's permissions (`operator.profile`, e.g.
+     * canChargePoints), null when this instance made no login or the reply
+     * had no profile. A permission missing from the reply reads as false.
+     *
+     * @return OperatorProfileData|null
+     */
+    public function getOperatorProfile(): ?OperatorProfileData
+    {
+        return $this->getLoggedOperator()?->profileData();
+    }
 
     /**
      * Returns information about a specific campaign.
