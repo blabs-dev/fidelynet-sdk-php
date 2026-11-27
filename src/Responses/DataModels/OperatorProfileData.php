@@ -2,10 +2,57 @@
 
 namespace Blabs\FidelyNet\Responses\DataModels;
 
+use ReflectionClass;
+use ReflectionNamedType;
+use ReflectionProperty;
 use Spatie\DataTransferObject\DataTransferObject;
 
 final class OperatorProfileData extends DataTransferObject
 {
+    /**
+     * Builds the profile from the raw `operator.profile` block of a login reply.
+     *
+     * The block is not validated by the service: a missing permission is read
+     * as `false` (and `rights` as 0), so a partial profile never grants more
+     * than it says. Returns null when there is no profile at all.
+     *
+     * @param mixed $profile
+     *
+     * @return self|null
+     */
+    public static function fromLoginProfile(mixed $profile): ?self
+    {
+        if ($profile instanceof self) {
+            return $profile;
+        }
+
+        if (is_object($profile)) {
+            $profile = (array) $profile;
+        }
+
+        if (!is_array($profile) || $profile === []) {
+            return null;
+        }
+
+        $values = [];
+
+        foreach ((new ReflectionClass(self::class))->getProperties(ReflectionProperty::IS_PUBLIC) as $property) {
+            if ($property->isStatic()) {
+                continue;
+            }
+
+            $type = $property->getType();
+            $name = $property->getName();
+            $raw = $profile[$name] ?? null;
+
+            $values[$name] = ($type instanceof ReflectionNamedType && $type->getName() === 'int')
+                ? (is_numeric($raw) ? (int) $raw : 0)
+                : filter_var($raw, FILTER_VALIDATE_BOOLEAN);
+        }
+
+        return new self($values);
+    }
+
     /**
      * @var int
      */

@@ -10,6 +10,7 @@ use Blabs\FidelyNet\Constants\FactoryOptions;
 use Blabs\FidelyNet\Constants\Messages;
 use Blabs\FidelyNet\Contracts\SessionIdProviderContract;
 use Blabs\FidelyNet\Exceptions\FidelyNetSessionException;
+use Blabs\FidelyNet\Responses\ResponseData\LoginResponseData;
 use Blabs\FidelyNet\Session\LoginStrategies\BackofficeLoginStrategy;
 use Blabs\FidelyNet\Session\LoginStrategies\CustomerLoginStrategy;
 use Blabs\FidelyNet\Session\LoginStrategies\TerminalLoginStrategy;
@@ -62,6 +63,14 @@ final class SessionManager
      * @var string
      */
     private string $session_type;
+
+    /**
+     * Parsed reply of the last login made by this manager. Null until a login
+     * happens: a session resumed from the id provider has none.
+     *
+     * @var LoginResponseData|null
+     */
+    private ?LoginResponseData $lastLoginResponse = null;
 
     /**
      * SessionManager constructor.
@@ -157,7 +166,11 @@ final class SessionManager
             ApiServices::CUSTOMER   => CustomerLoginStrategy::class,
         };
 
-        return (new $login_strategy($this->client))->startSession($this->credentials);
+        $strategy = new $login_strategy($this->client);
+        $session_id = $strategy->startSession($this->credentials);
+        $this->lastLoginResponse = $strategy->getLoginResponse();
+
+        return $session_id;
     }
 
     /**
@@ -194,5 +207,16 @@ final class SessionManager
     public function getSessionRenews(): int
     {
         return $this->sessionRenews;
+    }
+
+    /**
+     * Parsed reply of the last login made in this instance (terminal service
+     * only), null when the session was resumed from a stored id.
+     *
+     * @return LoginResponseData|null
+     */
+    public function getLastLoginResponse(): ?LoginResponseData
+    {
+        return $this->lastLoginResponse;
     }
 }

@@ -79,6 +79,18 @@ Session persistence is enabled by default when you use `ServiceFactory` class, y
 By default the SDK uses a session persistence "driver" that saves data in the temporary files system directory (typically `tmp/` on a *nix system), however you can create your own implementation of the persistence mechanism by implementing the `\Blabs\FidelyNet\Contracts\SessionIdProviderContract` interface (i.e. using session or any other storage system).
 
 
+### Logged operator and permissions (terminal)
+The terminal login reply also describes the operator who logged in and its permissions (`operator.profile`).
+`TerminalService::getLoggedOperator()` returns it as `OperatorData`, `TerminalService::getOperatorProfile()` as a typed
+`OperatorProfileData` (`canChargePoints`, `canChargeCredits`, `canDoSale`, ...). A permission missing from the reply reads as
+`false`. Both return `null` when the instance made no login, i.e. it resumed a session id from the provider: read them
+right after a fresh login. A session renewal refreshes them.
+
+```php
+$profile = $terminal_service->getOperatorProfile();
+$canCharge = $profile?->canChargePoints ?? false;
+```
+
 ## Supported API Actions
 So far the SDK supports fewer "actions" than those available on the service, our goal is to provide a library that simplify most common operations.
 
